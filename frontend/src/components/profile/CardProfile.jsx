@@ -10,7 +10,7 @@ export const CardProfile = () => {
                         flex flex-col items-center justify-between shadow-xl rounded-lg">
 
             <div className="relative">
-                <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="m-auto rounded-full border-2 border-gray-300" width={120} height={120} />
+                <img src="https://cdn-icons-png.freepik.com/512/1177/1177568.png" alt="img-client" className="m-auto rounded-full border-2 border-gray-300" width={120} height={120} />
                 
             </div>
 

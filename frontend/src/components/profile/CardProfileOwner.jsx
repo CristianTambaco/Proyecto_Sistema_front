@@ -9,7 +9,7 @@ export const CardProfileOwner = () => {
                         flex flex-col items-center justify-between shadow-xl rounded-lg">
 
             <div>
-                <img src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png" alt="img-client" className="m-auto " width={120} height={120} />
+                <img src="https://cdn-icons-png.freepik.com/512/1177/1177568.png" alt="img-client" className="m-auto " width={120} height={120} />
             </div>
             <div className="self-start">
                 <b>Nombre del Propietario:</b><p className="inline-block ml-3">{user.nombrePropietario}</p>

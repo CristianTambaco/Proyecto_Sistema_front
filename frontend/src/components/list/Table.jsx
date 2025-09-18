@@ -100,7 +100,7 @@ const Table = () => {
         />
 
         {
-            rol==="veterinario" &&
+            rol==="estilista" &&
                 (
                     <>
                         <MdPublishedWithChanges

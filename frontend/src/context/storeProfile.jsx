@@ -23,7 +23,7 @@ const getAuthHeaders = () => {
         profile: async () => {
             try {
                 const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-                const endpoint = storedUser.state.rol ==="veterinario"
+                const endpoint = storedUser.state.rol ==="estilista"
                     ? "perfil"
                     : "paciente/perfil"
                 const url = `${import.meta.env.VITE_BACKEND_URL}/${endpoint}`;
@@ -39,7 +39,7 @@ const getAuthHeaders = () => {
 
         updateProfile:async(data,id)=>{
             try {
-                const url = `${import.meta.env.VITE_BACKEND_URL}/veterinario/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/estilista/${id}`
                 const respuesta = await axios.put(url, data,getAuthHeaders())
                 set({ user: respuesta.data })
                 toast.success("Perfil actualizado correctamente")
@@ -50,7 +50,7 @@ const getAuthHeaders = () => {
         },
         updatePasswordProfile:async(data,id)=>{
             try {
-                const url = `${import.meta.env.VITE_BACKEND_URL}/veterinario/actualizarpassword/${id}`
+                const url = `${import.meta.env.VITE_BACKEND_URL}/estilista/actualizarpassword/${id}`
                 const respuesta = await axios.put(url, data,getAuthHeaders())
                 toast.success(respuesta?.data?.msg)
                 return respuesta

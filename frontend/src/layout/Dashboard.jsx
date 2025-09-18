@@ -18,7 +18,7 @@ const Dashboard = () => {
                 <div className="text-center mb-6">
                     <h2 className="text-2xl font-extrabold text-sky-300">Módulos</h2>
                     <img
-                        src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png"
+                        src="https://img.freepik.com/vector-premium/peluqueria-perros-gatos-simbolo-peluqueria-canina-simbolo-peluqueria-animales_662695-70.jpg"
                         alt="img-client"
                         className="mx-auto mt-4 p-1 border-2 border-sky-300 rounded-full"
                         width={90}
@@ -53,7 +53,7 @@ const Dashboard = () => {
                                 <FaList /> Listar
                             </Link>
                         </li>
-                        {rol === 'veterinario' && (
+                        {rol === 'estilista' && (
                             <li>
                                 <Link
                                     to="/dashboard/crear"
@@ -90,7 +90,7 @@ const Dashboard = () => {
                     </div>
                     <div className="flex items-center gap-4">
                         <img
-                            src="https://cdn-icons-png.flaticon.com/512/4715/4715329.png"
+                            src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
                             alt="img-client"
                             className="w-10 h-10 border-2 border-white rounded-full"
                         />

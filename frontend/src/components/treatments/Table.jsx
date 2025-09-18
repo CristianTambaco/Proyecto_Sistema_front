@@ -70,7 +70,7 @@ const TableTreatments = ({ treatments, listPatient }) => {
                               
                                 
 
-                                {rol === "veterinario" && (
+                                {rol === "estilista" && (
                                     <MdDeleteForever
                                         className={
                                             treatment.estadoPago === "Pagado"

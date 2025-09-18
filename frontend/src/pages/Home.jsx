@@ -17,170 +17,134 @@ import { FaXTwitter } from "react-icons/fa6";
 
 
 export const Home = () => {
-    return (
-        <>
-            <header className="container mx-auto h-40 text-center py-4 md:flex justify-between items-center px-4 md:h-15">
-                <h1 className='font-bold text-2xl my-2 text-amber-700'>Smart<span className='text-black'>VET</span></h1>
-                {/* <ul className='flex gap-5 justify-center my-4 flex-wrap'>
-                    <li><a href="#" className='font-bold hover:text-amber-700 hover:underline'>Home</a></li>
-                    <li><a href="#" className='font-bold hover:text-amber-700 hover:underline'>About US</a></li>
-                    <li><a href="#" className='font-bold hover:text-amber-700 hover:underline'>Services</a></li>                    <li><a href="#" className='font-bold hover:text-amber-700 hover:underline'>Contact</a></li>
-                </ul> */}
-                <ul className='flex justify-center items-center gap-5 my-4'>
-                    {/* <li><img src={logoDarkMode} alt="logo" width={35} height={35} />
-                    </li> */}
-                </ul>
-            </header>
+  return (
+    <>
+      {/* HEADER */}
+      <header className="container mx-auto flex justify-between items-center px-6 py-4">
+        <h1 className="font-extrabold text-3xl text-sky-600">
+          Pet<span className="text-emerald-500">ManageQ</span>
+        </h1>
+        <nav>
+          <ul className="hidden md:flex gap-6 font-semibold text-gray-600">
+            <li><a href="#" className="hover:text-sky-600 transition">Inicio</a></li>
+            <li><a href="#about" className="hover:text-sky-600 transition">Nosotros</a></li>
+            <li><a href="#services" className="hover:text-sky-600 transition">Servicios</a></li>
+            <li><a href="#contact" className="hover:text-sky-600 transition">Contacto</a></li>
+          </ul>
+        </nav>
+      </header>
 
+      {/* HERO */}
+      <main className="bg-gradient-to-r from-sky-50 to-emerald-50 py-20 px-6 md:flex md:items-center md:justify-between">
+        <div className="text-center md:text-left md:w-1/2">
+          <h1 className="font-extrabold text-sky-700 text-4xl md:text-6xl leading-tight">
+            Gestión Inteligente <br /> para Peluquerías Caninas
+          </h1>
+          <p className="mt-6 text-lg text-gray-600">
+            Optimiza tus servicios con Panel Administrativo, pagos en línea y comunicación en tiempo real.
+          </p>
+          <Link
+            to="/login"
+            className="inline-block mt-8 bg-sky-600 text-white px-8 py-3 rounded-full shadow-md hover:bg-sky-700 transition"
+          >
+            Empezar ahora
+          </Link>
+        </div>
+        <div className="hidden md:block md:w-1/2">
+          <img src={logoDogCatMain} alt="Mascotas" className="w-full drop-shadow-lg" />
+        </div>
+      </main>
 
+      {/* SOBRE NOSOTROS */}
+      <section id="about" className="container mx-auto px-6 py-20">
+        <h2 className="text-3xl font-bold text-center text-sky-700 mb-12">Sobre Nosotros</h2>
+        <div className="flex flex-col md:flex-row items-center gap-10">
+          <div className="md:w-1/2">
+            <img src={logoDog} alt="Sobre nosotros" className="rounded-2xl shadow-xl" />
+          </div>
+          <div className="md:w-1/2 text-gray-700">
+            <p className="mb-6 text-lg">
+              <b>PetManageQ</b> es la plataforma que moderniza la gestión de peluquerías caninas en Quito.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <li className="flex items-center gap-2"><MdDashboard className="text-sky-600 text-xl" /> Panel administrativo</li>              
+              <li className="flex items-center gap-2"><BsCashCoin className="text-sky-600 text-xl" /> Pagos en línea</li>
+              {/* <li className="flex items-center gap-2"><FaCommentSms className="text-sky-600 text-xl" /> Chat en tiempo real</li> */}
+              <li className="flex items-center gap-2"><FaUsers className="text-sky-600 text-xl" /> Gestión de pacientes</li>
+              <li className="flex items-center gap-2"><FaUser className="text-sky-600 text-xl" /> Gestión de estilistas</li>
+              <li className="flex items-center gap-2"><GiMedicines className="text-sky-600 text-xl" /> Tratamientos</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-            <main className='text-center py-6 px-8 bg-red-50  md:text-left md:flex justify-between items-center gap-10 md:py-1'>
-                <div className=''>
-                    <h1 className='font-lato font-extrabold text-amber-800 uppercase text-4xl my-4 md:text-6xl'>Intelligent software</h1>
+      {/* SERVICIOS */}
+      <section id="services" className="bg-sky-50 py-20 px-6">
+        <h2 className="text-3xl font-bold text-center text-sky-700 mb-12">Nuestros Servicios</h2>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: <FaUser className="text-4xl text-emerald-600" />, title: "Gestión de Estilistas" },
+            { icon: <FaUsers className="text-4xl text-emerald-600" />, title: "Gestión de Pacientes" },
+            { icon: <GiMedicines className="text-4xl text-emerald-600" />, title: "Gestión de Tratamientos" },
+            // { icon: <FaCommentSms className="text-4xl text-emerald-600" />, title: "Chat en Tiempo Real" },
+          ].map((service, i) => (
+            <div key={i} className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg hover:-translate-y-1 transition duration-300">
+              {service.icon}
+              <h4 className="text-xl font-bold mt-4 text-gray-800">{service.title}</h4>
+              <p className="mt-2 text-gray-600 text-sm">
+                Simplifica y mejora la experiencia de tus clientes con nuestras herramientas inteligentes.
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-                    <p className='font-bold text-left my-8 md:text-2xl underline'>Powered by</p>
-
-                    <p className='text-2xl my-6 font-sans'>Artificial intelligence, Payment gateway, Realtime chat and much more...</p>
-
-                    <Link to="/login" href="#" className='block bg-amber-800 w-40 py-2 mx-auto text-white rounded-2xl text-center sm:mx-0 hover:bg-amber-700'>Empezar</Link>
-                  
-                    
-                </div>
-                <div className='hidden md:block'>
-                    <img src={logoDogCatMain} alt="smart" />
-                </div>
-            </main>
-
-
-            <section className='container mx-auto px-4'>
-
-                <div className='container mx-auto relative mt-6'>
-                    <h2 className='font-semibold text-3xl relative z-1 w-50 text-center mx-auto bg-white'>SOBRE NOSOTROS</h2>
-                    <div className='text-amber-900 border-2 absolute top-1/2 w-full z-0' />
-                </div>
-
-                <div className='my-10 flex flex-col gap-10 items-center sm:flex-row sm:justify-around sm:items-center'>
-
-                    <div className='sm:w-1/2'>
-                        <img src={logoDog} alt="App Store" className='w-full h-full object-cover' />
-                    </div>
-
-                    <div className='px-10 sm:w-1/2'>
-                        <p className='my-4'>SmartVET es un software del mercado que incluye
-                        </p>
-                        <ul className='space-y-4'>
-                            <li>
-                                <MdDashboard className='inline text-2xl mr-2' />Panel administrativo
-                            </li>
-                            <li>
-                                <FaRobot className='inline text-2xl mr-2' />
-                                Inteligencia artificial
-                            </li>
-                            <li>
-                                <BsCashCoin className='inline text-2xl mr-2' />
-                                Pasarela de pago
-                            </li>
-                            <li>
-                                <FaCommentSms className='inline text-2xl mr-2' />
-                                Chat en tiempo real
-                            </li>
-                            <li>
-                                <FaUsers className='inline text-2xl mr-2' />
-                                Gestión de pacientes
-                            </li>
-                            <li>
-                                <FaUser className='inline text-2xl mr-2' />
-                                Gestión de veterinarios
-                            </li>
-                            <li>
-                                <GiMedicines className='inline text-2xl mr-2' />
-                                Gestión de tratamientos
-                            </li>
-                        </ul>
-                        <p className='my-4'>Que aprovechan las tecnologías modernas.</p>
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <section className='container mx-auto px-4'>
-
-                <div className='container mx-auto relative mt-6'>
-                    <h2 className='font-semibold text-3xl relative z-1 w-50 text-center mx-auto bg-white'>SERVICIOS</h2>
-                    <div className='text-amber-900 border-2 absolute top-1/2 w-full z-0' />
-                </div>
-
-                <div className='my-10 flex justify-between flex-wrap gap-5'>
-
-                    <div className="text-center shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.3)] hover:shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.5)] transition-shadow duration-300 relative pt-4 sm:flex-1">
-                        <FaUser className='inline text-5xl' />
-                        <h4 className="text-xl font-bold py-4 text-amber-700 hover:underline">Gestión de Veterinarios</h4>
-                        <p className="my-4 px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-                            similique sint eius consectetur rerum voluptate rem tenetur quisquam veniam quos ad facilis alias
-                            necessitatibus.</p>
-                        <hr className="border-1 border-amber-900 absolute w-full" />
-                    </div>
-
-
-                    <div className="text-center shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.3)] hover:shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.5)] transition-shadow duration-300 relative pt-4 bg-red-50 sm:flex-1">
-                        <FaUsers className='inline text-5xl' />
-                        <h4 className="text-xl font-bold py-4 text-amber-700 hover:underline">Gestión de Pacientes</h4>
-                        <p className="my-4 px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-                            similique sint eius consectetur rerum voluptate rem tenetur quisquam veniam quos ad facilis alias
-                            necessitatibus.</p>
-                        <hr className="border-1 border-amber-900 absolute w-full" />
-                    </div>
-
-                    <div className="text-center shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.3)] hover:shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.5)] transition-shadow duration-300 relative pt-4 bg-red-50 sm:flex-1">
-                        <GiMedicines className='inline text-5xl' />
-                        <h4 className="text-xl font-bold py-4 text-amber-700 hover:underline">Gestión de Tratamientos</h4>
-                        <p className="my-4 px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-                            similique sint eius consectetur rerum voluptate rem tenetur quisquam veniam quos ad facilis alias
-                            necessitatibus.</p>
-                        <hr className="border-1 border-amber-900 absolute w-full" />
-                    </div>
-
-                    <div className="text-center shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.3)] hover:shadow-[0.1rem_0.1rem_1rem_rgba(0,0,0,0.5)] transition-shadow duration-300 relative pt-4 sm:flex-1">
-                        <FaCommentSms className='inline text-5xl' />
-                        <h4 className="text-xl font-bold py-4 text-amber-700 hover:underline">Chat en Tiempo Real</h4>
-                        <p className="my-4 px-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae,
-                            similique sint eius consectetur rerum voluptate rem tenetur quisquam veniam quos ad facilis alias
-                            necessitatibus.</p>
-                        <hr className="border-1 border-amber-900 absolute w-full" />
-                    </div>
-                </div>
-            </section>
-
-
-            <footer className='text-center bg-red-50 p-6 sm:px-20 sm:py-10 mt-20 rounded-tr-3xl rounded-tl-3xl space-y-8'>
-
-                <div className='flex justify-between items-center'>
-                    <div className='text-3xl font-extrabold text-amber-800'>Contactos</div>
-                    
-                </div>
-
-                <div className='flex justify-between items-center'>
-                    <div className='text-left'>
-                        <p className='font-bold my-2'>Email: admin@vet.com</p>
-                        <p className='font-bold'>Phone: 0995644186</p>
-                    </div>
-                    <div className='flex-1 sm:max-w-1/2'>
-                        <form action="#" className='w-full p-4'>
-                            
-                        </form>
-                    </div>
-                </div>
-
-                <hr className='border-1 border-amber-800' />
-
-                <p className='font-semibold'>
-                    copyright - Derechos Reservados © 
-                </p>
-            </footer>
-
-        </>
-    )
+      {/* FOOTER */}
+      <footer id="contact" className="bg-gradient-to-r from-sky-700 to-emerald-600 text-white py-12 px-6 mt-16">
+        <div className="container mx-auto grid gap-10 md:grid-cols-3">
+          <div>
+            <h3 className="text-xl font-bold mb-4">PetManageQ</h3>
+            <p>La gestión inteligente para peluquerías caninas en Quito 🐾</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">Contacto</h3>
+            <p>Email: admin@PetManageQ.com</p>
+            <p>Tel: 0995644186</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold mb-4">Síguenos</h3>
+            <div className="flex gap-4 text-2xl">
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-blue-400 transition"
+              >
+                <FaFacebook />
+              </a>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-pink-400 transition"
+              >
+                <FaSquareInstagram />
+              </a>
+              <a 
+                href="https://twitter.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-gray-300 transition"
+              >
+                <FaXTwitter />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="text-center mt-10 text-sm text-gray-200">
+          © {new Date().getFullYear()} PetManageQ - Todos los derechos reservados.
+        </div>
+      </footer>
+    </>
+  )
 }
-

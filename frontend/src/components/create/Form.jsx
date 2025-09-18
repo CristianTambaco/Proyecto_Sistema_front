@@ -260,8 +260,8 @@ export const Form = ({patient}) => {
                         {...register("tipoMascota", { required: "Seleccione una opción" })}
                     >
                         <option value="">--- Seleccionar ---</option>
-                        <option value="gato">Gato</option>
-                        <option value="perro">Perro</option>
+                        <option value="corto">Corto</option>
+                        <option value="largo">Largo</option>
                         <option value="otro">Otro</option>
                     </select>
                     {errors.tipoMascota && <p className="text-red-800">{errors.tipoMascota.message}</p>}

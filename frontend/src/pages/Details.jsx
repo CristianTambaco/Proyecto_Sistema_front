@@ -103,7 +103,7 @@ const Details = () => {
                                 </li>
 
                                 <li className="text-md text-gray-00 mt-4">
-                                    <span className="text-gray-600 font-bold">Síntomas: {patient?.sintomasMascota}</span>
+                                    <span className="text-gray-600 font-bold">Observación: {patient?.sintomasMascota}</span>
                                 </li>
 
                             </ul>
@@ -119,9 +119,9 @@ const Details = () => {
 
                 <div className='flex justify-between items-center'>
 
-                    <p>Este módulo te permite gestionar los tratamientos</p>
+                    <p>Este módulo te permite gestionar las atenciones de la mascota</p>
                     {
-                        rol==="veterinario" &&
+                        rol==="estilista" &&
                         (
                             <button className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700"
                                     onClick={()=>{toggleModal("treatments")}}
