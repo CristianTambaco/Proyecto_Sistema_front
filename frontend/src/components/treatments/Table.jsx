@@ -51,7 +51,7 @@ const TableTreatments = ({ treatments, listPatient }) => {
                                 
 
 
-                                {rol === "paciente" && (
+                                {rol === "cliente" && (
                                     <MdAttachMoney
                                         className={
                                             treatment.estadoPago === "Pagado"

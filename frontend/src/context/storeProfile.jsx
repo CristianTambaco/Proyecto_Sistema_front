@@ -25,7 +25,7 @@ const getAuthHeaders = () => {
                 const storedUser = JSON.parse(localStorage.getItem("auth-token"));
                 const endpoint = storedUser.state.rol ==="estilista"
                     ? "perfil"
-                    : "paciente/perfil"
+                    : "cliente/perfil"
                 const url = `${import.meta.env.VITE_BACKEND_URL}/${endpoint}`;
 
                 const respuesta = await axios.get(url, getAuthHeaders())

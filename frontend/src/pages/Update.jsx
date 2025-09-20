@@ -11,7 +11,7 @@ const Update = () => {
 
     useEffect(() => {
         const searchPatient = async () => {
-            const url = `${import.meta.env.VITE_BACKEND_URL}/pacienteac/${id}`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/clienteac/${id}`
             const storedUser = JSON.parse(localStorage.getItem("auth-token"))
             const headers= {
                     "Content-Type": "application/json",

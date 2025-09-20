@@ -70,7 +70,7 @@ export const Home = () => {
               <li className="flex items-center gap-2"><MdDashboard className="text-sky-600 text-xl" /> Panel administrativo</li>              
               <li className="flex items-center gap-2"><BsCashCoin className="text-sky-600 text-xl" /> Pagos en línea</li>
               {/* <li className="flex items-center gap-2"><FaCommentSms className="text-sky-600 text-xl" /> Chat en tiempo real</li> */}
-              <li className="flex items-center gap-2"><FaUsers className="text-sky-600 text-xl" /> Gestión de pacientes</li>
+              <li className="flex items-center gap-2"><FaUsers className="text-sky-600 text-xl" /> Gestión de clientes</li>
               <li className="flex items-center gap-2"><FaUser className="text-sky-600 text-xl" /> Gestión de estilistas</li>
               <li className="flex items-center gap-2"><GiMedicines className="text-sky-600 text-xl" /> Tratamientos</li>
             </ul>
@@ -84,7 +84,7 @@ export const Home = () => {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {[
             { icon: <FaUser className="text-4xl text-emerald-600" />, title: "Gestión de Estilistas" },
-            { icon: <FaUsers className="text-4xl text-emerald-600" />, title: "Gestión de Pacientes" },
+            { icon: <FaUsers className="text-4xl text-emerald-600" />, title: "Gestión de Clientes" },
             { icon: <GiMedicines className="text-4xl text-emerald-600" />, title: "Gestión de Tratamientos" },
             // { icon: <FaCommentSms className="text-4xl text-emerald-600" />, title: "Chat en Tiempo Real" },
           ].map((service, i) => (

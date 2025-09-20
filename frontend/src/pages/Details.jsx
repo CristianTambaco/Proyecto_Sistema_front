@@ -19,7 +19,7 @@ const Details = () => {
 
 
     const listPatient = async () => {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/${id}`
+        const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/${id}`
         const storedUser = JSON.parse(localStorage.getItem("auth-token"))
         const headers= {
                 "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const Details = () => {
         }
         
         const response = await fetchDataBackend(url, null, "GET",headers)
-        setPatient(response.paciente)
+        setPatient(response.cliente)
         setTreatments(response.tratamientos)
     }
 
@@ -57,7 +57,7 @@ const Details = () => {
                     <div>
                         <ul className="list-disc pl-5">
 
-                            {/* Datos del paciente */}
+                            {/* Datos del cliente */}
                             <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos del dueño</li>
 
                             <ul className="pl-5">
@@ -80,7 +80,7 @@ const Details = () => {
 
 
                             {/* Datos del dueño */}
-                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos del paciente</li>
+                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos del cliente</li>
 
                             <ul className="pl-5">
                                 <li className="text-md text-gray-00 mt-2">

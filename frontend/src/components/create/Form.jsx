@@ -62,7 +62,7 @@ export const Form = ({patient}) => {
             }
         })
         
-        let url = `${import.meta.env.VITE_BACKEND_URL}/paciente/registro`
+        let url = `${import.meta.env.VITE_BACKEND_URL}/cliente/registro`
         const storedUser = JSON.parse(localStorage.getItem("auth-token"))
         const headers= {
                 "Content-Type": "multipart/form-data",
@@ -71,7 +71,7 @@ export const Form = ({patient}) => {
         
         let response
         if (patient?._id) {
-            url = `${import.meta.env.VITE_BACKEND_URL}/paciente/actualizar/${patient._id}`
+            url = `${import.meta.env.VITE_BACKEND_URL}/cliente/actualizar/${patient._id}`
             response = await fetchDataBackend(url, formData, "PUT", headers)
         }
         else{

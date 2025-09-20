@@ -16,7 +16,7 @@ const Table = () => {
     const deletePatient = async(id) => {
         const confirmDelete = confirm("Vas registrar la salida del usuario, ¿Estás seguro?")
         if(confirmDelete){
-            const url = `${import.meta.env.VITE_BACKEND_URL}/paciente/eliminar/${id}`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/eliminar/${id}`
             const storedUser = JSON.parse(localStorage.getItem("auth-token"))
             const options = {
                 headers: {
@@ -42,7 +42,7 @@ const Table = () => {
     const [patients, setPatients] = useState([])
 
     const listPatients = async () => {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/pacientes`
+        const url = `${import.meta.env.VITE_BACKEND_URL}/clientes`
         const storedUser = JSON.parse(localStorage.getItem("auth-token"))
         const headers= {
             "Content-Type": "application/json",
