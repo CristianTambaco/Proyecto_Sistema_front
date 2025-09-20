@@ -28,7 +28,7 @@ const Details = () => {
         
         const response = await fetchDataBackend(url, null, "GET",headers)
         setPatient(response.cliente)
-        setTreatments(response.tratamientos)
+        setTreatments(response.atencions)
     }
 
     const formatDate = (date) => {

@@ -72,7 +72,7 @@ export const Home = () => {
               {/* <li className="flex items-center gap-2"><FaCommentSms className="text-sky-600 text-xl" /> Chat en tiempo real</li> */}
               <li className="flex items-center gap-2"><FaUsers className="text-sky-600 text-xl" /> Gestión de clientes</li>
               <li className="flex items-center gap-2"><FaUser className="text-sky-600 text-xl" /> Gestión de estilistas</li>
-              <li className="flex items-center gap-2"><GiMedicines className="text-sky-600 text-xl" /> Tratamientos</li>
+              <li className="flex items-center gap-2"><GiMedicines className="text-sky-600 text-xl" /> Atencions</li>
             </ul>
           </div>
         </div>
@@ -85,7 +85,7 @@ export const Home = () => {
           {[
             { icon: <FaUser className="text-4xl text-emerald-600" />, title: "Gestión de Estilistas" },
             { icon: <FaUsers className="text-4xl text-emerald-600" />, title: "Gestión de Clientes" },
-            { icon: <GiMedicines className="text-4xl text-emerald-600" />, title: "Gestión de Tratamientos" },
+            { icon: <GiMedicines className="text-4xl text-emerald-600" />, title: "Gestión de Atencions" },
             // { icon: <FaCommentSms className="text-4xl text-emerald-600" />, title: "Chat en Tiempo Real" },
           ].map((service, i) => (
             <div key={i} className="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg hover:-translate-y-1 transition duration-300">

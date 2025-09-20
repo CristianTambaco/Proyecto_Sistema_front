@@ -11,7 +11,7 @@ const storeTreatments = create(set=>({
     registerTreatments:async(data)=>{
         try {
             const storedUser = JSON.parse(localStorage.getItem("auth-token"))
-            const url = `${import.meta.env.VITE_BACKEND_URL}/tratamiento/registro`;
+            const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/registro`;
             const options = {
                 headers: {
                     "Content-Type": "application/json",
@@ -30,7 +30,7 @@ const storeTreatments = create(set=>({
         if (isConfirmed ) {
             try {
                 const storedUser = JSON.parse(localStorage.getItem("auth-token"))
-                const url = `${import.meta.env.VITE_BACKEND_URL}/tratamiento/${id}`;
+                const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/${id}`;
                 const options = {
                     headers: {
                         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const storeTreatments = create(set=>({
     payTreatments:async(data)=>{
         try {
             const storedUser = JSON.parse(localStorage.getItem("auth-token"))
-            const url = `${import.meta.env.VITE_BACKEND_URL}/tratamiento/pago`
+            const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/pago`
             const options = {
                 headers: {
                     "Content-Type": "application/json",
