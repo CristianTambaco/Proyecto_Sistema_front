@@ -11,8 +11,8 @@ export const Register = () => {
 
 
     const registro = async (data) => {
-        try {
-            const url = "http://localhost:3000/api/registro"
+        try {            
+            const url = `${import.meta.env.VITE_BACKEND_URL}/registro`
             const respuesta = await axios.post(url,data)
             console.log(respuesta)
             toast.success(respuesta.data.msg)
