@@ -79,8 +79,8 @@ const Details = () => {
                             </ul>
 
 
-                            {/* Datos del dueño */}
-                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos del cliente</li>
+                            {/* Datos de mascota */}
+                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos de la mascota</li>
 
                             <ul className="pl-5">
                                 <li className="text-md text-gray-00 mt-2">
@@ -88,7 +88,7 @@ const Details = () => {
                                 </li>
 
                                 <li className="text-md text-gray-00 mt-2">
-                                    <span className="text-gray-600 font-bold">Tipo: {patient?.tipoMascota}</span>
+                                    <span className="text-gray-600 font-bold">Tipo pelaje: {patient?.tipoMascota}</span>
                                 </li>
 
                                 {/* <li className="text-md text-gray-00 mt-2">
@@ -103,7 +103,7 @@ const Details = () => {
                                 </li>
 
                                 <li className="text-md text-gray-00 mt-4">
-                                    <span className="text-gray-600 font-bold">Observación: {patient?.sintomasMascota}</span>
+                                    <span className="text-gray-600 font-bold">Detalles adicionales: {patient?.sintomasMascota}</span>
                                 </li>
 
                             </ul>

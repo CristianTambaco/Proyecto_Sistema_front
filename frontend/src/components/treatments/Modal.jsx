@@ -16,11 +16,11 @@ const ModalTreatments = ({patientID}) => {
 
             <div className="lg:w-2xl bg-gray-700 top-1/4 left-auto fixed sticky-0 rounded-lg overflow-y-scroll">
 
-                <p className="text-white font-bold text-lg text-center mt-4">Atencions</p>
+                <p className="text-white font-bold text-lg text-center mt-4">Atenciones de la mascota</p>
 
                 <form className="p-10" onSubmit={handleSubmit(registerTreatmentsForm)}>
                     <div>
-                        <label className="mb-2 block text-sm font-semibold text-gray-50">Nombre del atencion</label>
+                        <label className="mb-2 block text-sm font-semibold text-gray-50">Nombre de la atencion</label>
                         <input
                             type="text"
                             placeholder="Ingresa el nombre"

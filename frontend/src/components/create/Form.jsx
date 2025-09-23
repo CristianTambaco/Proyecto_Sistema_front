@@ -253,7 +253,7 @@ export const Form = ({patient}) => {
 
                 {/* Tipo de mascota */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Tipo</label>
+                    <label className="mb-2 block text-sm font-semibold">Tipo pelaje</label>
                     <select
                         id='prioridad'
                         className='block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5'
@@ -280,9 +280,9 @@ export const Form = ({patient}) => {
 
                 {/* Síntomas */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Observación</label>
+                    <label className="mb-2 block text-sm font-semibold">Detalles adicionales</label>
                     <textarea
-                        placeholder="Observaciones"
+                        placeholder="Detalles"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                         {...register("sintomasMascota", { required: "El campo es obligatorio" })}
                     />

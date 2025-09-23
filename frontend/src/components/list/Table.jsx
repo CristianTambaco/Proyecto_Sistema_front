@@ -14,7 +14,7 @@ const Table = () => {
     const navigate = useNavigate()
 
     const deletePatient = async(id) => {
-        const confirmDelete = confirm("Vas registrar la salida del usuario, ¿Estás seguro?")
+        const confirmDelete = confirm("Vas a eliminar el registro, ¿Estás seguro?")
         if(confirmDelete){
             const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/eliminar/${id}`
             const storedUser = JSON.parse(localStorage.getItem("auth-token"))
