@@ -39,7 +39,14 @@ const CardPassword = () => {
                 <div>
                     <label className="mb-2 block text-sm font-semibold">Nueva contraseña</label>
                     <input type="password" placeholder="Ingresa la nueva contraseña" className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5" 
-                    {...register("passwordnuevo", { required: "La nueva contraseña es obligatoria" })}
+                    {...register("passwordnuevo", { required: "La nueva contraseña es obligatoria",
+                        
+                        minLength: {
+                            value: 6,
+                            message: "La contraseña debe tener al menos 6 caracteres"
+                        }                            
+                        
+                    })}
                     />
                     {errors.passwordnuevo && <p className="text-red-800">{errors.passwordnuevo.message}</p>}
                 </div>
