@@ -12,19 +12,19 @@ export const CardProfileOwner = () => {
                 <img src="https://cdn-icons-png.freepik.com/512/1177/1177568.png" alt="img-client" className="m-auto " width={120} height={120} />
             </div>
             <div className="self-start">
-                <b>Nombre del Propietario:</b><p className="inline-block ml-3">{user.nombrePropietario}</p>
+                <b>Nombre del cliente registrado:</b><p className="inline-block ml-3">{user.nombrePropietario}</p>
             </div >
             <div className="self-start">
-                <b>Cédula del Propietario:</b><p className="inline-block ml-3">{user.cedulaPropietario}</p>
+                <b>Cédula del cliente registrado:</b><p className="inline-block ml-3">{user.cedulaPropietario}</p>
             </div >
             <div className="self-start">
-                <b>Email del Propietario:</b><p className="inline-block ml-3">{user.emailPropietario}</p>
+                <b>Correo electrónico registrado::</b><p className="inline-block ml-3">{user.emailPropietario}</p>
             </div>
             <div className="self-start">
-                <b>Celular del Propietario:</b><p className="inline-block ml-3">{user.celularPropietario}</p>
+                <b>Celular del cliente registrado:</b><p className="inline-block ml-3">{user.celularPropietario}</p>
             </div>
             <div className="self-start">
-                <b>Nombre del cliente:</b><p className="inline-block ml-3">{user.nombreMascota}</p>
+                <b>Nombre de la mascota registrado:</b><p className="inline-block ml-3">{user.nombreMascota}</p>
             </div>
         </div>
     )

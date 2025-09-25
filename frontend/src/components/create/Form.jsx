@@ -194,7 +194,7 @@ export const Form = ({patient}) => {
                             type="radio"
                             value="ia"
                             {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
-                            disabled={patient}
+                            // disabled={patient}
                         />
                         Generar con IA
                     </label>
@@ -205,7 +205,7 @@ export const Form = ({patient}) => {
                             type="radio"
                             value="upload"
                             {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
-                            disabled={patient}
+                            // disabled={patient}
                         />
                         Subir Imagen
                     </label>

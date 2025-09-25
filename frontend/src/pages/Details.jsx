@@ -119,7 +119,7 @@ const Details = () => {
 
                 <div className='flex justify-between items-center'>
 
-                    <p>Este módulo te permite gestionar las atenciones de la mascota</p>
+                    <p>Módulo de historial de las atenciones de la mascota</p>
                     {
                         rol==="estilista" &&
                         (
