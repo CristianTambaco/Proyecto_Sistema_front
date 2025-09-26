@@ -71,19 +71,19 @@ export const Home = () => {
                 brindando control centralizado y herramientas fáciles de usar.
               </p>
               <div className="grid sm:grid-cols-2 gap-6">
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
                   <MdDashboard className="text-emerald-600 text-2xl" /> Panel administrativo
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
                   <BsCashCoin className="text-sky-600 text-2xl" /> Pagos en línea
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
                   <FaUsers className="text-emerald-600 text-2xl" /> Gestión de clientes
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
                   <FaUser className="text-sky-600 text-2xl" /> Gestión de perfil
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition sm:col-span-2">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition sm:col-span-2">
                   <FaStar className="text-yellow-500 text-2xl" /> Historial de atenciones de la mascota
                 </div>
               </div>
@@ -104,7 +104,7 @@ export const Home = () => {
             ].map((service, i) => (
               <div
                 key={i}
-                className="bg-gray-50 rounded-2xl shadow-md p-10 text-center hover:shadow-xl hover:scale-105 border border-transparent hover:border-emerald-300 transition"
+                className="bg-gray-50 rounded-2xl shadow-md p-10 text-center "
               >
                 {service.icon}
                 <h4 className="text-xl font-bold mt-6 text-gray-900">{service.title}</h4>
@@ -122,7 +122,7 @@ export const Home = () => {
         <div className="container mx-auto grid gap-12 md:grid-cols-3">
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">PetManageQ</h3>
-            <p className="leading-relaxed">La gestión inteligente tu peluquería canina 🐾</p>
+            <p className="leading-relaxed">La gestión inteligente para tu peluquería canina 🐾</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Contacto</h3>
