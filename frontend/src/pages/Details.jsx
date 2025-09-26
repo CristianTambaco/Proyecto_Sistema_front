@@ -48,7 +48,7 @@ const Details = () => {
             <div>
                 <h1 className='font-black text-4xl text-gray-500'>Visualizar</h1>
                 <hr className='my-4 border-t-2 border-gray-300' />
-                <p className='mb-8'>Este módulo te permite visualizar todos los datos</p>
+                <p className='mb-8'>Este módulo te permite visualizar los datos</p>
             </div>
             <div>
 
@@ -88,7 +88,7 @@ const Details = () => {
                                 </li>
 
                                 <li className="text-md text-gray-00 mt-2">
-                                    <span className="text-gray-600 font-bold">Tipo pelaje: {patient?.tipoMascota}</span>
+                                    <span className="text-gray-600 font-bold">Tipo pelaje: {patient?.tipoPelajeMascota}</span>
                                 </li>
 
                                 {/* <li className="text-md text-gray-00 mt-2">
@@ -103,7 +103,7 @@ const Details = () => {
                                 </li>
 
                                 <li className="text-md text-gray-00 mt-4">
-                                    <span className="text-gray-600 font-bold">Detalles adicionales: {patient?.sintomasMascota}</span>
+                                    <span className="text-gray-600 font-bold">Detalles adicionales: {patient?.caracteristicasMascota}</span>
                                 </li>
 
                             </ul>
@@ -119,7 +119,7 @@ const Details = () => {
 
                 <div className='flex justify-between items-center'>
 
-                    <p>Este módulo te permite gestionar las atenciones de la mascota</p>
+                    <p>Módulo de historial de las atenciones de la mascota</p>
                     {
                         rol==="estilista" &&
                         (
