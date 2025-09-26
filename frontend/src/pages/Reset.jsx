@@ -63,7 +63,14 @@ const Reset = () => {
                             type="password"
                             placeholder="Ingresa tu nueva contraseña"
                             className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                            {...register("password", { required: "La contraseña es obligatorio" })}
+                            {...register("password", { required: "La contraseña es obligatorio",
+                                                                
+                                minLength: {
+                                    value: 6,
+                                    message: "La contraseña debe tener al menos 6 caracteres"
+                                }  
+
+                            })}
                         />
                         {errors.password && <p className='text-red-800'>{errors.password.message}</p>}
 
@@ -74,7 +81,14 @@ const Reset = () => {
                             type="password"
                             placeholder="Repite tu contraseña"
                             className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                            {...register("confirmPassword", { required: "La contraseña es obligatorio" })}
+                            {...register("confirmPassword", { required: "La contraseña es obligatorio",
+
+                                minLength: {
+                                    value: 6,
+                                    message: "La contraseña debe tener al menos 6 caracteres"
+                                }  
+
+                             })}
                         />
                         {errors.confirmPassword && <p className='text-red-800'>{errors.confirmPassword.message}</p>}
                     </div>

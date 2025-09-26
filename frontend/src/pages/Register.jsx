@@ -42,7 +42,19 @@ export const Register = () => {
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Nombre</label>
                             <input type="text" placeholder="Ingresa tu nombre" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500"
-                            {...register("nombre", { required: "El nombre es obligatorio" })}
+                            {...register("nombre", { required: "El nombre es obligatorio",
+
+                                minLength: {
+                                    value: 2,
+                                    message: "El nombre debe tener al menos 2 caracteres"
+                                },
+                                pattern: {
+                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+                                    message: "El nombre solo puede contener letras"
+                                }
+                                          
+
+                            })}
                             />
                             {errors.nombre && <p className="text-red-800">{errors.nombre.message}</p>}
                         </div>
@@ -51,7 +63,19 @@ export const Register = () => {
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Apellido</label>
                             <input type="text" placeholder="Ingresa tu apellido" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
-                            {...register("apellido", { required: "El apellido es obligatorio" })}
+                            {...register("apellido", { required: "El apellido es obligatorio",
+                                
+                                minLength: {
+                                    value: 2,
+                                    message: "El apellido debe tener al menos 2 caracteres"
+                                },
+                                pattern: {
+                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+                                    message: "El apellido solo puede contener letras"
+                                }
+
+
+                            })}
                             />
                             {errors.apellido && <p className="text-red-800">{errors.apellido.message}</p>}
                         </div>
@@ -60,7 +84,14 @@ export const Register = () => {
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Dirección</label>
                             <input type="text" placeholder="Ingresa tu dirección de domicilio" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
-                            {...register("direccion", { required: "La direccion es obligatorio" })}
+                            {...register("direccion", { required: "La direccion es obligatorio",
+
+                                minLength: {
+                                    value: 5,
+                                    message: "La dirección debe tener al menos 5 caracteres"
+                                }
+
+                             })}
                             />
                             {errors.direccion && <p className="text-red-800">{errors.direccion.message}</p>}
                         </div>
@@ -69,7 +100,28 @@ export const Register = () => {
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Celular</label>
                             <input type="number" placeholder="Ingresa tu celular" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
-                            {...register("celular", { required: "El celular es obligatorio" })}
+                            {...register("celular", { required: "El celular es obligatorio",
+                                                   
+                                                                
+                                pattern: {
+                                    value: /^[0-9]+$/,
+                                    message: "El teléfono solo puede contener números"
+                                },
+                                minLength: {
+                                    value: 5,
+                                    message: "El teléfono debe tener al menos 5 dígitos"
+                                },
+                                maxLength: {
+                                    value: 10,
+                                    message: "El teléfono debe tener 10 dígitos"
+                                },
+
+                                validate: value => {                
+                                if (/^0+$/.test(value)) return "Teléfono inválido"; // todo ceros                
+                                }
+
+
+                            })}
                             />
                             {errors.celular && <p className="text-red-800">{errors.celular.message}</p>}
                         </div>
@@ -78,7 +130,14 @@ export const Register = () => {
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
                             <input type="email" placeholder="Ingresa tu correo electrónico" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
-                            {...register("email", { required: "El correo electrónico es obligatorio" })}
+                            {...register("email", { required: "El correo electrónico es obligatorio",
+
+                                pattern: {
+                                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                    message: "Ingresa un correo electrónico válido"
+                                }
+
+                             })}
                             />
                             {errors.email && <p className="text-red-800">{errors.email.message}</p>}
                         </div>
@@ -91,7 +150,14 @@ export const Register = () => {
                                     type={showPassword ? "text" : "password"} // Cambia el tipo del input entre 'text' y 'password' según el estado
                                     placeholder="********************"
                                     className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500 pr-10"
-                                    {...register("password", { required: "La contraseña es obligatorio" })}
+                                    {...register("password", { required: "La contraseña es obligatorio",
+
+                                        minLength: {
+                                            value: 6,
+                                            message: "La contraseña debe tener al menos 6 caracteres"
+                                        }   
+                                        
+                                     })}
                                 />
                                     {errors.password && <p className="text-red-800">{errors.password.message}</p>}
                                 {/* Botón para mostrar/ocultar la contraseña */}
