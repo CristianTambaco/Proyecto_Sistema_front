@@ -29,7 +29,7 @@ export const Home = () => {
             <ul className="hidden md:flex gap-10 font-medium text-gray-700">
               <li><a href="#" className="hover:text-emerald-600 transition">Inicio</a></li>
               <li><a href="#about" className="hover:text-emerald-600 transition">Nosotros</a></li>
-              
+              <li><a href="#services" className="hover:text-emerald-600 transition">Servicios</a></li>
               <li><a href="#contact" className="hover:text-emerald-600 transition">Contacto</a></li>
             </ul>
           </nav>
@@ -41,7 +41,7 @@ export const Home = () => {
         <div className="container mx-auto px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 text-center md:text-left">
             <h1 className="font-extrabold text-gray-900 text-4xl md:text-6xl leading-tight">
-              Gestión Inteligente <br /> para tu Peluquería Canina
+              Gestión Inteligente <br /> para Peluquerías Caninas
             </h1>
             <p className="mt-6 text-lg text-gray-600 max-w-md mx-auto md:mx-0 leading-relaxed">
               Moderniza tu negocio con un panel administrativo intuitivo y un control total de tus servicios.
@@ -67,24 +67,24 @@ export const Home = () => {
             <img src={logoDog} alt="Sobre nosotros" className="rounded-3xl shadow-xl" />
             <div>
               <p className="mb-10 text-lg text-gray-600 leading-relaxed">
-                <b>PetManageQ</b> es la plataforma que transforma la gestión de tu peluquería canina,
+                <b>PetManageQ</b> es la plataforma que transforma la gestión de peluquerías caninas en Quito,
                 brindando control centralizado y herramientas fáciles de usar.
               </p>
               <div className="grid sm:grid-cols-2 gap-6">
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
                   <MdDashboard className="text-emerald-600 text-2xl" /> Panel administrativo
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
                   <BsCashCoin className="text-sky-600 text-2xl" /> Pagos en línea
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
                   <FaUsers className="text-emerald-600 text-2xl" /> Gestión de clientes
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
-                  <FaUser className="text-sky-600 text-2xl" /> Gestión de perfil
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition">
+                  <FaUser className="text-sky-600 text-2xl" /> Gestión de estilistas
                 </div>
-                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition sm:col-span-2">
-                  <FaStar className="text-yellow-500 text-2xl" /> Historial de atenciones de la mascota
+                <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow hover:shadow-lg transition sm:col-span-2">
+                  <FaStar className="text-yellow-500 text-2xl" /> Atenciones
                 </div>
               </div>
             </div>
@@ -95,16 +95,16 @@ export const Home = () => {
       {/* SERVICIOS */}
       <section id="services" className="py-24 px-8 bg-white">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">Funcionalidades</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">Nuestros Servicios</h2>
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: <FaUser className="text-4xl text-emerald-600" />, title: "Gestión de perfil" },
-              { icon: <FaUsers className="text-4xl text-sky-600" />, title: "Gestión de clientes" },
-              { icon: <FaStar className="text-4xl text-yellow-500" />, title: "Gestión de historial de atenciones de la mascota" },
+              { icon: <FaUser className="text-4xl text-emerald-600" />, title: "Gestión de Estilistas" },
+              { icon: <FaUsers className="text-4xl text-sky-600" />, title: "Gestión de Clientes" },
+              { icon: <FaStar className="text-4xl text-yellow-500" />, title: "Gestión de Atenciones" },
             ].map((service, i) => (
               <div
                 key={i}
-                className="bg-gray-50 rounded-2xl shadow-md p-10 text-center "
+                className="bg-gray-50 rounded-2xl shadow-md p-10 text-center hover:shadow-xl hover:scale-105 border border-transparent hover:border-emerald-300 transition"
               >
                 {service.icon}
                 <h4 className="text-xl font-bold mt-6 text-gray-900">{service.title}</h4>
@@ -122,7 +122,7 @@ export const Home = () => {
         <div className="container mx-auto grid gap-12 md:grid-cols-3">
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">PetManageQ</h3>
-            <p className="leading-relaxed">La gestión inteligente para tu peluquería canina 🐾</p>
+            <p className="leading-relaxed">La gestión inteligente para peluquerías caninas en Quito 🐾</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Contacto</h3>

@@ -6,6 +6,6 @@ export default function PrivateRouteWithRole({ children }) {
 
     const {rol} = storeAuth()
     
-    return ("clienteper" === rol) ? <Forbidden/> : children
+    return ("cliente" === rol) ? <Forbidden/> : children
     
 }

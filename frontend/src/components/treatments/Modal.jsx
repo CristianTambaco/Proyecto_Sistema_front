@@ -12,8 +12,9 @@ const ModalTreatments = ({patientID}) => {
     }
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center">
-            <div className="bg-gray-700 rounded-lg shadow-lg overflow-y-auto p-6 max-w-lg w-full border border-gray-700 relative">
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+
+            <div className="lg:w-2xl bg-gray-700 top-1/4 left-auto fixed sticky-0 rounded-lg overflow-y-scroll">
 
                 <p className="text-white font-bold text-lg text-center mt-4">Atenciones de la mascota</p>
 
@@ -24,20 +25,9 @@ const ModalTreatments = ({patientID}) => {
                             type="text"
                             placeholder="Ingresa el nombre"
                             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5 bg-gray-50"
-                            {...register("nombre", { required: "El nombre es obligatorio",
-
-                                minLength: {
-                                    value: 2,
-                                    message: "El nombre debe tener al menos 2 caracteres"
-                                },
-                                pattern: {
-                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                                    message: "El nombre solo puede contener letras"
-                                }
-
-                             })}
+                            {...register("nombre", { required: "El nombre es obligatorio" })}
                         />
-                            {errors.nombre && <p className="text-red-500">{errors.nombre.message}</p>}
+                            {errors.nombre && <p className="text-red-800">{errors.nombre.message}</p>}
                     </div>
                     <div>
                         <label className="mb-2 block text-sm font-semibold text-gray-50">Descripción</label>
@@ -45,21 +35,9 @@ const ModalTreatments = ({patientID}) => {
                             type="text"
                             placeholder="Ingresa la descripción"
                             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5 bg-gray-50"
-                            {...register("descripcion", { required: "La descripción es obligatorio",
-
-                                minLength: {
-                                    value: 2,
-                                    message: "La descripción debe tener al menos 2 caracteres"
-                                },
-                                pattern: {
-                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                                    message: "La descripción solo puede contener letras"
-                                }
-
-
-                             })}
+                            {...register("descripcion", { required: "La descripción es obligatorio" })}
                         />
-                            {errors.descripcion && <p className="text-red-500">{errors.descripcion.message}</p>}
+                            {errors.descripcion && <p className="text-red-800">{errors.descripcion.message}</p>}
                     </div>
                     <div>
                         <label className="mb-2 block text-sm font-semibold text-gray-50">Prioridad</label>
@@ -73,7 +51,7 @@ const ModalTreatments = ({patientID}) => {
                             <option value="Media">Media</option>
                             <option value="Alta">Alta</option>
                         </select>
-                            {errors.prioridad && <p className="text-red-500">{errors.prioridad.message}</p>}
+                            {errors.prioridad && <p className="text-red-800">{errors.prioridad.message}</p>}
                     </div>
 
                     <div>
@@ -88,7 +66,7 @@ const ModalTreatments = ({patientID}) => {
                                 min: { value: 0, message: "El precio no puede ser negativo" }
                             })}
                         />
-                        {errors.precio && <p className="text-red-500">{errors.precio.message}</p>}
+                        {errors.precio && <p className="text-red-800">{errors.precio.message}</p>}
                     </div>
 
                     <div className="flex justify-center gap-5">
@@ -97,7 +75,7 @@ const ModalTreatments = ({patientID}) => {
                             className="bg-green-700 px-6 text-slate-300 rounded-lg hover:bg-green-900 cursor-pointer"
                             value="Registrar"
                         />
-                        <button className="sm:w-auto leading-3 text-center text-white px-6 py-4 rounded-lg bg-red-500 hover:bg-red-900"
+                        <button className="sm:w-auto leading-3 text-center text-white px-6 py-4 rounded-lg bg-red-700 hover:bg-red-900"
                             onClick={() => { toggleModal() }}
                         >
                             Cancelar

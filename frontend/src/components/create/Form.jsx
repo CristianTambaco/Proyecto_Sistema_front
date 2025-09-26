@@ -92,9 +92,9 @@ export const Form = ({patient}) => {
                 emailPropietario: patient?.emailPropietario,
                 celularPropietario: patient?.celularPropietario,
                 nombreMascota: patient?.nombreMascota,
-                tipoPelajeMascota: patient?.tipoPelajeMascota,
+                tipoMascota: patient?.tipoMascota,
                 // fechaNacimientoMascota: new Date(patient?.fechaNacimientoMascota).toLocaleDateString('en-CA', {timeZone: 'UTC'}),
-                caracteristicasMascota: patient?.caracteristicasMascota
+                sintomasMascota: patient?.sintomasMascota
             })
         }
     }, [])
@@ -119,25 +119,7 @@ export const Form = ({patient}) => {
                             type="number"
                             placeholder="Ingresa la cédula"
                             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-                            {...register("cedulaPropietario", { required: "La cédula es obligatoria",
-
-                                minLength: {
-                                    value: 6,
-                                    message: "La cédula debe tener al menos 6 dígitos",
-                                },
-                                maxLength: {
-                                    value: 10,
-                                    message: "La cédula no puede tener más de 10 dígitos",
-                                },
-                                validate: {
-                                    soloNumeros: (value) =>
-                                        /^\d+$/.test(value) || "La cédula solo debe contener números",
-                                    noCeroInicial: (value) =>
-                                        !/^0/.test(value) || "La cédula no puede comenzar con 0",
-                                },
-                                                                           
-
-                            })}
+                            {...register("cedulaPropietario", { required: "La cédula es obligatoria" })}
                         />
                         {/* <button className="py-1 px-8 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white sm:w-80"
                         disabled={patient}
@@ -155,29 +137,7 @@ export const Form = ({patient}) => {
                         type="text"
                         placeholder="Ingresa nombre y apellido"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                        {...register("nombrePropietario", { required: "El nombre completo es obligatorio",
-
-                            minLength: {
-                                value: 3,
-                                message: "Debe tener al menos 3 caracteres",
-                            },
-                            maxLength: {
-                                value: 50,
-                                message: "No puede superar los 50 caracteres",
-                            },
-                            pattern: {
-                                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
-                                message: "Solo se permiten letras y espacios",
-                            },
-                            validate: {
-                                sinEspaciosDobles: (value) =>
-                                    !/\s{2,}/.test(value) || "No se permiten espacios dobles",
-                                sinEspaciosExtremos: (value) =>
-                                    value.trim() === value || "No debe iniciar o terminar con espacios",
-                            },
-                         
-
-                         })}
+                        {...register("nombrePropietario", { required: "El nombre completo es obligatorio" })}
                     />
                     {errors.nombrePropietario && <p className="text-red-800">{errors.nombrePropietario.message}</p>}
                 </div>
@@ -189,14 +149,7 @@ export const Form = ({patient}) => {
                         type="email"
                         placeholder="Ingresa el correo electrónico"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                        {...register("emailPropietario", { required: "El correo electrónico es obligatorio",
-
-                            pattern: {
-                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                message: "Ingresa un correo electrónico válido"
-                            }
-
-                         })}
+                        {...register("emailPropietario", { required: "El correo electrónico es obligatorio" })}
                     />
                     {errors.emailPropietario && <p className="text-red-800">{errors.emailPropietario.message}</p>}
                 </div>
@@ -208,26 +161,7 @@ export const Form = ({patient}) => {
                         type="number"
                         placeholder="Ingresa el celular"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                        {...register("celularPropietario", { required: "El celular es obligatorio",
-
-                            pattern: {
-                                    value: /^[0-9]+$/,
-                                    message: "El teléfono solo puede contener números"
-                                },
-                                minLength: {
-                                    value: 5,
-                                    message: "El teléfono debe tener al menos 5 dígitos"
-                                },
-                                maxLength: {
-                                    value: 10,
-                                    message: "El teléfono debe tener 10 dígitos"
-                                },
-
-                                validate: value => {                
-                                if (/^0+$/.test(value)) return "Teléfono inválido"; // todo ceros                
-                                }
-
-                         })}
+                        {...register("celularPropietario", { required: "El celular es obligatorio" })}
                     />
                     {errors.celularPropietario && <p className="text-red-800">{errors.celularPropietario.message}</p>}
                 </div>
@@ -246,18 +180,7 @@ export const Form = ({patient}) => {
                         type="text"
                         placeholder="Ingresar nombre"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                        {...register("nombreMascota", { required: "El campo es obligatorio",
-
-                            minLength: {
-                                value: 2,
-                                message: "El nombre debe tener al menos 2 caracteres"
-                            },
-                            pattern: {
-                                value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                                message: "El nombre solo puede contener letras"
-                            }
-
-                         })}
+                        {...register("nombreMascota", { required: "El campo es obligatorio" })}
                     />
                     {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
                 </div>
@@ -271,7 +194,7 @@ export const Form = ({patient}) => {
                             type="radio"
                             value="ia"
                             {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
-                            // disabled={patient}
+                            disabled={patient}
                         />
                         Generar con IA
                     </label>
@@ -282,7 +205,7 @@ export const Form = ({patient}) => {
                             type="radio"
                             value="upload"
                             {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
-                            // disabled={patient}
+                            disabled={patient}
                         />
                         Subir Imagen
                     </label>
@@ -334,14 +257,14 @@ export const Form = ({patient}) => {
                     <select
                         id='prioridad'
                         className='block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5'
-                        {...register("tipoPelajeMascota", { required: "Seleccione una opción" })}
+                        {...register("tipoMascota", { required: "Seleccione una opción" })}
                     >
                         <option value="">--- Seleccionar ---</option>
                         <option value="corto">Corto</option>
                         <option value="largo">Largo</option>
                         <option value="otro">Otro</option>
                     </select>
-                    {errors.tipoPelajeMascota && <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>}
+                    {errors.tipoMascota && <p className="text-red-800">{errors.tipoMascota.message}</p>}
                 </div>
 
                 {/* Fecha de nacimiento */}
@@ -355,27 +278,15 @@ export const Form = ({patient}) => {
                     {errors.fechaNacimientoMascota && <p className="text-red-800">{errors.fechaNacimientoMascota.message}</p>}
                 </div> */}
 
-                {/* Detalles */}
+                {/* Síntomas */}
                 <div>
                     <label className="mb-2 block text-sm font-semibold">Detalles adicionales</label>
                     <textarea
                         placeholder="Detalles"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                        {...register("caracteristicasMascota", { required: "El campo es obligatorio",
-
-                            minLength: {
-                                    value: 2,
-                                    message: "Debe existir al menos 2 caracteres"
-                                },
-                                pattern: {
-                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                                    message: "Solo puede contener letras"
-                                }
-
-
-                         })}
+                        {...register("sintomasMascota", { required: "El campo es obligatorio" })}
                     />
-                    {errors.caracteristicasMascota && <p className="text-red-800">{errors.caracteristicasMascota.message}</p>}
+                    {errors.sintomasMascota && <p className="text-red-800">{errors.sintomasMascota.message}</p>}
                 </div>
             </fieldset>
             

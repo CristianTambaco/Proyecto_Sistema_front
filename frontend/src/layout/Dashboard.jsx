@@ -66,14 +66,14 @@ const Dashboard = () => {
                             </li>
                         )}
                         <li>
-                            {/* <Link
+                            <Link
                                 to="/dashboard/chat"
                                 className={`flex items-center gap-3 px-4 py-2 rounded-md transition ${
                                     urlActual === '/dashboard/chat' ? 'bg-sky-500 text-white' : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
                                 <FaComments /> Chat
-                            </Link> */}
+                            </Link>
                         </li>
                     </ul>
                 </nav>
