@@ -16,7 +16,7 @@ const Login = () => {
 
 
         const loginUser = async(data) => {
-        const url = data.password.includes("VET")
+        const url = data.password.includes("CLI")
             ? `${import.meta.env.VITE_BACKEND_URL}/cliente/login`
             : `${import.meta.env.VITE_BACKEND_URL}/login`
         const response = await fetchDataBackend(url, data,'POST', null)
