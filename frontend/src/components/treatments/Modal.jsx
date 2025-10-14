@@ -85,7 +85,14 @@ const ModalTreatments = ({patientID}) => {
                             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5 bg-gray-50"
                             {...register("precio", {
                                 required: "El precio es obligatorio",
-                                min: { value: 0, message: "El precio no puede ser negativo" }
+                                
+                                min: { 
+                                    value: 0, message: "El precio no puede ser negativo" 
+                                },
+                                max: {
+                                    value: 1000, // <-- Valor máximo permitido
+                                    message: "El precio no puede ser mayor a 1000"
+                                }
                             })}
                         />
                         {errors.precio && <p className="text-red-500">{errors.precio.message}</p>}
