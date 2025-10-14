@@ -255,7 +255,11 @@ export const Form = ({patient}) => {
                             pattern: {
                                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
                                 message: "El nombre solo puede contener letras"
-                            }
+                            },
+                            maxLength: {
+                                    value: 20,
+                                    message: "El nombre no puede superar los 20 caracteres"
+                                },
 
                          })}
                     />
