@@ -20,18 +20,19 @@ const getAuthHeaders = () => {
         
         user: null,
         clearUser: () => set({ user: null }),
+
+
         profile: async () => {
             try {
                 const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-                const endpoint = storedUser.state.rol ==="estilista"
-                    ? "perfil"
-                    : "cliente/perfil"
+                const endpoint = storedUser.state.rol === "cliente"
+                    ? "cliente/perfil"
+                    : "perfil"; // estilista y administrador usan el mismo endpoint
                 const url = `${import.meta.env.VITE_BACKEND_URL}/${endpoint}`;
-
-                const respuesta = await axios.get(url, getAuthHeaders())
-                set({ user: respuesta.data })
+                const respuesta = await axios.get(url, getAuthHeaders());
+                set({ user: respuesta.data });
             } catch (error) {
-                console.error(error)
+                console.error(error);
             }
         },
 

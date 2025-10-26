@@ -116,7 +116,7 @@ const Table = () => {
 
 
         {/* El estilista puede actualizar y eliminar */
-            rol==="estilista" &&
+            (rol === "estilista" || rol === "administrador") &&
                 (
                     <>
                         <MdPublishedWithChanges

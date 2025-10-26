@@ -53,7 +53,7 @@ const Dashboard = () => {
                                 <FaList /> Listar
                             </Link>
                         </li>
-                        {rol === 'estilista' && (
+                        {(rol === 'estilista' || rol === 'administrador') && (
                             <li>
                                 <Link
                                     to="/dashboard/crear"
