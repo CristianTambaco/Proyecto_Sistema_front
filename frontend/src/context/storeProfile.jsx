@@ -38,28 +38,58 @@ const getAuthHeaders = () => {
 
         
 
-        updateProfile:async(data,id)=>{
+        updateProfile: async (data, id) => {
             try {
-                const url = `${import.meta.env.VITE_BACKEND_URL}/estilista/${id}`
-                const respuesta = await axios.put(url, data,getAuthHeaders())
-                set({ user: respuesta.data })
-                toast.success("Perfil actualizado correctamente")
+                // Obtener el rol del usuario desde localStorage o Zustand
+                const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+                const rol = storedUser.state.rol;
+
+                let url;
+                if (rol === "administrador") {
+                    url = `${import.meta.env.VITE_BACKEND_URL}/administrador/${id}`;
+                } else if (rol === "estilista") {
+                    url = `${import.meta.env.VITE_BACKEND_URL}/estilista/${id}`;
+                } else {
+                    throw new Error("Rol no válido para actualizar perfil");
+                }
+
+                const respuesta = await axios.put(url, data, getAuthHeaders());
+                set({ user: respuesta.data });
+                toast.success("Perfil actualizado correctamente");
             } catch (error) {
-                console.log(error)
-                toast.error(error.response?.data?.msg)
+                console.log(error);
+                toast.error(error.response?.data?.msg || "Error al actualizar el perfil");
             }
         },
-        updatePasswordProfile:async(data,id)=>{
+
+
+
+        updatePasswordProfile: async (data, id) => {
             try {
-                const url = `${import.meta.env.VITE_BACKEND_URL}/estilista/actualizarpassword/${id}`
-                const respuesta = await axios.put(url, data,getAuthHeaders())
-                toast.success(respuesta?.data?.msg)
-                return respuesta
+                const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+                const rol = storedUser.state.rol;
+
+                let url;
+                if (rol === "administrador") {
+                    url = `${import.meta.env.VITE_BACKEND_URL}/administrador/actualizarpassword/${id}`;
+                } else if (rol === "estilista") {
+                    url = `${import.meta.env.VITE_BACKEND_URL}/estilista/actualizarpassword/${id}`;
+                } else {
+                    throw new Error("Rol no válido para actualizar contraseña");
+                }
+
+                const respuesta = await axios.put(url, data, getAuthHeaders());
+                toast.success(respuesta?.data?.msg);
+                return respuesta;
             } catch (error) {
-                console.log(error)
-                toast.error(error.response?.data?.msg)
+                console.log(error);
+                toast.error(error.response?.data?.msg);
             }
         }
+
+
+
+
     })
 )
 
