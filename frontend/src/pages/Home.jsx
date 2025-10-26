@@ -37,7 +37,7 @@ export const Home = () => {
       </header>
 
       {/* HERO */}
-      <main className="pt-32 bg-gradient-to-br from-emerald-50 via-white to-sky-50">
+      <main className="pt-2 bg-gradient-to-br from-emerald-50 via-white to-sky-50">
         <div className="container mx-auto px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 text-center md:text-left">
             <h1 className="font-extrabold text-gray-900 text-4xl md:text-6xl leading-tight">
@@ -60,9 +60,9 @@ export const Home = () => {
       </main>
 
       {/* SOBRE NOSOTROS */}
-      <section id="about" className="bg-gray-50 py-24 px-8">
+      <section id="about" className="bg-gray-50 py-0 px-0">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">Sobre Nosotros</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Sobre Nosotros</h2>
           <div className="grid gap-16 md:grid-cols-2 items-center">
             <img src={logoDog} alt="Sobre nosotros" className="rounded-3xl shadow-xl" />
             <div>
@@ -93,7 +93,8 @@ export const Home = () => {
       </section>
 
       {/* SERVICIOS */}
-      <section id="services" className="py-24 px-8 bg-white">
+
+      {/* <section id="services" className="py-24 px-8 bg-white">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">Funcionalidades</h2>
           <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -115,10 +116,11 @@ export const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+
 
       {/* FOOTER */}
-      <footer id="contact" className="bg-gray-900 text-gray-300 py-16 px-8 mt-20">
+      <footer id="contact" className="bg-gray-900 text-gray-300 py-6 px-8 mt-20">
         <div className="container mx-auto grid gap-12 md:grid-cols-3">
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">PetManageQ</h3>
@@ -126,7 +128,7 @@ export const Home = () => {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Contacto</h3>
-            <p>Email: admin@PetManageQ.com</p>
+            {/* <p>Email: admin@PetManageQ.com</p> */}
             <p>Tel: 0995644186</p>
           </div>
           <div>

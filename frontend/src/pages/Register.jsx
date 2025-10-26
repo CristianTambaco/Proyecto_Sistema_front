@@ -31,6 +31,7 @@ export const Register = () => {
             <div className="w-full sm:w-1/2 h-screen bg-white flex justify-center items-center">
 
                 <div className="md:w-4/5 sm:w-full">
+                
                     {/* Contenedor del formulario */}
 
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase text-gray-500">Bienvenido(a)</h1>
@@ -105,19 +106,19 @@ export const Register = () => {
                                                                 
                                 pattern: {
                                     value: /^[0-9]+$/,
-                                    message: "El teléfono solo puede contener números"
+                                    message: "El celular solo puede contener números"
                                 },
                                 minLength: {
-                                    value: 5,
-                                    message: "El teléfono debe tener al menos 5 dígitos"
+                                    value: 10,
+                                    message: "El celular debe tener al menos 10 dígitos"
                                 },
                                 maxLength: {
                                     value: 10,
-                                    message: "El teléfono debe tener 10 dígitos"
+                                    message: "El celular debe tener 10 dígitos"
                                 },
 
                                 validate: value => {                
-                                if (/^0+$/.test(value)) return "Teléfono inválido"; // todo ceros                
+                                if (/^0+$/.test(value)) return "Número inválido"; // todo ceros                
                                 }
 
 
@@ -153,8 +154,8 @@ export const Register = () => {
                                     {...register("password", { required: "La contraseña es obligatorio",
 
                                         minLength: {
-                                            value: 6,
-                                            message: "La contraseña debe tener al menos 6 caracteres"
+                                            value: 8,
+                                            message: "La contraseña debe tener al menos 8 caracteres"
                                         }   
                                         
                                      })}
@@ -182,18 +183,18 @@ export const Register = () => {
 
                         {/* Botón para enviar el formulario */}
                         <div className="mb-3">
-                            <button className="bg-gray-500 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white">Registrarse</button>
+                            <button className="bg-gray-500 text-slate-300 border py-1 w-full rounded-xl mt-3 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white">Registrarse</button>
                         </div>
 
                     </form>
 
                     {/* Línea separadora */}
-                    <div className="mt-5 text-xs border-b-2 py-4"></div>
+                    <div className="mt-5 text-xs border-b-2 py-1"></div>
 
                     {/* Enlace para iniciar sesión si ya tiene una cuenta */}
                     <div className="mt-3 text-sm flex justify-between items-center">
                         <p>¿Ya posees una cuenta?</p>
-                        <Link to="/login" className="py-2 px-5 bg-gray-500 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900">Iniciar sesión</Link>
+                        <Link to="/login" className="py-1 px-5 bg-gray-500 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900">Iniciar sesión</Link>
                     </div>
 
                 </div>
