@@ -15,15 +15,23 @@ const Login = () => {
 
 
 
-        const loginUser = async(data) => {
-        const url = data.password.includes("CLI")
-            ? `${import.meta.env.VITE_BACKEND_URL}/cliente/login`
-            : `${import.meta.env.VITE_BACKEND_URL}/login`
-        const response = await fetchDataBackend(url, data,'POST', null)
-        setToken(response?.token)
-        setRol(response?.rol)
-        if(response){
-            navigate('/dashboard')
+        const loginUser = async (data) => {
+        const { email, password, rol } = data;
+
+        let url;
+        if (rol === 'cliente') {
+            url = `${import.meta.env.VITE_BACKEND_URL}/cliente/login`;
+        } else if (rol === 'administrador') {
+            url = `${import.meta.env.VITE_BACKEND_URL}/loginad`;
+        } else {
+            url = `${import.meta.env.VITE_BACKEND_URL}/login`; // estilista
+        }
+
+        const response = await fetchDataBackend(url, { email, password }, 'POST', null);
+        if (response) {
+            setToken(response.token);
+            setRol(response.rol);
+            navigate('/dashboard');
         }
     }
 
@@ -84,6 +92,25 @@ const Login = () => {
                                 </button>
                             </div>
                         </div>
+
+
+
+                        {/* Selector de rol */}
+                        <div className="mb-3">
+                            <label className="mb-2 block text-sm font-semibold">Rol</label>
+                            <select
+                                {...register("rol", { required: "El rol es obligatorio" })}
+                                className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                            >
+                                <option value="">-- Seleccione --</option>
+                                <option value="cliente">Cliente</option>
+                                <option value="estilista">Estilista</option>
+                                <option value="administrador">Administrador</option>
+                            </select>
+                            {errors.rol && <p className="text-red-800">{errors.rol.message}</p>}
+                        </div>
+
+
 
                         {/* Botón de iniciar sesión */}
                         <div className="my-4">
