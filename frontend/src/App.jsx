@@ -50,6 +50,11 @@ function App() {
           <Route path='confirm/:token' element={<Confirm/>}/>
           <Route path='reset/:token' element={<Reset/>}/>
           <Route path='*' element={<NotFound />} />
+
+          <Route path='registercliente' element={<Create/>}/>
+
+
+
         </Route>
 
 

@@ -270,7 +270,9 @@ export const Form = ({patient}) => {
                 <label className="mb-2 block text-sm font-semibold">Imagen</label>
                 <div className="flex gap-4 mb-2">
                     {/* Opción: Imagen con IA */}
-                    <label className="flex items-center gap-2">
+
+
+                    {/* <label className="flex items-center gap-2">
                         <input
                             type="radio"
                             value="ia"
@@ -278,7 +280,9 @@ export const Form = ({patient}) => {
                             // disabled={patient}
                         />
                         Generar con IA
-                    </label>
+                    </label> */}
+
+
 
                     {/* Opción: Subir Imagen */}
                     <label className="flex items-center gap-2">
@@ -381,6 +385,17 @@ export const Form = ({patient}) => {
                     />
                     {errors.caracteristicasMascota && <p className="text-red-800">{errors.caracteristicasMascota.message}</p>}
                 </div>
+
+
+                
+
+                {/* <div>
+                    <p style={{ margin: 0, fontSize: '16px' }}>Correo electrónico: {patient?.emailPropietario}</p>
+                    <p style={{ margin: 0, fontSize: '16px' }}>Contraseña: {patient?.password}</p>
+                </div> */}
+                
+
+
             </fieldset>
             
             {/* Botón de submit */}
