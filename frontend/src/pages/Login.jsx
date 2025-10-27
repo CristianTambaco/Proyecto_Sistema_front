@@ -122,9 +122,12 @@ const Login = () => {
                                         
 
                     {/* Olvidaste tu contraseña */}
-                    <div className="mt-5 text-xs border-b-2 py-4">
+
+
+                    {/* <div className="mt-5 text-xs border-b-2 py-4">
                         <Link to="/forgot/id" className="underline text-sm text-gray-400 hover:text-gray-900">¿Olvidaste tu contraseña?</Link>
-                    </div>
+                    </div> */}
+
 
                     {/* Enlaces para volver o registrarse */}
                     <div className="mt-3 text-sm flex justify-between items-center">
@@ -133,7 +136,7 @@ const Login = () => {
 
                         {/* <Link to="/register" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registrarse estilista</Link> */}
                                                 
-                        <Link to="/registerclient" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registrarse</Link>
+                        {/* <Link to="/registerclient" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registrarse</Link> */}
                     
                     </div>
                 </div>
