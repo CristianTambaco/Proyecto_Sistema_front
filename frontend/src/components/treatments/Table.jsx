@@ -47,10 +47,9 @@ const TableTreatments = ({ treatments, listPatient }) => {
 
 
                             <td className="py-2 text-center">
+                               
 
-                                
-
-
+                                {/* Botón de Pagar para cliente */}
                                 {rol === "cliente" && (
                                     <MdAttachMoney
                                         className={
@@ -69,8 +68,8 @@ const TableTreatments = ({ treatments, listPatient }) => {
 
                               
                                 
-
-                                {rol === "estilista" && (
+                                {/* Botón de Eliminar para estilista o administrador */}
+                                {(rol === "estilista" || rol === "administrador") && (
                                     <MdDeleteForever
                                         className={
                                             treatment.estadoPago === "Pagado"

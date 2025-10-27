@@ -120,8 +120,10 @@ const Details = () => {
                 <div className='flex justify-between items-center'>
 
                     <p>Módulo de historial de las atenciones de la mascota</p>
+
+                    {/* Botón Registrar para estilista o administrador */}
                     {
-                        rol==="estilista" &&
+                        (rol === "estilista" || rol === "administrador") &&
                         (
                             <button className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700"
                                     onClick={()=>{toggleModal("treatments")}}
