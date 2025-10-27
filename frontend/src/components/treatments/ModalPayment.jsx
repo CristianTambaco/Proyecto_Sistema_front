@@ -40,7 +40,7 @@ function ModalPayment({ treatment }) {
         <div className="fixed inset-0 flex items-center justify-center">
             <div className="bg-gray-900 rounded-lg shadow-lg overflow-y-auto p-6 max-w-lg w-full border border-gray-700 relative">
 
-                <p className="text-white font-bold text-xl mb-4">Pagar Atencion</p>
+                <p className="text-white font-bold text-xl mb-4">Módulo de pago</p>
 
                 <form onSubmit={handlePayment} className="space-y-6 p-6 rounded-lg shadow-md">
                     <div>

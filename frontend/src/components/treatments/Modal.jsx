@@ -1,10 +1,18 @@
 import { useForm } from "react-hook-form";
 import storeTreatments from "../../context/storeTreatments";
 
+
+import storeAuth from "../../context/storeAuth"
+
+
 const ModalTreatments = ({patientID}) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
     const { toggleModal, registerTreatments } = storeTreatments()
+
+
+    const { rol } = storeAuth()
+
 
     const registerTreatmentsForm = (data) => {
         const newData = { ...data, cliente: patientID }
@@ -15,7 +23,17 @@ const ModalTreatments = ({patientID}) => {
         <div className="fixed inset-0 flex items-center justify-center">
             <div className="bg-gray-700 rounded-lg shadow-lg overflow-y-auto p-6 max-w-lg w-full border border-gray-700 relative">
 
-                <p className="text-white font-bold text-lg text-center mt-4">Nuevo Registro</p>
+                <p className="text-white font-bold text-lg text-center mt-4">
+                    
+                    {
+                        rol === "estilista" ? "Nuevo Registro" :
+                        rol === "administrador" ? "Nuevo Registro" :
+                        rol === "cliente" ? "--Nuevo Registro" :
+                        "--Nuevo Registro.--"
+                        }
+                    </p>
+
+
 
                 <form className="p-10" onSubmit={handleSubmit(registerTreatmentsForm)}>
                     <div>
