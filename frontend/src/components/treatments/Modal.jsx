@@ -58,7 +58,20 @@ const ModalTreatments = ({patientID}) => {
                             {errors.nombre && <p className="text-red-500">{errors.nombre.message}</p>}
                     </div>
                     <div>
-                        <label className="mb-2 block text-sm font-semibold text-gray-50">Descripción</label>
+
+
+                        <label className="mb-2 block text-sm font-semibold text-gray-50">
+                            {
+                        rol === "estilista" ? "Descripción" :
+                        rol === "administrador" ? "Descripción/Horario" :
+                        rol === "cliente" ? "--Descr" :
+                        "--Descripción.--"
+                        }
+                    </label>
+
+
+
+
                         <textarea
                             type="text"
                             placeholder="Ingresa la descripción"
