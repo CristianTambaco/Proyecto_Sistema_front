@@ -119,7 +119,15 @@ const Details = () => {
 
                 <div className='flex justify-between items-center'>
 
-                    <p>Módulo de historial de las atenciones de la mascota</p>
+                    {/* Mostrar texto según el rol */}
+                    <p>
+                        {
+                        rol === "estilista" ? "Módulo de trabajos realizados" :
+                        rol === "administrador" ? "Módulo de gestión de servicios" :
+                        rol === "cliente" ? "Módulo de visualización de servicios" :
+                        "--Módulo de historial de atenciones de la mascota--"
+                        }
+                    </p>
 
                     {/* Botón Registrar para estilista o administrador */}
                     {
