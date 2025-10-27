@@ -25,6 +25,10 @@ import storeAuth from './context/storeAuth'
 import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
 
 
+import RegisterClient from './pages/RegisterClient'; // <-- Añade esta línea
+
+
+
 function App() {
 
   const { profile} = storeProfile()
@@ -51,7 +55,7 @@ function App() {
           <Route path='reset/:token' element={<Reset/>}/>
           <Route path='*' element={<NotFound />} />
 
-          <Route path='registercliente' element={<Create/>}/>
+          <Route path='registerclient' element={<RegisterClient />} />
 
 
 

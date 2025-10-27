@@ -129,10 +129,11 @@ const Login = () => {
                     {/* Enlaces para volver o registrarse */}
                     <div className="mt-3 text-sm flex justify-between items-center">
                         <Link to="/" className="underline text-sm text-gray-400 hover:text-gray-900">Regresar</Link>
-                        <Link to="/register" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registrarse</Link>
-                        
-                        {/* <Link to="/registercliente" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registro cliente</Link> */}
-                    
+
+
+                        {/* <Link to="/register" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registrarse estilista</Link> */}
+                                                
+                        <Link to="/registerclient" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Registrarse</Link>
                     
                     </div>
                 </div>
