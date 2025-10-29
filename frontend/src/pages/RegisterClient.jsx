@@ -50,8 +50,9 @@ const RegisterClient = () => {
             bg-no-repeat bg-cover bg-center sm:block hidden">
             </div>
             {/* Contenedor de formulario */}
-            <div className="w-full sm:w-1/2 h-screen bg-white flex justify-center items-center">
-                <div className="md:w-4/5 sm:w-full">
+            <div className="w-full sm:w-1/2 h-screen bg-white flex justify-center items-start pt-8"> {/* Cambiado 'items-center' a 'items-start' y añadido padding top */}
+                <div className="md:w-4/5 sm:w-full max-h-[90vh] overflow-y-auto"> {/* Añadido max-height y overflow */}
+                
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase text-gray-500">Bienvenido(a)</h1>
                     <small className="text-gray-400 block my-4 text-sm">Por favor ingresa tus datos</small>
                     <form onSubmit={handleSubmit(registroCliente)}>
