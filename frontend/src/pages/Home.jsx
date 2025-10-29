@@ -128,7 +128,7 @@ export const Home = () => {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Contacto</h3>
-            {/* <p>Email: admin@PetManageQ.com</p> */}
+            {/* <p>Email: admin@hotmail.com</p> */}
             <p>Tel: 0995644186</p>
           </div>
           <div>
