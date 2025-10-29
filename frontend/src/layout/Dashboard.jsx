@@ -12,8 +12,20 @@ const Dashboard = () => {
     return (
         <div className="flex h-screen bg-slate-50 text-gray-800">
 
-            {/* Sidebar */}
-            <aside className="w-64 bg-slate-800 text-slate-200 flex flex-col px-4 py-6">
+            {/* Sidebar con color dinámico según rol */}
+            <aside
+            className={`w-64 text-slate-200 flex flex-col px-4 py-6 ${
+                rol === 'administrador'
+                ? 'bg-slate-800'
+                : rol === 'estilista'
+                ? 'bg-teal-950'
+                : rol === 'cliente'
+                ? 'bg-green-950'
+                : 'bg-slate-800'
+            }`}
+            >
+
+
                 {/* Logo y usuario */}
                 <div className="text-center mb-6">
                     <h2 className="text-2xl font-extrabold text-sky-300">Módulos</h2>
@@ -53,7 +65,7 @@ const Dashboard = () => {
                                 <FaList /> Listar
                             </Link>
                         </li>
-                        {(rol === 'estilista' || rol === 'administrador') && (
+                        {(rol === 'estilistacds' || rol === 'administrador') && (
                             <li>
                                 <Link
                                     to="/dashboard/crear"
@@ -84,7 +96,18 @@ const Dashboard = () => {
             <div className="flex-1 flex flex-col">
 
                 {/* Header */}
-                <header className="bg-sky-500 h-16 flex items-center justify-between px-6 shadow-md">
+                <header
+                className={`h-16 flex items-center justify-between px-6 shadow-md text-white ${
+                    rol === 'administrador'
+                    ? 'bg-sky-500'
+                    : rol === 'estilista'
+                    ? 'bg-teal-500'
+                    : rol === 'cliente'
+                    ? 'bg-green-600'
+                    : 'bg-sky-700'
+                }`}
+                >
+
                     <div className="text-white font-semibold text-lg">
                         Usuario - {user?.nombre || user?.nombrePropietario}
                     </div>

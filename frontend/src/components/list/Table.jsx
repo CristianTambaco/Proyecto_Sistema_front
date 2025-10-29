@@ -108,13 +108,25 @@ const Table = () => {
                                         className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
                                         onClick={() => navigate(`/dashboard/actualizar/${patient._id}`)}
                                     />
-                                    <MdDeleteForever
-                                        title="Eliminar"
-                                        className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600"
-                                        onClick={() => deletePatient(patient._id)}
-                                    />
+                                    
                                 </>
                             )}
+
+                            {(rol === "administrador") && (
+                                <MdDeleteForever
+                                    title="Eliminar"
+                                    className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600"
+                                    onClick={() => deletePatient(patient._id)}
+                                />
+                            )}
+
+
+
+
+
+
+
+
                         </td>
                     </tr>
                 ))}

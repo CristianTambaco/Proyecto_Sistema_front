@@ -104,7 +104,7 @@ const Login = () => {
                             >
                                 <option value="">-- Seleccione --</option>
                                 {/* <option value="cliente">Cliente</option> */}
-                                {/* <option value="estilista">Estilista</option> */}
+                                <option value="estilista">Estilista</option>
                                 <option value="administrador">Administrador</option>
                             </select>
                             {errors.rol && <p className="text-red-800">{errors.rol.message}</p>}
