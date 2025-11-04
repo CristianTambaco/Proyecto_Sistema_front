@@ -116,8 +116,8 @@ const FormularioPerfil = () => {
                             message: "El teléfono solo puede contener números"
                         },
                         minLength: {
-                            value: 5,
-                            message: "El teléfono debe tener al menos 5 dígitos"
+                            value: 9,
+                            message: "El teléfono debe tener 10 dígitos."
                         },
                         maxLength: {
                             value: 10,

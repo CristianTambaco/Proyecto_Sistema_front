@@ -49,7 +49,7 @@ const ModalTreatments = ({patientID}) => {
                                     message: "El nombre debe tener al menos 2 caracteres"
                                 },
                                 pattern: {
-                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\,]+$/,
                                     message: "El nombre solo puede contener letras"
                                 }
 
@@ -82,10 +82,7 @@ const ModalTreatments = ({patientID}) => {
                                     value: 2,
                                     message: "La descripción debe tener al menos 2 caracteres"
                                 },
-                                pattern: {
-                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                                    message: "La descripción solo puede contener letras"
-                                }
+                                
 
 
                              })}

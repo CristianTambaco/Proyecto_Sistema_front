@@ -375,10 +375,7 @@ export const Form = ({patient}) => {
                                     value: 2,
                                     message: "Debe existir al menos 2 caracteres"
                                 },
-                                pattern: {
-                                    value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-                                    message: "Solo puede contener letras"
-                                }
+                                
 
 
                          })}
