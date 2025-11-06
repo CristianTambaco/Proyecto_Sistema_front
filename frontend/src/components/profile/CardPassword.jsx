@@ -29,7 +29,12 @@ const CardPassword = () => {
             <form onSubmit={handleSubmit(updatePassword)}>
 
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Contraseña actual</label>
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Contraseña actual <span className="text-red-600">*</span>
+                    </label>
+
+
                     <input type="password" placeholder="Ingresa tu contraseña actual" className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5" 
                     {...register("passwordactual", { required: "La contraseña actual es obligatoria" })}
                     />
@@ -37,13 +42,19 @@ const CardPassword = () => {
                 </div>
 
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Nueva contraseña</label>
+
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Nueva contraseña <span className="text-red-600">*</span>
+                    </label>
+
+
                     <input type="password" placeholder="Ingresa la nueva contraseña" className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5" 
                     {...register("passwordnuevo", { required: "La nueva contraseña es obligatoria",
                         
                         minLength: {
-                            value: 6,
-                            message: "La contraseña debe tener al menos 6 caracteres"
+                            value: 8,
+                            message: "La contraseña debe tener al menos 8 caracteres"
                         }                            
                         
                     })}

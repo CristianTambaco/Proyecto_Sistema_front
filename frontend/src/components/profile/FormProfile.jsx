@@ -26,7 +26,10 @@ const FormularioPerfil = () => {
     return (
         <form onSubmit={handleSubmit(updateUser)}>
             <div>
-                <label className="mb-2 block text-sm font-semibold">Nombre</label>
+                <label className="mb-2 block text-sm font-semibold">
+                    Nombre <span className="text-red-600">*</span>
+                </label>
+
                 <input
                     type="text"
                     placeholder="Ingresa tu nombre"
@@ -51,7 +54,11 @@ const FormularioPerfil = () => {
                 {errors.nombre && <p className="text-red-800">{errors.nombre.message}</p>}
             </div>
             <div>
-                <label className="mb-2 block text-sm font-semibold">Apellido</label>
+
+                <label className="mb-2 block text-sm font-semibold">
+                    Apellido <span className="text-red-600">*</span>
+                </label>
+
                 <input
                     type="text"
                     placeholder="Ingresa tu apellido"
@@ -77,7 +84,11 @@ const FormularioPerfil = () => {
 
             </div>
             <div>
-                <label className="mb-2 block text-sm font-semibold">Dirección</label>
+
+                <label className="mb-2 block text-sm font-semibold">
+                    Dirección <span className="text-red-600">*</span>
+                </label>
+
                 <input
                     type="text"
                     placeholder="Ingresa tu dirección"
@@ -104,7 +115,12 @@ const FormularioPerfil = () => {
 
             </div>
             <div>
-                <label className="mb-2 block text-sm font-semibold">Teléfono</label>
+
+
+                <label className="mb-2 block text-sm font-semibold">
+                    Teléfono <span className="text-red-600">*</span>
+                </label>
+
                 <input
                     type="number"
                     placeholder="Ingresa tu teléfono"
@@ -134,7 +150,13 @@ const FormularioPerfil = () => {
 
             </div>
             <div>
-                <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
+
+
+                <label className="mb-2 block text-sm font-semibold">
+                    Correo electrónico <span className="text-red-600">*</span>
+                </label>
+
+
                 <input
                     type="email"
                     placeholder="Ingresa tu correo"

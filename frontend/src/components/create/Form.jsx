@@ -113,7 +113,12 @@ export const Form = ({patient}) => {
 
                 {/* Cédula */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Cédula</label>
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Cédula <span className="text-red-600">*</span>
+                    </label>
+
+
                     <div className="flex items-center gap-10 mb-5">
                         <input
                             type="number"
@@ -150,7 +155,12 @@ export const Form = ({patient}) => {
 
                 {/* Nombre completo */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Nombres completos</label>
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Nombres completos <span className="text-red-600">*</span>
+                    </label>
+
+
                     <input
                         type="text"
                         placeholder="Ingresa nombre y apellido"
@@ -184,7 +194,13 @@ export const Form = ({patient}) => {
 
                 {/* Correo electrónico */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
+
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Correo electrónico <span className="text-red-600">*</span>
+                    </label>
+
+
                     <input
                         type="emaile"
                         placeholder="Ingresa el correo electrónico"
@@ -203,7 +219,11 @@ export const Form = ({patient}) => {
 
                 {/* Celular */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Celular</label>
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Celular <span className="text-red-600">*</span>
+                    </label>
+
                     <input
                         type="number"
                         placeholder="Ingresa el celular"
@@ -241,7 +261,14 @@ export const Form = ({patient}) => {
 
                 {/* Nombre de la mascota */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Nombre</label>
+
+                    
+                    <label className="mb-2 block text-sm font-semibold">
+                        Nombre <span className="text-red-600">*</span>
+                    </label>
+
+
+
                     <input
                         type="text"
                         placeholder="Ingresar nombre"
@@ -348,7 +375,13 @@ export const Form = ({patient}) => {
 
                 {/* Tipo de mascota */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Tipo pelaje</label>
+
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Tipo pelaje <span className="text-red-600">*</span>
+                    </label>
+
+
                     <select
                         id='prioridad'
                         className='block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5'
@@ -376,7 +409,13 @@ export const Form = ({patient}) => {
 
                 {/* Detalles */}
                 <div>
-                    <label className="mb-2 block text-sm font-semibold">Detalles adicionales</label>
+
+
+                    <label className="mb-2 block text-sm font-semibold">
+                        Detalles adicionales <span className="text-red-600">*</span>
+                    </label>
+
+
                     <textarea
                         placeholder="Detalles"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
