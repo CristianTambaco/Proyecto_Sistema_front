@@ -122,8 +122,8 @@ export const Form = ({patient}) => {
                             {...register("cedulaPropietario", { required: "La cédula es obligatoria",
 
                                 minLength: {
-                                    value: 6,
-                                    message: "La cédula debe tener al menos 6 dígitos",
+                                    value: 10,
+                                    message: "La cédula debe tener al menos 10 dígitos",
                                 },
                                 maxLength: {
                                     value: 10,
@@ -155,11 +155,11 @@ export const Form = ({patient}) => {
                         type="text"
                         placeholder="Ingresa nombre y apellido"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                        {...register("nombrePropietario", { required: "El nombre completo es obligatorio",
+                        {...register("nombrePropietario", { required: "El campo es obligatorio",
 
                             minLength: {
-                                value: 3,
-                                message: "Debe tener al menos 3 caracteres",
+                                value: 5,
+                                message: "Debe tener al menos 5 caracteres",
                             },
                             maxLength: {
                                 value: 50,
@@ -186,7 +186,7 @@ export const Form = ({patient}) => {
                 <div>
                     <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
                     <input
-                        type="email"
+                        type="emaile"
                         placeholder="Ingresa el correo electrónico"
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                         {...register("emailPropietario", { required: "El correo electrónico es obligatorio",
@@ -215,12 +215,12 @@ export const Form = ({patient}) => {
                                     message: "El teléfono solo puede contener números"
                                 },
                                 minLength: {
-                                    value: 5,
-                                    message: "El teléfono debe tener al menos 5 dígitos"
+                                    value: 10,
+                                    message: "El teléfono debe tener al menos 10 dígitos"
                                 },
                                 maxLength: {
                                     value: 10,
-                                    message: "El teléfono debe tener 10 dígitos"
+                                    message: "El teléfono debe tener máximo 10 dígitos"
                                 },
 
                                 validate: value => {                
@@ -249,8 +249,8 @@ export const Form = ({patient}) => {
                         {...register("nombreMascota", { required: "El campo es obligatorio",
 
                             minLength: {
-                                value: 2,
-                                message: "El nombre debe tener al menos 2 caracteres"
+                                value: 5,
+                                message: "El nombre debe tener al menos 5 caracteres"
                             },
                             pattern: {
                                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -272,15 +272,15 @@ export const Form = ({patient}) => {
                     {/* Opción: Imagen con IA */}
 
 
-                    {/* <label className="flex items-center gap-2">
+                    <label className="flex items-center gap-2">
                         <input
                             type="radio"
                             value="ia"
                             {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
                             // disabled={patient}
                         />
-                        Generar con IA
-                    </label> */}
+                        Sin imagen
+                    </label>
 
 
 
@@ -300,8 +300,11 @@ export const Form = ({patient}) => {
                 {/* Imagen con IA */}
                 {selectedOption === "ia" && (
                     <div className="mt-5">
-                        <label className="mb-2 block text-sm font-semibold">Imagen con IA</label>
-                        <div className="flex items-center gap-10 mb-5">
+
+                        {/* <label className="mb-2 block text-sm font-semibold">Imagen con IA</label> */}
+
+                        {/* <div className="flex items-center gap-10 mb-5">
+
                             <input
                                 type="text"
                                 placeholder="Ingresa el prompt"
@@ -309,6 +312,7 @@ export const Form = ({patient}) => {
                                 value={avatar.prompt}
                                 onChange={(e) => setAvatar(prev => ({ ...prev, prompt: e.target.value }))}
                             />
+
                             <button
                                 type="button"
                                 className="py-1 px-8 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white sm:w-80"
@@ -317,10 +321,16 @@ export const Form = ({patient}) => {
                             >
                                 {avatar.loading ? "Generando..." : "Generar con IA"}
                             </button>
-                        </div>
-                        {avatar.image && (
+
+
+                        </div> */}
+
+
+
+                        {/* {avatar.image && (
                             <img src={avatar.image} alt="Avatar IA" width={100} height={100} />
-                        )}
+                        )} */}
+                        
                     </div>
                 )}
 
@@ -348,6 +358,7 @@ export const Form = ({patient}) => {
                         <option value="corto">Corto</option>
                         <option value="largo">Largo</option>
                         <option value="otro">Otro</option>
+                        
                     </select>
                     {errors.tipoPelajeMascota && <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>}
                 </div>
@@ -372,8 +383,8 @@ export const Form = ({patient}) => {
                         {...register("caracteristicasMascota", { required: "El campo es obligatorio",
 
                             minLength: {
-                                    value: 2,
-                                    message: "Debe existir al menos 2 caracteres"
+                                    value: 5,
+                                    message: "Debe existir al menos 5 caracteres"
                                 },
                                 
 

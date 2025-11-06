@@ -38,8 +38,8 @@ const FormularioPerfil = () => {
                             message: "El nombre solo puede contener letras"
                         },
                         minLength: {
-                            value: 2,
-                            message: "El nombre debe tener al menos 2 caracteres"
+                            value: 5,
+                            message: "El nombre debe tener al menos 5 caracteres"
                         },
                         maxLength: {
                             value: 20,
@@ -63,8 +63,8 @@ const FormularioPerfil = () => {
                             message: "El apellido solo puede contener letras"
                         },
                         minLength: {
-                            value: 2,
-                            message: "El apellido debe tener al menos 2 caracteres"
+                            value: 5,
+                            message: "El apellido debe tener al menos 5 caracteres"
                         },
                         maxLength: {
                             value: 20,
@@ -116,7 +116,7 @@ const FormularioPerfil = () => {
                             message: "El teléfono solo puede contener números"
                         },
                         minLength: {
-                            value: 9,
+                            value: 10,
                             message: "El teléfono debe tener 10 dígitos."
                         },
                         maxLength: {

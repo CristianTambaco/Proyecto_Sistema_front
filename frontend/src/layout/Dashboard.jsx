@@ -10,73 +10,88 @@ const Dashboard = () => {
     const { user } = storeProfile();
 
     return (
-        <div className="flex h-screen bg-slate-50 text-gray-800">
+        <div className="flex flex-col h-screen bg-slate-50 text-gray-800">
 
             {/* Sidebar con color dinámico según rol */}
             <aside
-            className={`w-64 text-slate-200 flex flex-col px-4 py-6 ${
-                rol === 'administrador'
-                ? 'bg-slate-800'
-                : rol === 'estilista'
-                ? 'bg-teal-950'
-                : rol === 'cliente'
-                ? 'bg-green-950'
-                : 'bg-slate-800'
-            }`}
+                className={`w-full flex flex-wrap items-center justify-between px-6 py-4 text-slate-200 shadow-md ${
+                    rol === 'administrador'
+                    ? 'bg-slate-800'
+                    : rol === 'estilista'
+                    ? 'bg-orange-800'
+                    : rol === 'cliente'
+                    ? 'bg-green-800'
+                    : 'bg-slate-800'
+                }`}
             >
 
 
                 {/* Logo y usuario */}
-                <div className="text-center mb-6">
-                    <h2 className="text-2xl font-extrabold text-sky-300">Módulos</h2>
+                <div className="flex items-center gap-4 mb-2 sm:mb-0">
                     <img
                         src="https://img.freepik.com/vector-premium/peluqueria-perros-gatos-simbolo-peluqueria-canina-simbolo-peluqueria-animales_662695-70.jpg"
                         alt="img-client"
-                        className="mx-auto mt-4 p-1 border-2 border-sky-300 rounded-full"
-                        width={90}
-                        height={90}
+                        className="w-12 h-12 border-2 border-sky-300 rounded-full"
                     />
-                    <p className="mt-3 text-sm text-slate-300">
-                        Bienvenido: <span className="text-white font-semibold">{user?.nombre || user?.nombrePropietario}</span>
-                    </p>
-                    <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
+                    <div>
+                        <h2 className="text-xl font-extrabold text-sky-300">Módulos</h2>
+                        <p className="text-sm text-slate-300">
+                            Bienvenido:{' '}
+                            <span className="text-white font-semibold">
+                                {user?.nombre || user?.nombrePropietario}
+                            </span>
+                        </p>
+                        <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
+                    </div>
                 </div>
 
                 {/* Nav items */}
-                <nav className="flex-1">
-                    <ul className="space-y-2 text-md font-medium">
+                <nav>
+                    <ul className="flex flex-wrap gap-4 text-md font-medium justify-center">
                         <li>
                             <Link
                                 to="/dashboard"
-                                className={`flex items-center gap-3 px-4 py-2 rounded-md transition ${
-                                    urlActual === '/dashboard' ? 'bg-sky-500 text-white' : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                    urlActual === '/dashboard'
+                                        ? 'bg-sky-500 text-white'
+                                        : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
                                 <FaUser /> Perfil
                             </Link>
                         </li>
+
                         <li>
                             <Link
                                 to="/dashboard/listar"
-                                className={`flex items-center gap-3 px-4 py-2 rounded-md transition ${
-                                    urlActual === '/dashboard/listar' ? 'bg-sky-500 text-white' : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                    urlActual === '/dashboard/listar'
+                                        ? 'bg-sky-500 text-white'
+                                        : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
                                 <FaList /> Listar
                             </Link>
                         </li>
-                        {(rol === 'estilistacds' || rol === 'administrador') && (
+
+
+
+                        {(rol === 'estilista' || rol === 'administrador') && (
                             <li>
                                 <Link
                                     to="/dashboard/crear"
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-md transition ${
-                                        urlActual === '/dashboard/crear' ? 'bg-sky-500 text-white' : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                    className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                        urlActual === '/dashboard/crear'
+                                            ? 'bg-sky-500 text-white'
+                                            : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                     }`}
                                 >
                                     <FaPlus /> Crear
                                 </Link>
                             </li>
                         )}
+
+
                         <li>
                             {/* <Link
                                 to="/dashboard/chat"
@@ -87,52 +102,42 @@ const Dashboard = () => {
                                 <FaComments /> Chat
                             </Link> */}
                         </li>
+
+
                     </ul>
                 </nav>
+
+
+
+
+                {/* Botón salir */}
+                <div className="flex items-center gap-3 mt-3 sm:mt-0">
+
+                    {/* <img
+                        src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
+                        alt="img-client"
+                        className="w-10 h-10 border-2 border-white rounded-full"
+                    /> */}
+
+
+                    <button
+                        className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition"
+                        onClick={clearToken}
+                    >
+                        <FaSignOutAlt /> Salir
+                    </button>
+                </div>
+
+
             </aside>
 
 
-            {/* Main Content Area */}
+            {/* Contenido principal */}
             <div className="flex-1 flex flex-col">
-
-                {/* Header */}
-                <header
-                className={`h-16 flex items-center justify-between px-6 shadow-md text-white ${
-                    rol === 'administrador'
-                    ? 'bg-sky-500'
-                    : rol === 'estilista'
-                    ? 'bg-teal-500'
-                    : rol === 'cliente'
-                    ? 'bg-green-600'
-                    : 'bg-sky-700'
-                }`}
-                >
-
-                    <div className="text-white font-semibold text-lg">
-                        Usuario - {user?.nombre || user?.nombrePropietario}
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <img
-                            src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
-                            alt="img-client"
-                            className="w-10 h-10 border-2 border-white rounded-full"
-                        />
-                        <button
-                            className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition"
-                            onClick={clearToken}
-                        >
-                            <FaSignOutAlt /> Salir
-                        </button>
-                    </div>
-                </header>
-
-
-                {/* Outlet Content */}
                 <main className="flex-1 overflow-y-auto px-6 py-4 bg-slate-50">
                     <Outlet />
                 </main>
 
-                {/* Footer */}
                 <footer className="bg-white border-t border-gray-200 py-3 text-center text-sm text-gray-500">
                     © Todos los derechos reservados
                 </footer>
