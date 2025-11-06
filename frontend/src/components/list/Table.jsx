@@ -112,13 +112,14 @@ const Table = () => {
                                 </>
                             )}
 
-                            {(rol === "administrador") && (
+
+                            {/* {(rol === "administrador") && (
                                 <MdDeleteForever
                                     title="Eliminar"
                                     className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600"
                                     onClick={() => deletePatient(patient._id)}
                                 />
-                            )}
+                            )} */}
 
 
 
