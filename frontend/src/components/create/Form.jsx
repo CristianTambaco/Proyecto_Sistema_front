@@ -378,7 +378,7 @@ export const Form = ({patient}) => {
 
 
                     <label className="mb-2 block text-sm font-semibold">
-                        Tipo pelaje <span className="text-red-600">*</span>
+                        Sociable con otros animales <span className="text-red-600">*</span>
                     </label>
 
 
@@ -388,9 +388,9 @@ export const Form = ({patient}) => {
                         {...register("tipoPelajeMascota", { required: "Seleccione una opción" })}
                     >
                         <option value="">--- Seleccionar ---</option>
-                        <option value="corto">Corto</option>
-                        <option value="largo">Largo</option>
-                        <option value="otro">Otro</option>
+                        <option value="si">Si</option>
+                        <option value="no">No</option>
+                        {/* <option value="otro">Otro</option> */}
                         
                     </select>
                     {errors.tipoPelajeMascota && <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>}

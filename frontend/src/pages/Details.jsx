@@ -88,7 +88,7 @@ const Details = () => {
                                 </li>
 
                                 <li className="text-md text-gray-00 mt-2">
-                                    <span className="text-gray-600 font-bold">Tipo pelaje: {patient?.tipoPelajeMascota}</span>
+                                    <span className="text-gray-600 font-bold">Sociable con otros animales: {patient?.tipoPelajeMascota}</span>
                                 </li>
 
                                 {/* <li className="text-md text-gray-00 mt-2">
