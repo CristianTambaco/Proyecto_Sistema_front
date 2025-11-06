@@ -58,8 +58,17 @@ const Login = () => {
                         {/* Correo electrónico */}
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
-                            <input type="email" placeholder="Ingresa tu correo" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500" 
-                                {...register("email", { required: "El correo es obligatorio" })}
+                            <input type="emaile" placeholder="Ingresa tu correo" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500" 
+                                {...register("email", { required: "El correo es obligatorio",
+
+
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: "Ingresa un correo electrónico válido"
+                                    }
+
+
+                                 })}
                             />
                                 {errors.email && <p className="text-red-800">{errors.email.message}</p>}
                         </div>
