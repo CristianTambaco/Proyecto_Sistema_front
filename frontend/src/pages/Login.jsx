@@ -112,7 +112,7 @@ const Login = () => {
                                 className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
                             >
                                 <option value="">-- Seleccione --</option>
-                                {/* <option value="cliente">Cliente</option> */}
+                                <option value="cliente">Cliente</option>
                                 <option value="estilista">Estilista</option>
                                 <option value="administrador">Administrador</option>
                             </select>
