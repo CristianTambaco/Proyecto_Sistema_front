@@ -140,7 +140,7 @@ const CreateUsuario = () => {
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Correo electrónico <span className="text-red-600">*</span></label>
           <input
-            type="email"
+            type="emaile"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Correo del ${rolTexto}`}
             {...register("email", {
@@ -165,7 +165,17 @@ const CreateUsuario = () => {
               minLength: {
                 value: 8,
                 message: "La contraseña debe tener al menos 8 caracteres"
+              },
+              maxLength: { 
+                value: 12, 
+                message: "La contraseña no puede superar los 12 caracteres" 
+              },
+              pattern: {
+                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                message:
+                  "Debe tener al menos una letra, un número y un símbolo especial (@, #, *, !, etc.)"
               }
+
             })}
           />
           {errors.password && <p className="text-red-800">{errors.password.message}</p>}
