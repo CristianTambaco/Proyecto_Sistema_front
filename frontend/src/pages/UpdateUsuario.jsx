@@ -9,21 +9,19 @@ import storeAuth from '../context/storeAuth';
 const UpdateUsuario = () => {
   const { tipoUsuario, id } = useParams(); // 'estilista' o 'administrador' y el ID
   const [usuario, setUsuario] = useState(null); // Estado para cargar el usuario existente
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset, watch } = useForm(); // Añadir watch de react-hook-form
   const navigate = useNavigate();
   const { fetchDataBackend } = useFetch();
   const { rol } = storeAuth();
 
   const obtenerUsuario = async () => {
-
-
     if (rol !== 'administrador') return; // Solo admin puede actualizar
 
     let url = '';
     if (tipoUsuario === 'estilista') {
-      url = `${import.meta.env.VITE_BACKEND_URL}/estilista/${id}`; // Asumiendo ruta para estilista
+      url = `${import.meta.env.VITE_BACKEND_URL}/estilista/${id}`;
     } else if (tipoUsuario === 'administrador') {
-      url = `${import.meta.env.VITE_BACKEND_URL}/administrador/${id}`; // Asumiendo ruta para admin
+      url = `${import.meta.env.VITE_BACKEND_URL}/administrador/${id}`;
     }
     if (!url) return;
 
@@ -36,13 +34,14 @@ const UpdateUsuario = () => {
       const response = await fetchDataBackend(url, null, "GET", headers);
       if (response) {
         setUsuario(response);
-        // Reinicia el formulario con los datos existentes
+        // Reinicia el formulario con los datos existentes, incluyendo el status
         reset({
           nombre: response.nombre,
           apellido: response.apellido,
           direccion: response.direccion,
           celular: response.celular,
           email: response.email,
+          status: response.status.toString(), // Convertir booleano a string para el select
           // No se reinicia la contraseña aquí
         });
       }
@@ -53,6 +52,9 @@ const UpdateUsuario = () => {
 
   const actualizarUsuario = async (data) => {
     if (rol !== 'administrador') return; // Solo admin puede actualizar
+
+    // Convertir status de string a booleano
+    data.status = data.status === 'true';
 
     let url = '';
     if (tipoUsuario === 'estilista') {
@@ -86,6 +88,7 @@ const UpdateUsuario = () => {
     }
   }, [id, rol]);
 
+  // Asegurarse de que el usuario se haya cargado antes de renderizar el formulario
   if (rol !== 'administrador') {
     return <div>Acceso denegado. Solo administradores pueden actualizar usuarios.</div>;
   }
@@ -96,6 +99,9 @@ const UpdateUsuario = () => {
 
   const titulo = tipoUsuario === 'estilista' ? 'Actualizar Estilista' : 'Actualizar Administrador';
   const rolTexto = tipoUsuario === 'estilista' ? 'Estilista' : 'Administrador';
+
+  // Usar watch para obtener el valor actual del status en el formulario
+  const statusActual = watch("status");
 
   return (
     <div>
@@ -113,8 +119,8 @@ const UpdateUsuario = () => {
             {...register("nombre", {
               required: `El nombre es obligatorio.`,
               minLength: {
-                value: 5,
-                message: `El nombre debe tener al menos 5 caracteres`
+                value: 2,
+                message: `El nombre debe tener al menos 2 caracteres`
               },
               pattern: {
                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -134,8 +140,8 @@ const UpdateUsuario = () => {
             {...register("apellido", {
               required: `El apellido es obligatorio.`,
               minLength: {
-                value: 5,
-                message: `El apellido debe tener al menos 5 caracteres`
+                value: 2,
+                message: `El apellido debe tener al menos 2 caracteres`
               },
               pattern: {
                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -168,12 +174,12 @@ const UpdateUsuario = () => {
                 message: "El teléfono solo puede contener números"
               },
               minLength: {
-                value: 10, // Ajusta según necesites
-                message: "El teléfono debe tener al menos 10 dígitos"
+                value: 5, // Ajusta según necesites
+                message: "El teléfono debe tener al menos 5 dígitos"
               },
               maxLength: {
                 value: 10, // Ajusta según necesites
-                message: "El teléfono debe tener máximo 10 dígitos"
+                message: "El teléfono debe tener 10 dígitos"
               },
               validate: value => {
                 if (value && /^0+$/.test(value)) return "Número inválido"; // todo ceros
@@ -198,6 +204,21 @@ const UpdateUsuario = () => {
             })}
           />
           {errors.email && <p className="text-red-800">{errors.email.message}</p>}
+        </div>
+
+        {/* Nuevo campo para el estado */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">Estado <span className="text-red-600">*</span></label>
+          <select
+            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+            {...register("status", { required: `El estado es obligatorio.` })}
+          >
+            <option value="true">Activo</option>
+            <option value="false">Inactivo</option>
+          </select>
+          {errors.status && <p className="text-red-800">{errors.status.message}</p>}
+          {/* Mostrar el estado actual (opcional, para referencia visual) */}
+          <p className="mt-1 text-xs text-gray-500">Estado actual: <span className={statusActual === 'true' ? 'text-green-600' : 'text-red-600'}>{statusActual === 'true' ? 'Activo' : 'Inactivo'}</span></p>
         </div>
 
         {/* No se incluye el campo de contraseña aquí, se manejaría en otra sección o modal */}
