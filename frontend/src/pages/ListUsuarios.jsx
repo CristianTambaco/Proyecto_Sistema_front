@@ -149,14 +149,18 @@ const ListUsuarios = () => {
                 >
                   ✏️ {/* Puedes usar un icono real */}
                 </Link>
+
                 {/* Botón de eliminar (lógico) */}
-                <button
+
+                {/* <button
                   onClick={() => eliminarUsuario(usuario._id, tipoUsuario)}
                   className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600 ml-2"
                   title={`Eliminar (Desactivar) ${tipoUsuario}`}
                 >
-                  🗑️ {/* Puedes usar un icono real */}
-                </button>
+                  🗑️ 
+                </button> */}
+                
+
               </td>
             </tr>
           ))}
