@@ -21,7 +21,7 @@ const Update = () => {
             setPatient(response || {})
         }
         searchPatient()
-    }, [])
+    }, [id]) // Añadir 'id' como dependencia
 
     return (
         <div>

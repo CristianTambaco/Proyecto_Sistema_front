@@ -94,10 +94,11 @@ export const Form = ({patient}) => {
                 nombreMascota: patient?.nombreMascota,
                 tipoPelajeMascota: patient?.tipoPelajeMascota,
                 // fechaNacimientoMascota: new Date(patient?.fechaNacimientoMascota).toLocaleDateString('en-CA', {timeZone: 'UTC'}),
-                caracteristicasMascota: patient?.caracteristicasMascota
+                caracteristicasMascota: patient?.caracteristicasMascota,
+                estadoMascota: patient.estadoMascota.toString(), // Convertir booleano a string para el select
             })
         }
-    }, [])
+    }, [patient, reset]) // Asegurar que se ejecute cuando 'patient' cambie
 
 
     
@@ -440,6 +441,28 @@ export const Form = ({patient}) => {
                     <p style={{ margin: 0, fontSize: '16px' }}>Correo electrónico: {patient?.emailPropietario}</p>
                     <p style={{ margin: 0, fontSize: '16px' }}>Contraseña: {patient?.password}</p>
                 </div> */}
+
+
+
+
+                {/* Estado de la mascota */}
+                {patient && ( // Mostrar solo si es edición
+                    <div>
+                        <label className="mb-2 block text-sm font-semibold">
+                            Estado <span className="text-red-600">*</span>
+                        </label>
+                        <select
+                            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
+                            {...register("estadoMascota", { required: "El estado es obligatorio." })}
+                        >
+                            <option value={true}>Activo</option>
+                            <option value={false}>Inactivo</option>
+                        </select>
+                        {errors.estadoMascota && <p className="text-red-800">{errors.estadoMascota.message}</p>}
+                    </div>
+                )}
+
+
                 
 
 
