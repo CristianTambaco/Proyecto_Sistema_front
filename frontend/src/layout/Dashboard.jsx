@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut } from 'react-icons/fa'; // Añadir FaCut
+import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers } from 'react-icons/fa'; // Añadir FaUsers
 
 
 const Dashboard = () => {
@@ -178,6 +178,55 @@ const Dashboard = () => {
 
 
 
+                        </>
+                        )}
+
+
+
+                        {/* Nueva condición para mostrar enlaces de usuarios solo al administrador */}
+                        {rol === 'administrador' && (
+                        <>
+                            <li>
+                            <Link
+                                to="/dashboard/usuarios"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/usuarios'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaUsers /> Usuarios
+                            </Link>
+                            </li>
+
+
+                            {/* <li>
+                            <Link
+                                to="/dashboard/crear-usuario/estilista"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/crear-usuario/estilista'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaPlus /> Crear Estilista
+                            </Link>
+                            </li> */}
+
+
+                            {/* Opcional: Enlace para crear administrador */}
+                            {/* <li>
+                            <Link
+                                to="/dashboard/crear-usuario/administrador"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/crear-usuario/administrador'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaPlus /> Crear Admin
+                            </Link>
+                            </li> */}
                         </>
                         )}
 

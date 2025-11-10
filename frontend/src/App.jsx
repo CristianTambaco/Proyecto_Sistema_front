@@ -38,6 +38,11 @@ import CreateServicio from './pages/CreateServicio'; // <-- Crea esta página
 import UpdateServicio from './pages/UpdateServicio'; // <-- Crea esta página
 
 
+import ListUsuarios from './pages/ListUsuarios'; // <-- Crea esta página
+import CreateUsuario from './pages/CreateUsuario'; // <-- Crea esta página
+import UpdateUsuario from './pages/UpdateUsuario'; // <-- Crea esta página
+
+
 
 
 function App() {
@@ -129,6 +134,24 @@ function App() {
                       <UpdateServicio />
                     </PrivateRouteWithRole>
                   } />
+
+
+                  {/* Nuevas rutas para usuarios */}
+                <Route path='usuarios' element={
+                  <PrivateRouteWithRole allowedRoles={['administrador']}>
+                    <ListUsuarios />
+                  </PrivateRouteWithRole>
+                } />
+                <Route path='crear-usuario/:tipoUsuario' element={
+                  <PrivateRouteWithRole allowedRoles={['administrador']}>
+                    <CreateUsuario />
+                  </PrivateRouteWithRole>
+                } />
+                <Route path='actualizar-usuario/:tipoUsuario/:id' element={
+                  <PrivateRouteWithRole allowedRoles={['administrador']}>
+                    <UpdateUsuario />
+                  </PrivateRouteWithRole>
+                } />
 
 
 
