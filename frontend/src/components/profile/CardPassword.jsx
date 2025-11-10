@@ -55,6 +55,15 @@ const CardPassword = () => {
                         minLength: {
                             value: 8,
                             message: "La contraseña debe tener al menos 8 caracteres"
+                        },
+                        maxLength: { 
+                            value: 12, 
+                            message: "La contraseña no puede superar los 12 caracteres" 
+                        },
+                        pattern: {
+                            value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                            message:
+                            "Debe tener al menos una letra, un número y un símbolo especial (@, #, *, !, etc.)"
                         }                            
                         
                     })}
