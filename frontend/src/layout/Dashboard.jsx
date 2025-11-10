@@ -125,7 +125,9 @@ const Dashboard = () => {
                                 <FaClock /> Horarios
                             </Link>
                             </li>
-                            <li>
+
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/horarios/crear"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -136,7 +138,8 @@ const Dashboard = () => {
                             >
                                 <FaPlus /> Crear Horario
                             </Link>
-                            </li>
+                            </li> */}
+
                         </>
                         )}
 
