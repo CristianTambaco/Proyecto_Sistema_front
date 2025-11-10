@@ -22,7 +22,7 @@ const List = () => {
             <p className='mb-8'>
                 {(() => {
                     if (rol === "administrador") {
-                        return "Este módulo te permite gestionar usuarios.";
+                        return "Este módulo te permite gestionar clientes.";
                     } else if (rol === "estilista") {
                         return "Este módulo te permite visualizar clientes.";
                     } else if (rol === "cliente") {

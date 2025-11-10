@@ -75,7 +75,7 @@ const Dashboard = () => {
                                         : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
-                                <FaList /> Listar
+                                <FaList /> Cliente.
                             </Link>
                         </li>
 
@@ -91,7 +91,7 @@ const Dashboard = () => {
                                             : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                     }`}
                                 >
-                                    <FaPlus /> Crear
+                                    <FaPlus /> Registrar cliente
                                 </Link>
                             </li>
                         )}
