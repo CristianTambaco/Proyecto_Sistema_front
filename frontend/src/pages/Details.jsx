@@ -123,7 +123,7 @@ const Details = () => {
                     <p>
                         {
                         rol === "estilista" ? "Módulo de trabajos" :
-                        rol === "administrador" ? "Módulo de gestión de servicios" :
+                        rol === "administrador" ? "Historial de atenciones de la mascota" :
                         rol === "cliente" ? "Módulo de visualización de servicios prestados" :
                         "--Módulo de historial de atenciones de la mascota--"
                         }
