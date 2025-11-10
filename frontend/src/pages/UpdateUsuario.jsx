@@ -158,8 +158,26 @@ const UpdateUsuario = () => {
             type="text"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Dirección del ${rolTexto}`}
-            {...register("direccion")}
+            {...register("direccion", {
+              required: "La dirección es obligatoria.",
+              minLength: {
+                value: 5,
+                message: "La dirección debe tener al menos 5 caracteres."
+              },
+              maxLength: {
+                value: 50,
+                message: "La dirección no puede superar los 50 caracteres."
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s.,#-]+$/,
+                message: "La dirección solo puede contener letras y números" //y los símbolos ., #-"
+              }
+            })}
+            
+
+
           />
+            {errors.direccion && <p className="text-red-800">{errors.direccion.message}</p>}
         </div>
 
         <div className="mb-4">
@@ -169,6 +187,7 @@ const UpdateUsuario = () => {
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Teléfono del ${rolTexto}`}
             {...register("celular", {
+              required: "El campo es obligatorio.",
               pattern: {
                 value: /^[0-9]+$/,
                 message: "El teléfono solo puede contener números"
