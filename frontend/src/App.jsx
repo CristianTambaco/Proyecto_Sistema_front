@@ -33,6 +33,11 @@ import CreateHorario from './pages/CreateHorario'; // <-- Crea esta página
 import UpdateHorario from './pages/UpdateHorario'; // <-- Crea esta página
 
 
+import ListServicios from './pages/ListServicios'; // <-- Crea esta página
+import CreateServicio from './pages/CreateServicio'; // <-- Crea esta página
+import UpdateServicio from './pages/UpdateServicio'; // <-- Crea esta página
+
+
 
 
 function App() {
@@ -103,6 +108,25 @@ function App() {
                   <Route path='horarios/actualizar/:id' element={
                     <PrivateRouteWithRole allowedRoles={['administrador']}>
                       <UpdateHorario />
+                    </PrivateRouteWithRole>
+                  } />
+
+
+
+                   {/* Nuevas rutas para servicios */}
+                  <Route path='servicios' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <ListServicios />
+                    </PrivateRouteWithRole>
+                  } />
+                  <Route path='servicios/crear' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <CreateServicio />
+                    </PrivateRouteWithRole>
+                  } />
+                  <Route path='servicios/actualizar/:id' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <UpdateServicio />
                     </PrivateRouteWithRole>
                   } />
 

@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock } from 'react-icons/fa'; // Añadir FaClock
+import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut } from 'react-icons/fa'; // Añadir FaCut
 
 
 const Dashboard = () => {
@@ -139,6 +139,44 @@ const Dashboard = () => {
                                 <FaPlus /> Crear Horario
                             </Link>
                             </li> */}
+
+                        </>
+                        )}
+
+
+
+
+                        {/* Nueva condición para mostrar enlaces de servicios solo al administrador */}
+                        {rol === 'administrador' && (
+                        <>
+                            <li>
+                            <Link
+                                to="/dashboard/servicios"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/servicios'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaCut /> Servicios
+                            </Link>
+                            </li>
+
+
+                            {/* <li>
+                            <Link
+                                to="/dashboard/servicios/crear"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/servicios/crear'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaPlus /> Crear Servicio
+                            </Link>
+                            </li> */}
+
+
 
                         </>
                         )}
