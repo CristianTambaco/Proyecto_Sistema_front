@@ -133,6 +133,12 @@ const UpdateServicio = () => {
                 value: 0,
                 message: "El precio no puede ser negativo."
               },
+              max: {
+                value: 1000,
+                message: "El precio no puede superar los $1000."
+              },
+
+
               validate: value => {
                 if (value === "" || isNaN(value)) return "Por favor ingrese un número válido.";
               }
@@ -153,6 +159,12 @@ const UpdateServicio = () => {
                 value: 1,
                 message: "La duración debe ser al menos 1 minuto."
               },
+              max: {
+                value: 480,
+                message: "La duración no puede ser mayor a 480 minutos (8 horas)."
+              },
+
+
               validate: value => {
                 if (value === "" || isNaN(value)) return "Por favor ingrese un número válido.";
               }
