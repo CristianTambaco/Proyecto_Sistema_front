@@ -28,6 +28,12 @@ import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
 import RegisterClient from './pages/RegisterClient'; // <-- Añade esta línea
 
 
+import ListHorarios from './pages/ListHorarios'; // <-- Crea esta página
+import CreateHorario from './pages/CreateHorario'; // <-- Crea esta página
+import UpdateHorario from './pages/UpdateHorario'; // <-- Crea esta página
+
+
+
 
 function App() {
 
@@ -79,6 +85,29 @@ function App() {
                       <Update />
                     </PrivateRouteWithRole>
                   } />
+
+
+
+
+                  {/* Nuevas rutas para horarios */}
+                  <Route path='horarios' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <ListHorarios />
+                    </PrivateRouteWithRole>
+                  } />
+                  <Route path='horarios/crear' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <CreateHorario />
+                    </PrivateRouteWithRole>
+                  } />
+                  <Route path='horarios/actualizar/:id' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <UpdateHorario />
+                    </PrivateRouteWithRole>
+                  } />
+
+
+
                   <Route path='chat' element={<Chat />} />
                 </Route>
               </Routes>

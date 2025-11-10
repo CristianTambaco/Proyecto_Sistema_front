@@ -1,13 +1,18 @@
 import { Link, Outlet, useLocation } from 'react-router';
 import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt } from 'react-icons/fa';
+
+
+import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock } from 'react-icons/fa'; // Añadir FaClock
+
 
 const Dashboard = () => {
     const location = useLocation();
     const urlActual = location.pathname;
     const { clearToken, rol } = storeAuth();
     const { user } = storeProfile();
+
+    
 
     return (
         <div className="flex flex-col h-screen bg-slate-50 text-gray-800">
@@ -76,7 +81,7 @@ const Dashboard = () => {
 
 
 
-                        {(rol === 'estilista' || rol === 'administrador') && (
+                        {(rol === 'administrador') && (
                             <li>
                                 <Link
                                     to="/dashboard/crear"
@@ -102,6 +107,41 @@ const Dashboard = () => {
                                 <FaComments /> Chat
                             </Link> */}
                         </li>
+
+
+                        
+                        {/* Nueva condición para mostrar enlaces de horarios solo al administrador */}
+                        {rol === 'administrador' && (
+                        <>
+                            <li>
+                            <Link
+                                to="/dashboard/horarios"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/horarios'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaClock /> Horarios
+                            </Link>
+                            </li>
+                            <li>
+                            <Link
+                                to="/dashboard/horarios/crear"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/horarios/crear'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaPlus /> Crear Horario
+                            </Link>
+                            </li>
+                        </>
+                        )}
+
+
+
 
 
                     </ul>
