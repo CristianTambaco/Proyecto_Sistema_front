@@ -75,7 +75,8 @@ const Dashboard = () => {
                                         : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
-                                <FaList /> Cliente.
+                                {/* cliente. titulo*/}
+                                <FaList /> Cliente
                             </Link>
                         </li>
 

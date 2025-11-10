@@ -153,7 +153,7 @@ const UpdateUsuario = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-semibold mb-1">Dirección</label>
+          <label className="block text-sm font-semibold mb-1">Dirección<span className="text-red-600">*</span></label>
           <input
             type="text"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
@@ -163,7 +163,7 @@ const UpdateUsuario = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-semibold mb-1">Teléfono</label>
+          <label className="block text-sm font-semibold mb-1">Teléfono<span className="text-red-600">*</span></label>
           <input
             type="number"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
