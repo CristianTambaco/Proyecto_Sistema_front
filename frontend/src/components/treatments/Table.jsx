@@ -70,16 +70,22 @@ const TableTreatments = ({ treatments, listPatient }) => {
                                 
                                 {/* Botón de Eliminar para estilista o administrador */}
                                 {(rol === "estilista" || rol === "administrador") && (
-                                    <MdDeleteForever
+                                    <span
                                         className={
                                             treatment.estadoPago === "Pagado"
-                                                ? "h-8 w-8 text-gray-500 pointer-events-none inline-block"
+                                                ? "h-8 w-8 text-gray-500 pointer-events-none inline-block select-none"
                                                 : "h-8 w-8 text-red-900 cursor-pointer inline-block hover:text-red-600"
                                         }
                                         title="Eliminar"
-                                        onClick={() => handleDelete(treatment._id)}
-                                    />
+                                        onClick={() =>
+                                            treatment.estadoPago !== "Pagado" &&
+                                            handleDelete(treatment._id)
+                                        }
+                                    >
+                                        🗑️
+                                    </span>
                                 )}
+                                
                             </td>
                         </tr>
                     ))}
