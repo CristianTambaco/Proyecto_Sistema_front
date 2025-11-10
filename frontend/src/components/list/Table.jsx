@@ -103,11 +103,13 @@ const Table = () => {
                             )}
                             {(rol === "estilista" || rol === "administrador") && (
                                 <>
-                                    <MdPublishedWithChanges
+                                    <span
                                         title="Actualizar"
-                                        className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
                                         onClick={() => navigate(`/dashboard/actualizar/${patient._id}`)}
-                                    />
+                                        className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
+                                    >
+                                        ✏️
+                                    </span>
                                     
                                 </>
                             )}
