@@ -119,8 +119,8 @@ const UpdateUsuario = () => {
             {...register("nombre", {
               required: `El nombre es obligatorio.`,
               minLength: {
-                value: 2,
-                message: `El nombre debe tener al menos 2 caracteres`
+                value: 5,
+                message: `El nombre debe tener al menos 5 caracteres`
               },
               pattern: {
                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -140,8 +140,8 @@ const UpdateUsuario = () => {
             {...register("apellido", {
               required: `El apellido es obligatorio.`,
               minLength: {
-                value: 2,
-                message: `El apellido debe tener al menos 2 caracteres`
+                value: 5,
+                message: `El apellido debe tener al menos 5 caracteres`
               },
               pattern: {
                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -174,8 +174,8 @@ const UpdateUsuario = () => {
                 message: "El teléfono solo puede contener números"
               },
               minLength: {
-                value: 5, // Ajusta según necesites
-                message: "El teléfono debe tener al menos 5 dígitos"
+                value: 10, // Ajusta según necesites
+                message: "El teléfono debe tener al menos 10 dígitos"
               },
               maxLength: {
                 value: 10, // Ajusta según necesites
@@ -192,7 +192,7 @@ const UpdateUsuario = () => {
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Correo electrónico <span className="text-red-600">*</span></label>
           <input
-            type="email"
+            type="emaile"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Correo del ${rolTexto}`}
             {...register("email", {

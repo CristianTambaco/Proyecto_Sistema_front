@@ -45,8 +45,8 @@ const ModalTreatments = ({patientID}) => {
                             {...register("nombre", { required: "El nombre es obligatorio",
 
                                 minLength: {
-                                    value: 2,
-                                    message: "El nombre debe tener al menos 2 caracteres"
+                                    value: 5,
+                                    message: "El nombre debe tener al menos 5 caracteres"
                                 },
                                 pattern: {
                                     value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s\,]+$/,
@@ -79,8 +79,8 @@ const ModalTreatments = ({patientID}) => {
                             {...register("descripcion", { required: "La descripción es obligatorio",
 
                                 minLength: {
-                                    value: 2,
-                                    message: "La descripción debe tener al menos 2 caracteres"
+                                    value: 5,
+                                    message: "La descripción debe tener al menos 5 caracteres"
                                 },
                                 
 

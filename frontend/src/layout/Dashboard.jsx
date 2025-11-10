@@ -81,7 +81,7 @@ const Dashboard = () => {
 
 
 
-                        {(rol === 'administrador') && (
+                        {/* {(rol === 'administrador') && (
                             <li>
                                 <Link
                                     to="/dashboard/crear"
@@ -91,10 +91,10 @@ const Dashboard = () => {
                                             : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                     }`}
                                 >
-                                    <FaPlus /> Registrar cliente
+                                    <FaPlus /> Registrar cliente.
                                 </Link>
                             </li>
-                        )}
+                        )} */}
 
 
                         <li>

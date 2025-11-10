@@ -71,8 +71,8 @@ const RegisterClient = () => {
                                     {...register("cedulaPropietario", {
                                         required: "La cédula es obligatoria",
                                         minLength: {
-                                            value: 6,
-                                            message: "La cédula debe tener al menos 6 dígitos",
+                                            value: 10,
+                                            message: "La cédula debe tener al menos 10 dígitos",
                                         },
                                         maxLength: {
                                             value: 10,
@@ -98,8 +98,8 @@ const RegisterClient = () => {
                                     {...register("nombrePropietario", {
                                         required: "El nombre completo es obligatorio",
                                         minLength: {
-                                            value: 3,
-                                            message: "Debe tener al menos 3 caracteres",
+                                            value: 5,
+                                            message: "Debe tener al menos 5 caracteres",
                                         },
                                         maxLength: {
                                             value: 50,
@@ -150,8 +150,8 @@ const RegisterClient = () => {
                                             message: "El teléfono solo puede contener números",
                                         },
                                         minLength: {
-                                            value: 5,
-                                            message: "El teléfono debe tener al menos 5 dígitos",
+                                            value: 10,
+                                            message: "El teléfono debe tener al menos 10 dígitos",
                                         },
                                         maxLength: {
                                             value: 10,
@@ -181,8 +181,8 @@ const RegisterClient = () => {
                                     {...register("nombreMascota", {
                                         required: "El campo es obligatorio",
                                         minLength: {
-                                            value: 2,
-                                            message: "El nombre debe tener al menos 2 caracteres",
+                                            value: 5,
+                                            message: "El nombre debe tener al menos 5 caracteres",
                                         },
                                         pattern: {
                                             value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -256,8 +256,8 @@ const RegisterClient = () => {
                                     {...register("caracteristicasMascota", {
                                         required: "El campo es obligatorio",
                                         minLength: {
-                                            value: 2,
-                                            message: "Debe existir al menos 2 caracteres",
+                                            value: 5,
+                                            message: "Debe existir al menos 5 caracteres",
                                         },
                                         
                                     })}

@@ -67,8 +67,8 @@ const CreateUsuario = () => {
             {...register("nombre", {
               required: `El nombre es obligatorio.`,
               minLength: {
-                value: 2,
-                message: `El nombre debe tener al menos 2 caracteres`
+                value: 5,
+                message: `El nombre debe tener al menos 5 caracteres`
               },
               pattern: {
                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -88,8 +88,8 @@ const CreateUsuario = () => {
             {...register("apellido", {
               required: `El apellido es obligatorio.`,
               minLength: {
-                value: 2,
-                message: `El apellido debe tener al menos 2 caracteres`
+                value: 5,
+                message: `El apellido debe tener al menos 5 caracteres`
               },
               pattern: {
                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -122,8 +122,8 @@ const CreateUsuario = () => {
                 message: "El teléfono solo puede contener números"
               },
               minLength: {
-                value: 5, // Ajusta según necesites
-                message: "El teléfono debe tener al menos 5 dígitos"
+                value: 10, // Ajusta según necesites
+                message: "El teléfono debe tener al menos 10 dígitos"
               },
               maxLength: {
                 value: 10, // Ajusta según necesites

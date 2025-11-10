@@ -84,8 +84,8 @@ const UpdateServicio = () => {
             {...register("nombre", {
               required: "El nombre es obligatorio.",
               minLength: {
-                value: 2,
-                message: "El nombre debe tener al menos 2 caracteres"
+                value: 5,
+                message: "El nombre debe tener al menos 5 caracteres"
               },
               maxLength: {
                 value: 50,
