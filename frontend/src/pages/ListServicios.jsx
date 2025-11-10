@@ -31,7 +31,7 @@ const ListServicios = () => {
   }, []);
 
   const eliminarServicio = async (id) => {
-    if (window.confirm("¿Estás seguro de que deseas eliminar (desactivar) este servicio?")) {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este servicio?")) {
       const url = `${import.meta.env.VITE_BACKEND_URL}/servicio/${id}`;
       const storedUser = JSON.parse(localStorage.getItem("auth-token"));
       const headers = {
@@ -108,7 +108,7 @@ const ListServicios = () => {
                 <button
                   onClick={() => eliminarServicio(servicio._id)}
                   className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600"
-                  title="Eliminar (Desactivar)"
+                  title="Eliminar"
                 >
                   🗑️ {/* Puedes usar un icono real */}
                 </button>
