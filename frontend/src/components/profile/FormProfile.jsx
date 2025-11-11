@@ -158,7 +158,7 @@ const FormularioPerfil = () => {
 
 
                 <input
-                    type="email"
+                    type="emaile"
                     placeholder="Ingresa tu correo"
                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                     {...register("email", { required: "El correo es obligatorio",
