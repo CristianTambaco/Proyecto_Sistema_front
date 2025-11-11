@@ -135,6 +135,7 @@ const CreateUsuario = () => {
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Teléfono del ${rolTexto}`}
             {...register("celular", {
+              required: `El campo es obligatorio.`,
               pattern: {
                 value: /^[0-9]+$/,
                 message: "El teléfono solo puede contener números"
