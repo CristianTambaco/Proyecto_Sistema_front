@@ -294,13 +294,18 @@ export const Form = ({patient}) => {
                     {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
                 </div>
 
+
+                        {/* ------------ */}
+
                 {/* Imagen de la mascota*/}
-                <label className="mb-2 block text-sm font-semibold">Imagen</label>
+
+                {/* <label className="mb-2 block text-sm font-semibold">Imagen</label> */}
                 <div className="flex gap-4 mb-2">
+                    
                     {/* Opción: Imagen con IA */}
 
 
-                    <label className="flex items-center gap-2">
+                    {/* <label className="flex items-center gap-2">
                         <input
                             type="radio"
                             value="ia"
@@ -310,22 +315,31 @@ export const Form = ({patient}) => {
                             // disabled={patient}
                         />
                         Sin imagen
-                    </label>
+                    </label> */}
 
 
 
                     {/* Opción: Subir Imagen */}
-                    <label className="flex items-center gap-2">
+                    {/* <label className="flex items-center gap-2">
                         <input
                             type="radio"
                             value="upload"
-                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+                            // {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+
+                            {...register("imageOption")}
+
                             // disabled={patient}
                         />
                         Subir Imagen
                     </label>
-                    {errors.imageOption && <p className="text-red-800">{errors.imageOption.message}</p>}
+                    {errors.imageOption && <p className="text-red-800">{errors.imageOption.message}</p>} */}
+
+                    
                 </div>
+
+                            {/* ---------------- */}
+
+
 
                 {/* Imagen con IA */}
                 {selectedOption === "ia" && (
@@ -364,8 +378,15 @@ export const Form = ({patient}) => {
                     </div>
                 )}
 
+
+
+
+                    {/* ----------- */}
+
+
                 {/* Subir Imagen */}
-                {selectedOption === "upload" && (
+
+                {/* {selectedOption === "upload" && (
                     <div className="mt-5">
                         <label className="mb-2 block text-sm font-semibold">Subir Imagen</label>
                         <input
@@ -374,7 +395,11 @@ export const Form = ({patient}) => {
                             {...register("imagen")}
                         />
                     </div>
-                )}
+                )} */}
+
+                {/* ----------- */}
+
+
 
                 {/* Tipo de mascota */}
                 <div>
