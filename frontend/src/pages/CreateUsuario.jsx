@@ -101,17 +101,35 @@ const CreateUsuario = () => {
         </div>
 
         <div className="mb-4">
-          <label className="block text-sm font-semibold mb-1">Dirección</label>
+          <label className="block text-sm font-semibold mb-1">Dirección<span className="text-red-600">*</span></label>
           <input
             type="text"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Dirección del ${rolTexto}`}
-            {...register("direccion")}
-          />
-        </div>
+            {...register("direccion", {
+            required: "La dirección es obligatoria", // Campo requerido
+            minLength: {
+              value: 5,
+              message: "La dirección debe tener al menos 5 caracteres", // Mínimo de 5 caracteres
+            },
+            maxLength: {
+              value: 100,
+              message: "La dirección no puede tener más de 100 caracteres", // Máximo de 100 caracteres
+            },
+            // pattern: {
+            //   value: /^[a-zA-Z0-9\s,.'-]*$/,
+            //   message: "La dirección contiene caracteres no permitidos", // Regex para caracteres válidos
+            // }
+          })}
+        />
+        {errors.direccion && (
+          <p className="text-red-800">{errors.direccion.message}</p>
+        )}
+      </div>
+
 
         <div className="mb-4">
-          <label className="block text-sm font-semibold mb-1">Teléfono</label>
+          <label className="block text-sm font-semibold mb-1">Teléfono<span className="text-red-600">*</span></label>
           <input
             type="number"
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
