@@ -101,7 +101,7 @@ const Table = () => {
                                     onClick={() => navigate(`/dashboard/actualizar/${patient._id}`)}
                                 />
                             )}
-                            {(rol === "estilista" || rol === "administrador") && (
+                            {(rol === "estilistab" || rol === "administrador") && (
                                 <>
                                     <span
                                         title="Actualizar"
