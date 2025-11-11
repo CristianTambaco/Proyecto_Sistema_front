@@ -304,7 +304,9 @@ export const Form = ({patient}) => {
                         <input
                             type="radio"
                             value="ia"
-                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+                            {...register("imageOption")}
+
+                            // {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
                             // disabled={patient}
                         />
                         Sin imagen
