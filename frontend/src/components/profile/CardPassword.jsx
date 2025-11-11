@@ -63,7 +63,7 @@ const CardPassword = () => {
                         pattern: {
                             value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
                             message:
-                            "Debe tener al menos una letra, un número y un símbolo especial (@, #, *, !, etc.)"
+                            "Debe tener al menos una letra, un número y un símbolo especial (@, #, *, !)"
                         }                            
                         
                     })}
