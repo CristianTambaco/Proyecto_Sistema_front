@@ -63,7 +63,7 @@ const ModalTreatments = ({patientID}) => {
                         <label className="mb-2 block text-sm font-semibold text-gray-50">
                             {
                         rol === "estilista" ? "Descripción" :
-                        rol === "administrador" ? "Descripción/Horario" :
+                        rol === "administrador" ? "Descripción." :
                         rol === "cliente" ? "--Descr" :
                         "--Descripción.--"
                         }
