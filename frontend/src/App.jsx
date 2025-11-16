@@ -46,6 +46,8 @@ import ListServiciosCliente from './pages/ListServiciosCliente'; // import
 
 import ReservarServicio from './pages/ReservarServicio'; // import
 
+import HistorialAtenciones from './pages/HistorialAtenciones'; //
+
 
 
 
@@ -167,6 +169,14 @@ function App() {
                   <Route path='actualizar-usuario/:tipoUsuario/:id' element={
                     <PrivateRouteWithRole allowedRoles={['administrador']}>
                       <UpdateUsuario />
+                    </PrivateRouteWithRole>
+                  } />
+
+
+
+                  <Route path='historial' element={
+                    <PrivateRouteWithRole allowedRoles={['cliente', 'estilista', 'administrador']}>
+                      <HistorialAtenciones />
                     </PrivateRouteWithRole>
                   } />
                 

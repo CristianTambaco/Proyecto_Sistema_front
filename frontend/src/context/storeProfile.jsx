@@ -30,21 +30,17 @@ const storeProfile = create((set) => ({
             } else {
                 url = `${import.meta.env.VITE_BACKEND_URL}/perfil`;
             }
+
             const respuesta = await axios.get(url, getAuthHeaders());
             set({ user: respuesta.data });
         } catch (error) {
             console.error("Error en storeProfile.profile:", error);
-            toast.error(error.response?.data?.msg || "Error al cargar el perfil.");
-            // Opcional: limpiar token si no está autorizado
-            // storeAuth.getState().clearToken();
+            toast.error(error.response?.data?.msg || "Error al cargar el perfil");
         }
     },
     updateProfile: async (data, id) => {
         try {
             const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-            if (!storedUser || !storedUser.state || !storedUser.state.token) {
-                throw new Error("No se encontró el token de autenticación.");
-            }
             const rol = storedUser.state.rol;
 
             let url;
@@ -62,16 +58,13 @@ const storeProfile = create((set) => ({
             set({ user: respuesta.data });
             toast.success("Perfil actualizado correctamente");
         } catch (error) {
-            console.error("Error en storeProfile.updateProfile:", error);
+            console.log(error);
             toast.error(error.response?.data?.msg || "Error al actualizar el perfil");
         }
     },
     updatePasswordProfile: async (data, id) => {
         try {
             const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-            if (!storedUser || !storedUser.state || !storedUser.state.token) {
-                throw new Error("No se encontró el token de autenticación.");
-            }
             const rol = storedUser.state.rol;
 
             let url;
@@ -89,10 +82,10 @@ const storeProfile = create((set) => ({
             toast.success(respuesta?.data?.msg || "Contraseña actualizada.");
             return respuesta;
         } catch (error) {
-            console.error("Error en storeProfile.updatePasswordProfile:", error);
+            console.log(error);
             toast.error(error.response?.data?.msg || "Error al actualizar la contraseña");
         }
     }
-}));
+}))
 
 export default storeProfile;

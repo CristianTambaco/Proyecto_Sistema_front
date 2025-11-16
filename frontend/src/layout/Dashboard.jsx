@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
+import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
 
 const Dashboard = () => {
     const location = useLocation();
@@ -260,6 +260,25 @@ const Dashboard = () => {
                                 }`}
                             >
                                 <FaCalendarPlus /> Reservar
+                            </Link>
+                            </li>
+                        </>
+                        )}
+
+
+
+                        {rol === 'cliente' && (
+                        <>
+                            <li>
+                            <Link
+                                to="/dashboard/historial"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/historial'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaHistory /> Historial
                             </Link>
                             </li>
                         </>
