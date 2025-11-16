@@ -63,7 +63,7 @@ const RegisterClient = () => {
                             </legend>
                             {/* Cédula */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Cédula</label>
+                                <label className="mb-2 block text-sm font-semibold">Cédula<span className="text-red-600">*</span></label>
                                 <input
                                     type="number"
                                     placeholder="Ingresa la cédula"
@@ -90,7 +90,7 @@ const RegisterClient = () => {
                             </div>
                             {/* Nombre completo */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Nombres completos</label>
+                                <label className="mb-2 block text-sm font-semibold">Nombres completos<span className="text-red-600">*</span></label>
                                 <input
                                     type="text"
                                     placeholder="Ingresa nombre y apellido"
@@ -121,9 +121,9 @@ const RegisterClient = () => {
                             </div>
                             {/* Correo electrónico */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
+                                <label className="mb-2 block text-sm font-semibold">Correo electrónico<span className="text-red-600">*</span></label>
                                 <input
-                                    type="email"
+                                    type="emaile"
                                     placeholder="Ingresa el correo electrónico"
                                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                                     {...register("emailPropietario", {
@@ -138,7 +138,7 @@ const RegisterClient = () => {
                             </div>
                             {/* Celular */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Celular</label>
+                                <label className="mb-2 block text-sm font-semibold">Celular<span className="text-red-600">*</span></label>
                                 <input
                                     type="number"
                                     placeholder="Ingresa el celular"
@@ -173,7 +173,7 @@ const RegisterClient = () => {
                             </legend>
                             {/* Nombre de la mascota */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Nombre</label>
+                                <label className="mb-2 block text-sm font-semibold">Nombre<span className="text-red-600">*</span></label>
                                 <input
                                     type="text"
                                     placeholder="Ingresar nombre"
@@ -232,16 +232,17 @@ const RegisterClient = () => {
 
                             {/* Tipo de pelaje */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Tipo pelaje</label>
+                                <label className="mb-2 block text-sm font-semibold">Sociable con otros animales<span className="text-red-600">*</span></label>
                                 <select
                                     id="prioridad"
                                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                                     {...register("tipoPelajeMascota", { required: "Seleccione una opción" })}
                                 >
                                     <option value="">--- Seleccionar ---</option>
-                                    <option value="corto">Corto</option>
-                                    <option value="largo">Largo</option>
-                                    <option value="otro">Otro</option>
+                                    <option value="si">Si</option>
+                                    <option value="no">No</option>
+                                    {/* <option value="otro">Otro</option> */}
+
                                 </select>
                                 {errors.tipoPelajeMascota && (
                                     <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>
@@ -249,7 +250,7 @@ const RegisterClient = () => {
                             </div>
                             {/* Detalles adicionales */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Detalles adicionales</label>
+                                <label className="mb-2 block text-sm font-semibold">Detalles adicionales<span className="text-red-600">*</span></label>
                                 <textarea
                                     placeholder="Detalles"
                                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
