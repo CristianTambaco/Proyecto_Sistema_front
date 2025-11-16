@@ -235,6 +235,25 @@ const Dashboard = () => {
 
 
 
+                        {rol === 'cliente' && (
+                        <li>
+                            <Link
+                            to="/dashboard/servicios-cliente"
+                            className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/servicios-cliente'
+                                ? 'bg-sky-500 text-white'
+                                : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                            }`}
+                            >
+                            <FaCut /> Servicios
+                            </Link>
+                        </li>
+                        )}
+
+
+
+
+
                     </ul>
                 </nav>
 
