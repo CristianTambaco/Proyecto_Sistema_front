@@ -75,7 +75,7 @@ export const Home = () => {
                   <MdDashboard className="text-emerald-600 text-2xl" /> Panel administrativo
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
-                  <BsCashCoin className="text-sky-600 text-2xl" /> Pagos en línea
+                  <BsCashCoin className="text-sky-600 text-2xl" /> Gestión de servicios
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
                   <FaUsers className="text-emerald-600 text-2xl" /> Gestión de clientes
@@ -84,7 +84,7 @@ export const Home = () => {
                   <FaUser className="text-sky-600 text-2xl" /> Gestión de perfil
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition sm:col-span-2">
-                  <FaStar className="text-yellow-500 text-2xl" /> Historial de atenciones de la mascota
+                  <FaStar className="text-yellow-500 text-2xl" /> Gestión de horarios de atención
                 </div>
               </div>
             </div>
