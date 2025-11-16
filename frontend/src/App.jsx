@@ -95,7 +95,7 @@ function App() {
                     </PrivateRouteWithRole>
                   } />
                   <Route path='actualizar/:id' element={
-                    <PrivateRouteWithRole>
+                    <PrivateRouteWithRole allowedRoles={['cliente', 'administrador', 'estilista']}>
                       <Update />
                     </PrivateRouteWithRole>
                   } />
