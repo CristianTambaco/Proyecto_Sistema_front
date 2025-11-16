@@ -28,21 +28,23 @@ import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
 import RegisterClient from './pages/RegisterClient'; // <-- Añade esta línea
 
 
-import ListHorarios from './pages/ListHorarios'; // <-- Crea esta página
-import CreateHorario from './pages/CreateHorario'; // <-- Crea esta página
-import UpdateHorario from './pages/UpdateHorario'; // <-- Crea esta página
+import ListHorarios from './pages/ListHorarios'; // <-- se crea esta página
+import CreateHorario from './pages/CreateHorario'; // <-- se crea esta página
+import UpdateHorario from './pages/UpdateHorario'; // <-- se crea esta página
 
 
-import ListServicios from './pages/ListServicios'; // <-- Crea esta página
-import CreateServicio from './pages/CreateServicio'; // <-- Crea esta página
-import UpdateServicio from './pages/UpdateServicio'; // <-- Crea esta página
+import ListServicios from './pages/ListServicios'; // <-- se crea esta página
+import CreateServicio from './pages/CreateServicio'; // <-- se crea esta página
+import UpdateServicio from './pages/UpdateServicio'; // <-- se crea esta página
 
 
-import ListUsuarios from './pages/ListUsuarios'; // <-- Crea esta página
-import CreateUsuario from './pages/CreateUsuario'; // <-- Crea esta página
-import UpdateUsuario from './pages/UpdateUsuario'; // <-- Crea esta página
+import ListUsuarios from './pages/ListUsuarios'; // <-- se crea esta página
+import CreateUsuario from './pages/CreateUsuario'; // <-- se crea esta página
+import UpdateUsuario from './pages/UpdateUsuario'; // <-- se crea esta página
 
-import ListServiciosCliente from './pages/ListServiciosCliente'; // <-- Añadir este import
+import ListServiciosCliente from './pages/ListServiciosCliente'; // import
+
+import ReservarServicio from './pages/ReservarServicio'; // import
 
 
 
@@ -140,6 +142,13 @@ function App() {
                   <Route path='servicios-cliente' element={
                     <PrivateRouteWithRole allowedRoles={['cliente', 'administrador']}>
                       <ListServiciosCliente />
+                    </PrivateRouteWithRole>
+                  } />
+
+                  {/* Ruta para reservar servicios - Accesible por cliente */}
+                  <Route path='reservar-servicio' element={
+                    <PrivateRouteWithRole allowedRoles={['cliente', 'administrador', 'estilista']}> {/* Ajustar roles según necesite */}
+                      <ReservarServicio />
                     </PrivateRouteWithRole>
                   } />
 

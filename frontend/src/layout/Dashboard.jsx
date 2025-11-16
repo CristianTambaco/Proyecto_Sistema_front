@@ -3,8 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers } from 'react-icons/fa'; // Añadir FaUsers
-
+import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
 
 const Dashboard = () => {
     const location = useLocation();
@@ -235,19 +234,35 @@ const Dashboard = () => {
 
 
 
-                        {rol === 'cliente' && (
-                        <li>
+                        {/* Nueva condición para mostrar enlaces de servicios al cliente y administrador */}
+                        {(rol === 'cliente' ) && ( // Ajusta los roles según necesites
+                        <>
+                            <li>
                             <Link
-                            to="/dashboard/servicios-cliente"
-                            className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                to="/dashboard/servicios-cliente"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
                                 urlActual === '/dashboard/servicios-cliente'
-                                ? 'bg-sky-500 text-white'
-                                : 'hover:bg-sky-400 hover:text-white text-slate-300'
-                            }`}
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
                             >
-                            <FaCut /> Servicios
+                                <FaCut /> Servicios
                             </Link>
-                        </li>
+                            </li>
+                            {/* Agrega el enlace para reservar servicios */}
+                            <li>
+                            <Link
+                                to="/dashboard/reservar-servicio"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/reservar-servicio'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaCalendarPlus /> Reservar
+                            </Link>
+                            </li>
+                        </>
                         )}
 
 
