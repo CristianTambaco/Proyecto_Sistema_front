@@ -35,7 +35,7 @@ const RegisterClient = () => {
             const response = await axios.post(url, formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
-            toast.success("¡Registro exitoso! Revisa tu correo para acceder.");
+            toast.success("¡Registro exitoso!.");
             setTimeout(() => {
                 navigate("/login");
             }, 3000);
