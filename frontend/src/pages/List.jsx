@@ -27,7 +27,7 @@ const List = () => {
 
             {/* Botón para registrar cliente - Solo para administrador */}
             {rol === 'administrador' && (
-                <Link to="/dashboard/crear" className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 mb-4">
+                <Link to="/dashboard/crear-cliente" className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 mb-4">
                     Registrar cliente
                 </Link>
             )}

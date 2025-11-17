@@ -48,6 +48,8 @@ import ReservarServicio from './pages/ReservarServicio'; // import
 
 import HistorialAtenciones from './pages/HistorialAtenciones'; //
 
+import CreateCliente from './pages/CreateCliente'; // 
+
 
 
 
@@ -179,6 +181,17 @@ function App() {
                       <HistorialAtenciones />
                     </PrivateRouteWithRole>
                   } />
+
+
+
+                  {/* Nueva ruta para crear cliente por administrador */}
+                  <Route path='crear-cliente' element={
+                    <PrivateRouteWithRole allowedRoles={['administrador']}>
+                      <CreateCliente />
+                    </PrivateRouteWithRole>
+                  } />
+
+                  
                 
 
 

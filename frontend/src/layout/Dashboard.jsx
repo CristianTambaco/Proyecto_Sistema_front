@@ -285,6 +285,27 @@ const Dashboard = () => {
                         )}
 
 
+                        {/* Nueva condición para mostrar enlaces de usuarios solo al administrador */}
+                        
+                        {/* {rol === 'administrador' && (
+                        <>
+                            
+                            <li>
+                            <Link
+                                to="/dashboard/crear-cliente"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/crear-cliente'
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaPlus /> Crear Cliente,,
+                            </Link>
+                            </li>
+                        </>
+                        )} */}
+
+
 
 
 
