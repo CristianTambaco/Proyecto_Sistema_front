@@ -502,7 +502,7 @@ export const Form = ({patient}) => {
                 hover:bg-gray-600 cursor-pointer transition-all"
                 value={patient ? "Actualizar" : "Registrar"}
             />
-        </form>
+        </form> 
 
     )
 }
