@@ -243,6 +243,94 @@ export const Form = ({patient}) => {
                     {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
                 </div>
 
+
+
+                {/* Imagen de la mascota*/}
+                <label className="mb-2 block text-sm font-semibold">Imagen</label>
+                <div className="flex gap-4 mb-2">
+                    {/* Opción: Imagen con IA */}
+
+
+                    <label className="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            value="ia"
+                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+                            // disabled={patient}
+                        />
+                        Sin imagen
+                    </label>
+
+
+
+                    {/* Opción: Subir Imagen */}
+                    <label className="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            value="upload"
+                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+                            // disabled={patient}
+                        />
+                        Subir Imagen
+                    </label>
+                    {errors.imageOption && <p className="text-red-800">{errors.imageOption.message}</p>}
+                </div>
+
+                {/* Imagen con IA */}
+                {selectedOption === "ia" && (
+                    <div className="mt-5">
+
+                        {/* <label className="mb-2 block text-sm font-semibold">Imagen con IA</label> */}
+
+                        {/* <div className="flex items-center gap-10 mb-5">
+
+                            <input
+                                type="text"
+                                placeholder="Ingresa el prompt"
+                                className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                                value={avatar.prompt}
+                                onChange={(e) => setAvatar(prev => ({ ...prev, prompt: e.target.value }))}
+                            />
+
+                            <button
+                                type="button"
+                                className="py-1 px-8 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white sm:w-80"
+                                onClick={handleGenerateImage}
+                                disabled={avatar.loading}
+                            >
+                                {avatar.loading ? "Generando..." : "Generar con IA"}
+                            </button>
+
+
+                        </div> */}
+
+
+
+                        {/* {avatar.image && (
+                            <img src={avatar.image} alt="Avatar IA" width={100} height={100} />
+                        )} */}
+                        
+                    </div>
+                )}
+
+                {/* Subir Imagen */}
+                {selectedOption === "upload" && (
+                    <div className="mt-5">
+                        <label className="mb-2 block text-sm font-semibold">Subir Imagen</label>
+                        <input
+                            type="file"
+                            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
+                            {...register("imagen")}
+                        />
+                    </div>
+                )}
+
+
+
+
+
+
+
                 {/* Tipo de mascota */}
                 <div>
                     <label className="mb-2 block text-sm font-semibold">
