@@ -4,34 +4,37 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-
 const RegisterClient = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Nuevo estado para confirmar contraseña
+    const { register, handleSubmit, formState: { errors }, watch } = useForm(); // Añadir watch
+
+    const password = watch("passwordPropietario"); // Para validar confirmación
 
     const registroCliente = async (data) => {
-        try {
-            // Generar una contraseña aleatoria
-            const password = "CLI" + Math.random().toString(36).toUpperCase().slice(2, 5);
+        // Validar que las contraseñas coincidan antes de enviar
+        if (data.passwordPropietario !== data.confirmPassword) {
+            toast.error("Las contraseñas no coinciden.");
+            return;
+        }
 
-            // Enviar datos al backend
-            const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/registro-publico`;
+        try {
+            // Preparar los datos para enviar al backend
             const formData = new FormData();
             Object.keys(data).forEach(key => {
                 if (key === "imagen" && data.imagen?.[0]) {
                     formData.append("imagen", data.imagen[0]);
-                } else if (key !== "imagen") {
+                } else if (key !== "confirmPassword") { // No enviar confirmPassword al backend
                     formData.append(key, data[key]);
                 }
             });
-            formData.append("passwordPropietario", password); // La contraseña se genera automáticamente
+            // La contraseña ya está en data.passwordPropietario
 
+            const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/registro-publico`;
             const response = await axios.post(url, formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
-
-            // Mostrar mensaje de éxito
             toast.success("¡Registro exitoso! Revisa tu correo para acceder.");
             setTimeout(() => {
                 navigate("/login");
@@ -46,13 +49,12 @@ const RegisterClient = () => {
         <div className="flex flex-col sm:flex-row h-screen">
             <ToastContainer />
             {/* Imagen de fondo */}
-            <div className="w-full sm:w-1/2 h-1/3 sm:h-screen bg-[url('/public/images/imageregister.jpg')] 
+            <div className="w-full sm:w-1/2 h-1/3 sm:h-screen bg-[url('/public/images/imageregister.jpg')]
             bg-no-repeat bg-cover bg-center sm:block hidden">
             </div>
             {/* Contenedor de formulario */}
-            <div className="w-full sm:w-1/2 h-screen bg-white flex justify-center items-start pt-8"> {/* Cambiado 'items-center' a 'items-start' y añadido padding top */}
-                <div className="md:w-4/5 sm:w-full max-h-[90vh] overflow-y-auto"> {/* Añadido max-height y overflow */}
-                
+            <div className="w-full sm:w-1/2 h-screen bg-white flex justify-center items-start pt-8">
+                <div className="md:w-4/5 sm:w-full max-h-[90vh] overflow-y-auto">
                     <h1 className="text-3xl font-semibold mb-2 text-center uppercase text-gray-500">Bienvenido(a)</h1>
                     <small className="text-gray-400 block my-4 text-sm">Por favor ingresa tus datos</small>
                     <form onSubmit={handleSubmit(registroCliente)}>
@@ -164,8 +166,66 @@ const RegisterClient = () => {
                                 />
                                 {errors.celularPropietario && <p className="text-red-800">{errors.celularPropietario.message}</p>}
                             </div>
+                            {/* Contraseña */}
+                            <div className="mb-3 relative">
+                                <label className="mb-2 block text-sm font-semibold">Contraseña<span className="text-red-600">*</span></label>
+                                <div className="relative">
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Ingresa tu contraseña"
+                                        className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 pr-10"
+                                        {...register("passwordPropietario", {
+                                            required: "La contraseña es obligatoria",
+                                            minLength: {
+                                                value: 8,
+                                                message: "La contraseña debe tener al menos 8 caracteres"
+                                            },
+                                            maxLength: { 
+                                                value: 12, 
+                                                message: "La contraseña no puede superar los 12 caracteres" 
+                                            },
+                                            pattern: {
+                                                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                                                message:
+                                                "Debe tener letras, números y caracteres especiales"
+                                            }
+                                            // Se puedes añadir más validaciones aquí (patrón, etc.)
+                                        })}
+                                    />
+                                    {errors.passwordPropietario && <p className="text-red-800">{errors.passwordPropietario.message}</p>}
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute top-2 right-3 text-gray-500 hover:text-gray-700"
+                                    >
+                                        {showPassword ? "🙈" : "👁️"}
+                                    </button>
+                                </div>
+                            </div>
+                            {/* Confirmar Contraseña */}
+                            <div className="mb-3 relative">
+                                <label className="mb-2 block text-sm font-semibold">Confirmar Contraseña<span className="text-red-600">*</span></label>
+                                <div className="relative">
+                                    <input
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        placeholder="Confirma tu contraseña"
+                                        className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 pr-10"
+                                        {...register("confirmPassword", {
+                                            required: "La confirmación de contraseña es obligatoria",
+                                            validate: (value) => value === password || "Las contraseñas no coinciden",
+                                        })}
+                                    />
+                                    {errors.confirmPassword && <p className="text-red-800">{errors.confirmPassword.message}</p>}
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        className="absolute top-2 right-3 text-gray-500 hover:text-gray-700"
+                                    >
+                                        {showConfirmPassword ? "🙈" : "👁️"}
+                                    </button>
+                                </div>
+                            </div>
                         </fieldset>
-
                         {/* Información de la mascota */}
                         <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10">
                             <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
@@ -196,40 +256,6 @@ const RegisterClient = () => {
                                 />
                                 {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
                             </div>
-
-
-                            
-                            {/* Imagen de la mascota */}
-                            {/* <label className="mb-2 block text-sm font-semibold">Imagen</label>
-                            <div className="flex gap-4 mb-2">
-                                <label className="flex items-center gap-2">
-                                    <input
-                                        type="radio"
-                                        value="upload"
-                                        {...register("imageOption", {
-                                            required: "Seleccione una opción",
-                                        })}
-                                    />
-                                    Subir Imagen
-                                </label>
-
-                                
-                            </div>
-
-                            
-                            {register("imageOption").value === "upload" && (
-                                <div className="mt-5">
-                                    <label className="mb-2 block text-sm font-semibold">Subir Imagen</label>
-                                    <input
-                                        type="file"
-                                        className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
-                                        {...register("imagen")}
-                                    />
-                                </div>
-                            )} */}
-
-
-
                             {/* Tipo de pelaje */}
                             <div className="mb-3">
                                 <label className="mb-2 block text-sm font-semibold">Sociable con otros animales<span className="text-red-600">*</span></label>
@@ -241,8 +267,6 @@ const RegisterClient = () => {
                                     <option value="">--- Seleccionar ---</option>
                                     <option value="si">Si</option>
                                     <option value="no">No</option>
-                                    {/* <option value="otro">Otro</option> */}
-
                                 </select>
                                 {errors.tipoPelajeMascota && (
                                     <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>
@@ -260,7 +284,6 @@ const RegisterClient = () => {
                                             value: 5,
                                             message: "Debe existir al menos 5 caracteres",
                                         },
-                                        
                                     })}
                                 />
                                 {errors.caracteristicasMascota && (
@@ -268,7 +291,6 @@ const RegisterClient = () => {
                                 )}
                             </div>
                         </fieldset>
-
                         {/* Botón de submit */}
                         <input
                             type="submit"
@@ -287,5 +309,4 @@ const RegisterClient = () => {
         </div>
     );
 };
-
 export default RegisterClient;
