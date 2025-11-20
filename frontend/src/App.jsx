@@ -50,6 +50,8 @@ import HistorialAtenciones from './pages/HistorialAtenciones'; //
 
 import CreateCliente from './pages/CreateCliente'; // 
 
+import HorariosCliente from './pages/HorariosCliente'; // <-
+
 
 
 
@@ -188,6 +190,15 @@ function App() {
                   <Route path='crear-cliente' element={
                     <PrivateRouteWithRole allowedRoles={['administrador']}>
                       <CreateCliente />
+                    </PrivateRouteWithRole>
+                  } />
+
+
+
+                   {/* Nueva ruta para horarios del cliente */}
+                  <Route path='horarios-cliente' element={
+                    <PrivateRouteWithRole allowedRoles={['cliente', 'administrador']}> 
+                      <HorariosCliente />
                     </PrivateRouteWithRole>
                   } />
 

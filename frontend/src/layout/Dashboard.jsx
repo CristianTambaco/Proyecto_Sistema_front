@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
+import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
 
 const Dashboard = () => {
     const location = useLocation();
@@ -140,6 +140,28 @@ const Dashboard = () => {
                             </Link>
                             </li> */}
 
+                        </>
+                        )}
+
+
+
+
+
+                        {/* Enlace para horarios - Solo para cliente y opcionalmente admin */}
+                        {(rol === 'cliente' ) && ( // Ajusta los roles según se necesite
+                        <>
+                            <li>
+                            <Link
+                                to="/dashboard/horarios-cliente" // <-- Nueva ruta
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/horarios-cliente' // <-- Ajustar condición de activo
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaRegClock /> Horarios 
+                            </Link>
+                            </li>
                         </>
                         )}
 
@@ -304,6 +326,10 @@ const Dashboard = () => {
                             </li>
                         </>
                         )} */}
+
+
+
+                        
 
 
 
