@@ -122,9 +122,9 @@ const Details = () => {
                     {/* Mostrar texto según el rol */}
                     <p>
                         {
-                        rol === "estilista" ? "Módulo de trabajos" :
+                        rol === "estilista" ? "Historial de atenciones de la mascota." :
                         rol === "administrador" ? "Historial de atenciones de la mascota" :
-                        rol === "cliente" ? "Módulo de historial de atenciones" :
+                        rol === "cliente" ? "Módulo de historial de atenciones de la mascota" :
                         "--Módulo de historial de atenciones de la mascota--"
                         }
                     </p>
