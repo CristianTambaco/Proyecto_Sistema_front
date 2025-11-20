@@ -83,7 +83,7 @@ const ListClientesEstilista = () => {
       <table className="w-full mt-5 table-auto shadow-lg bg-white">
         <thead className="bg-gray-800 text-slate-400">
           <tr>
-            {["N°", "Nombre mascota", "Nombre propietario", "Email", "Celular", "Acciones"].map((header) => (
+            {["N°", "Nombre mascota", "Nombre usuario", "Email", "Celular", "Acciones"].map((header) => (
               <th key={header} className="p-2">{header}</th>
             ))}
           </tr>
