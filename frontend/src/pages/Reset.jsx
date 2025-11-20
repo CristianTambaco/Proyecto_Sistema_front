@@ -57,8 +57,8 @@ const Reset = () => {
                 <form className="w-80" onSubmit={handleSubmit(changePassword)}>
                     <div className="mb-1">
                         <label className="mb-2 block text-sm font-semibold">
-                            Nueva contraseña
-                        </label>
+                            Nueva contraseña <span className="text-red-600">*</span></label>
+                        
                         <input
                             type="password"
                             placeholder="Ingresa tu nueva contraseña"
@@ -66,17 +66,26 @@ const Reset = () => {
                             {...register("password", { required: "La contraseña es obligatorio",
                                                                 
                                 minLength: {
-                                    value: 6,
-                                    message: "La contraseña debe tener al menos 6 caracteres"
-                                }  
+                                    value: 8,
+                                    message: "La contraseña debe tener al menos 8 caracteres"
+                                },
+                                maxLength: { 
+                                    value: 12, 
+                                    message: "La contraseña no puede superar los 12 caracteres" 
+                                },
+                                pattern: {
+                                    value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                                    message:
+                                    "Debe tener letras, números y caracteres especiales"
+                                } 
 
                             })}
                         />
                         {errors.password && <p className='text-red-800'>{errors.password.message}</p>}
 
                         <label className="mb-2 block text-sm font-semibold">
-                            Confirmar contraseña
-                        </label>
+                            Confirmar contraseña <span className="text-red-600">*</span></label>
+                        
                         <input
                             type="password"
                             placeholder="Repite tu contraseña"
@@ -84,11 +93,21 @@ const Reset = () => {
                             {...register("confirmPassword", { required: "La contraseña es obligatorio",
 
                                 minLength: {
-                                    value: 6,
-                                    message: "La contraseña debe tener al menos 6 caracteres"
-                                }  
+                                    value: 8,
+                                    message: "La contraseña debe tener al menos 8 caracteres"
+                                },
+                                maxLength: { 
+                                    value: 12, 
+                                    message: "La contraseña no puede superar los 12 caracteres" 
+                                },
+                                pattern: {
+                                    value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                                    message:
+                                    "Debe tener letras, números y caracteres especiales"
+                                }
 
-                             })}
+
+                            })}
                         />
                         {errors.confirmPassword && <p className='text-red-800'>{errors.confirmPassword.message}</p>}
                     </div>
