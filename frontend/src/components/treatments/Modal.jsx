@@ -5,32 +5,31 @@ import storeTreatments from "../../context/storeTreatments";
 import storeAuth from "../../context/storeAuth"
 
 
-const ModalTreatments = ({patientID}) => {
-
+const ModalTreatments = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { toggleModal, registerTreatments } = storeTreatments()
-
-
+    const { toggleModal, registerTreatments, selectedClientId } = storeTreatments() // <-- Obtener selectedClientId
     const { rol } = storeAuth()
 
-
     const registerTreatmentsForm = (data) => {
-        const newData = { ...data, cliente: patientID }
+        // Si no hay cliente seleccionado, no se puede registrar
+        if (!selectedClientId) {
+            alert("No se ha seleccionado un cliente. Por favor, vuelve a la lista de clientes.");
+            return;
+        }
+        const newData = { ...data, cliente: selectedClientId } // <-- Usar el ID del estado
         registerTreatments(newData)
     }
 
     return (
         <div className="fixed inset-0 flex items-center justify-center">
             <div className="bg-gray-700 rounded-lg shadow-lg overflow-y-auto p-6 max-w-lg w-full border border-gray-700 relative">
-
                 <p className="text-white font-bold text-lg text-center mt-4">
-                    
                     {
                         rol === "estilista" ? "Nuevo Registro" :
                         rol === "administrador" ? "Nuevo Registro" :
                         rol === "cliente" ? "--Nuevo Registro" :
                         "--Nuevo Registro.--"
-                        }
+                    }
                     </p>
 
 

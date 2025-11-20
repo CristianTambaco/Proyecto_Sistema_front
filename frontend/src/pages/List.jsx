@@ -2,10 +2,8 @@
 import Table from "../components/list/Table"
 import storeAuth from "../context/storeAuth"
 import { Link } from 'react-router'
-
 const List = () => {
     const { rol } = storeAuth()
-
     return (
         <div>
             <h1 className='font-black text-4xl text-gray-500'>Clientes</h1>
@@ -16,7 +14,8 @@ const List = () => {
                     if (rol === "administrador") {
                         return "Este módulo te permite gestionar clientes.";
                     } else if (rol === "estilista") {
-                        return "Este módulo te permite visualizar clientes.";
+                        // Cambiado el mensaje para reflejar que puede ver todos los clientes
+                        return "Este módulo te permite ver los clientes.";
                     } else if (rol === "cliente") {
                         return "Este módulo te permite visualizar registros existentes.";
                     } else {
@@ -24,17 +23,14 @@ const List = () => {
                     }
                 })()}
             </p>
-
             {/* Botón para registrar cliente - Solo para administrador */}
             {rol === 'administrador' && (
                 <Link to="/dashboard/crear-cliente" className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 mb-4">
                     Registrar cliente
                 </Link>
             )}
-
             <Table/>
         </div>
     )
 }
-
 export default List

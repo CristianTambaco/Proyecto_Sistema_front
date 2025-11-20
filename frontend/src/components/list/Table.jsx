@@ -4,9 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router'
 import storeAuth from "../../context/storeAuth";
-
 import { jwtDecode } from 'jwt-decode';
-
 const Table = () => {
     const navigate = useNavigate();
     const deletePatient = async(id) => {
@@ -27,11 +25,9 @@ const Table = () => {
             setPatients(prevPatients => prevPatients.filter(patient => patient._id !== id));
         }
     };
-
     const { fetchDataBackend } = useFetch();
     const { rol } = storeAuth();
     const [patients, setPatients] = useState([]);
-
     const listPatients = async () => {
         const url = `${import.meta.env.VITE_BACKEND_URL}/clientes`;
         const storedUser = JSON.parse(localStorage.getItem("auth-token"));
@@ -39,27 +35,27 @@ const Table = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${storedUser.state.token}`,
         };
-
         try {
             const response = await fetchDataBackend(url, null, "GET", headers);
-
-            // Si el rol es cliente, filtrar solo su propio registro
+            // Filtrar según rol
             let filteredPatients = response;
             if (rol === "cliente") {
+                // Cliente ve solo su propio registro
                 const userId = storedUser.state.token ? jwtDecode(storedUser.state.token)?.id : null;
                 filteredPatients = response.filter(patient => patient._id === userId);
+            } else if (rol === "estilista") {
+                // Estilista ve todos los clientes activos
+                filteredPatients = response.filter(patient => patient.estadoMascota === true);
             }
-
+            // Para administrador, no se filtra (ya lo hace el backend o se puede dejar response completo)
             setPatients(filteredPatients);
         } catch (error) {
             console.log(error);
         }
     };
-
     useEffect(() => {
         listPatients();
     }, []);
-
     if (patients.length === 0) {
         return (
             <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
@@ -67,7 +63,6 @@ const Table = () => {
             </div>
         );
     }
-
     return (
         <table className="w-full mt-5 table-auto shadow-lg bg-white">
             <thead className="bg-gray-800 text-slate-400">
@@ -94,9 +89,6 @@ const Table = () => {
                                 className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-green-600"
                                 onClick={() => navigate(`/dashboard/visualizar/${patient._id}`)}
                             />
-
-                            
-
                             {(rol === "cliente" || rol === "administrador") && (
                                 <>
                                     <span
@@ -106,11 +98,8 @@ const Table = () => {
                                     >
                                         ✏️
                                     </span>
-                                    
                                 </>
                             )}
-
-
                             {/* {(rol === "administrador") && (
                                 <MdDeleteForever
                                     title="Eliminar"
@@ -118,14 +107,6 @@ const Table = () => {
                                     onClick={() => deletePatient(patient._id)}
                                 />
                             )} */}
-
-
-
-
-
-
-
-
                         </td>
                     </tr>
                 ))}
@@ -133,5 +114,4 @@ const Table = () => {
         </table>
     );
 };
-
 export default Table;

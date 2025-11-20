@@ -25,22 +25,22 @@ import storeAuth from './context/storeAuth'
 import PrivateRouteWithRole from './routes/PrivateRouteWithRole'
 
 
-import RegisterClient from './pages/RegisterClient'; // <-- Añade esta línea
+import RegisterClient from './pages/RegisterClient'; // <-- 
 
 
-import ListHorarios from './pages/ListHorarios'; // <-- se crea esta página
-import CreateHorario from './pages/CreateHorario'; // <-- se crea esta página
-import UpdateHorario from './pages/UpdateHorario'; // <-- se crea esta página
+import ListHorarios from './pages/ListHorarios'; // <-- 
+import CreateHorario from './pages/CreateHorario'; // <-- 
+import UpdateHorario from './pages/UpdateHorario'; // <-- 
 
 
-import ListServicios from './pages/ListServicios'; // <-- se crea esta página
-import CreateServicio from './pages/CreateServicio'; // <-- se crea esta página
-import UpdateServicio from './pages/UpdateServicio'; // <-- se crea esta página
+import ListServicios from './pages/ListServicios'; // <-- 
+import CreateServicio from './pages/CreateServicio'; // <-- 
+import UpdateServicio from './pages/UpdateServicio'; // <-- 
 
 
-import ListUsuarios from './pages/ListUsuarios'; // <-- se crea esta página
-import CreateUsuario from './pages/CreateUsuario'; // <-- se crea esta página
-import UpdateUsuario from './pages/UpdateUsuario'; // <-- se crea esta página
+import ListUsuarios from './pages/ListUsuarios'; // <-- 
+import CreateUsuario from './pages/CreateUsuario'; // <-- 
+import UpdateUsuario from './pages/UpdateUsuario'; // <-- 
 
 import ListServiciosCliente from './pages/ListServiciosCliente'; // import
 
@@ -51,6 +51,10 @@ import HistorialAtenciones from './pages/HistorialAtenciones'; //
 import CreateCliente from './pages/CreateCliente'; // 
 
 import HorariosCliente from './pages/HorariosCliente'; // <-
+
+import ListClientesEstilista from './pages/ListClientesEstilista'; // <-- Importar
+
+import RegistrarTrabajo from './pages/RegistrarTrabajo'; // 
 
 
 
@@ -199,6 +203,23 @@ function App() {
                   <Route path='horarios-cliente' element={
                     <PrivateRouteWithRole allowedRoles={['cliente', 'administrador']}> 
                       <HorariosCliente />
+                    </PrivateRouteWithRole>
+                  } />
+
+
+
+                  {/* Nueva ruta para estilistas */}
+                  <Route path='mis-clientes' element={
+                    <PrivateRouteWithRole allowedRoles={['estilista']}>
+                      <ListClientesEstilista />
+                    </PrivateRouteWithRole>
+                  } />
+
+
+                  {/* Nueva ruta para estilistas */}
+                  <Route path='registrar-trabajo' element={
+                    <PrivateRouteWithRole allowedRoles={['estilista']}>
+                      <RegistrarTrabajo />
                     </PrivateRouteWithRole>
                   } />
 
