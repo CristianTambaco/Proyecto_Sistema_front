@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
+import { FaUser, FaList, FaHome, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
 
 const Dashboard = () => {
     const location = useLocation();
@@ -48,10 +48,32 @@ const Dashboard = () => {
                         <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
                     </div>
                 </div>
+                
 
                 {/* Nav items */}
+
+                
                 <nav>
                     <ul className="flex flex-wrap gap-4 text-md font-medium justify-center">
+
+
+
+
+                        <li>
+                            <Link
+                                to="/" // <-- Ruta a la landing page
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                    urlActual === '/' // <-- Condición de activo
+                                        ? 'bg-sky-500 text-white'
+                                        : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                                
+                            >
+                                <FaHome /> Inicio {/* <-- Usar el icono y texto descriptivo */}
+                            </Link>
+                        </li>
+
+
                         <li>
                             <Link
                                 to="/dashboard"

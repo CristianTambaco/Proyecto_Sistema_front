@@ -1,3 +1,4 @@
+// frontend/src/pages/Home.jsx
 import logoDarkMode from '../assets/dark.png'
 import logoDogCatMain from '../assets/imagemain.png'
 import AppStoreImage from '../assets/appstore.png'
@@ -14,9 +15,12 @@ import { GiMedicines } from "react-icons/gi";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
-
+import HorariosLanding from '../components/info/HorariosLanding'; // <-- Importar el componente
+import storeAuth from '../context/storeAuth'; // Importar storeAuth
 
 export const Home = () => {
+  const { token, rol } = storeAuth(); // Obtener el token y el rol
+
   return (
     <>
       {/* HEADER */}
@@ -27,9 +31,8 @@ export const Home = () => {
           </h1>
           <nav>
             <ul className="hidden md:flex gap-10 font-medium text-gray-700">
-              <li><a href="#" className="hover:text-emerald-600 transition">Inicio</a></li>
               <li><a href="#about" className="hover:text-emerald-600 transition">Nosotros</a></li>
-              
+              <li><a href="#horarios" className="hover:text-emerald-600 transition">Horarios</a></li> {/* Añadir enlace a horarios */}
               <li><a href="#contact" className="hover:text-emerald-600 transition">Contacto</a></li>
             </ul>
           </nav>
@@ -41,17 +44,34 @@ export const Home = () => {
         <div className="container mx-auto px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 text-center md:text-left">
             <h1 className="font-extrabold text-gray-900 text-4xl md:text-6xl leading-tight">
-              Gestión Inteligente <br /> para tu Peluquería Canina
+              {token
+                ? `¡Bienvenido${rol === 'cliente' ? ' Cliente' : rol === 'estilista' ? ' Estilista' : ' Administrador'}!`
+                : "Gestión Inteligente"
+              } <br />
+              {token ? "Explora las funcionalidades" : "para tu Peluquería Canina"}
             </h1>
             <p className="mt-6 text-lg text-gray-600 max-w-md mx-auto md:mx-0 leading-relaxed">
-              Moderniza tu negocio con un panel administrativo intuitivo y un control total de tus servicios.
+              {token
+                ? "Accede a tu panel para gestionar tus clientes, servicios y horarios."
+                : "Moderniza tu negocio con un panel administrativo intuitivo y un control total de tus servicios."
+              }
             </p>
-            <Link
-              to="/login"
-              className="inline-block mt-10 bg-gradient-to-r from-emerald-600 to-sky-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform"
-            >
-              Empezar ahora
-            </Link>
+            {/* Botón condicional */}
+            {token ? (
+              <Link
+                to="/dashboard"
+                className="inline-block mt-10 bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform"
+              >
+                Ir al Panel
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="inline-block mt-10 bg-gradient-to-r from-emerald-600 to-sky-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform"
+              >
+                Empezar ahora
+              </Link>
+            )}
           </div>
           <div className="order-1 md:order-2">
             <img src={logoDogCatMain} alt="Mascotas" className="w-full rounded-3xl shadow-2xl" />
@@ -92,32 +112,8 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* SERVICIOS */}
-
-      {/* <section id="services" className="py-24 px-8 bg-white">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-16">Funcionalidades</h2>
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: <FaUser className="text-4xl text-emerald-600" />, title: "Gestión de perfil" },
-              { icon: <FaUsers className="text-4xl text-sky-600" />, title: "Gestión de clientes" },
-              { icon: <FaStar className="text-4xl text-yellow-500" />, title: "Gestión de historial de atenciones de la mascota" },
-            ].map((service, i) => (
-              <div
-                key={i}
-                className="bg-gray-50 rounded-2xl shadow-md p-10 text-center "
-              >
-                {service.icon}
-                <h4 className="text-xl font-bold mt-6 text-gray-900">{service.title}</h4>
-                <p className="mt-3 text-gray-600 text-sm leading-relaxed">
-                  Optimiza la gestión, haz crecer tu negocio con un sistema práctico y moderno.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
+      {/* HORARIOS DE ATENCIÓN */}
+      <HorariosLanding id="horarios" /> {/* <-- Añadir el componente aquí, con un id para el enlace */}
 
       {/* FOOTER */}
       <footer id="contact" className="bg-gray-900 text-gray-300 py-6 px-8 mt-20">
