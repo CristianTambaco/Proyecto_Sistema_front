@@ -31,6 +31,7 @@ export const Home = () => {
           </h1>
           <nav>
             <ul className="hidden md:flex gap-10 font-medium text-gray-700">
+              <li><a href="#" className="hover:text-emerald-600 transition">Inicio</a></li>
               <li><a href="#about" className="hover:text-emerald-600 transition">Nosotros</a></li>
               <li><a href="#horarios" className="hover:text-emerald-600 transition">Horarios</a></li> {/* Añadir enlace a horarios */}
               <li><a href="#contact" className="hover:text-emerald-600 transition">Contacto</a></li>
