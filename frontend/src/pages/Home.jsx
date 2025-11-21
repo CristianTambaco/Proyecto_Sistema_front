@@ -113,7 +113,9 @@ export const Home = () => {
       </section>
 
       {/* HORARIOS DE ATENCIÓN */}
-      <HorariosLanding id="horarios" /> {/* <-- Añadir el componente aquí, con un id para el enlace */}
+      <section id="horarios">
+        <HorariosLanding />
+      </section>
 
       {/* FOOTER */}
       <footer id="contact" className="bg-gray-900 text-gray-300 py-6 px-8 mt-20">
