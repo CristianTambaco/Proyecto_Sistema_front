@@ -37,7 +37,15 @@ const TableTreatments = ({ treatments, listPatient }) => {
                     {treatments.map((treatment, index) => (
                         <tr className="hover:bg-gray-300 text-center" key={treatment._id || index}>
                             <td>{index + 1}</td>
-                            <td>{treatment.nombre}</td>
+                            <td>
+                                {treatment.nombre}
+                                {/* Mostrar datos del cliente solo si el rol es 'estilista' */}
+                                {rol === 'estilista' && treatment.cliente && (
+                                    <div className="text-xs text-gray-500 mt-1">
+                                        Cliente: {treatment.cliente.nombrePropietario} • Mascota: {treatment.cliente.nombreMascota}
+                                    </div>
+                                )}
+                            </td>
                             <td>{treatment.descripcion}</td>
                             <td>{treatment.prioridad}</td>
                             <td>$ {treatment.precio}</td>
