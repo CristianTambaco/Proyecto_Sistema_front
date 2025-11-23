@@ -428,6 +428,25 @@ const Dashboard = () => {
 
 
 
+
+
+                        {(rol === 'estilista' || rol === 'administrador' ) && (
+                        <li>
+                            <Link
+                            to="/dashboard/historial-trabajos"
+                            className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/historial-trabajos'
+                                ? 'bg-sky-500 text-white'
+                                : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                            }`}
+                            >
+                            <FaHistory /> Historial Trabajos
+                            </Link>
+                        </li>
+                        )}
+
+
+
                         
 
 

@@ -62,6 +62,9 @@ import HistorialGeneral from './pages/HistorialGeneral';
 import AgendaCitas from './pages/AgendaCitas';
 
 
+import HistorialTrabajos from './pages/HistorialTrabajos'; // <-- 
+
+
 
 
 function App() {
@@ -240,6 +243,14 @@ function App() {
                       <PrivateRouteWithRole allowedRoles={['estilista', 'administrador']}>
                           <AgendaCitas />
                       </PrivateRouteWithRole>
+                  } />
+
+
+
+                  <Route path='historial-trabajos' element={
+                    <PrivateRouteWithRole allowedRoles={['estilista', 'administrador']}>
+                      <HistorialTrabajos />
+                    </PrivateRouteWithRole>
                   } />
 
                   
