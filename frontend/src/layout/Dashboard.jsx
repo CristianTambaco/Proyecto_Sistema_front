@@ -367,24 +367,25 @@ const Dashboard = () => {
                         )} */}
 
 
+                        
+
+
 
                         {rol === 'estilista' && (
-                        <>                            
-
                             <li>
-                            <Link
-                                to="/dashboard/registrar-trabajo"
-                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
-                                urlActual === '/dashboard/registrar-trabajo' // <-- Ajustar condición de activo
-                                    ? 'bg-sky-500 text-white'
-                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
-                                }`}
-                            >
-                                <FaRegClipboard /> Registrar Trabajo {/* <-- Usar el icono */}
-                            </Link>
+                                <Link
+                                    to="/dashboard/agenda-citas"
+                                    className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                        urlActual === '/dashboard/agenda-citas'
+                                            ? 'bg-sky-500 text-white'
+                                            : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                    }`}
+                                >
+                                    <FaCalendarAlt /> Agenda de Citas
+                                </Link>
                             </li>
-                        </>
                         )}
+                        
 
 
 
@@ -411,22 +412,27 @@ const Dashboard = () => {
 
 
 
+                        
+
+
+
                         {rol === 'estilista' && (
+                        <>                            
+
                             <li>
-                                <Link
-                                    to="/dashboard/agenda-citas"
-                                    className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
-                                        urlActual === '/dashboard/agenda-citas'
-                                            ? 'bg-sky-500 text-white'
-                                            : 'hover:bg-sky-400 hover:text-white text-slate-300'
-                                    }`}
-                                >
-                                    <FaCalendarAlt /> Agenda de Citas
-                                </Link>
+                            <Link
+                                to="/dashboard/registrar-trabajo"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/registrar-trabajo' // <-- Ajustar condición de activo
+                                    ? 'bg-sky-500 text-white'
+                                    : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaRegClipboard /> Registrar Trabajo {/* <-- Usar el icono */}
+                            </Link>
                             </li>
+                        </>
                         )}
-
-
 
 
 
