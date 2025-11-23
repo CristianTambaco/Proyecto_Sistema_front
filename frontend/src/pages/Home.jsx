@@ -45,17 +45,10 @@ export const Home = () => {
         <div className="container mx-auto px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 text-center md:text-left">
             <h1 className="font-extrabold text-gray-900 text-4xl md:text-6xl leading-tight">
-              {token
-                ? `¡Bienvenido${rol === 'cliente' ? ' Cliente' : rol === 'estilista' ? ' Estilista' : ' Administrador'}!`
-                : "Gestión Inteligente"
-              } <br />
-              {token ? "Explora las funcionalidades" : "para tu Peluquería Canina"}
+              Gestión Inteligente <br /> para tu Peluquería Canina
             </h1>
             <p className="mt-6 text-lg text-gray-600 max-w-md mx-auto md:mx-0 leading-relaxed">
-              {token
-                ? "Accede a tu panel para gestionar tus clientes, servicios y horarios."
-                : "Moderniza tu negocio con un panel administrativo intuitivo y un control total de tus servicios."
-              }
+              Moderniza tu negocio con un panel administrativo intuitivo y un control total de tus servicios.
             </p>
             {/* Botón condicional */}
             {token ? (
