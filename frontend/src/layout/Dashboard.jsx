@@ -69,7 +69,7 @@ const Dashboard = () => {
                                 }`}
                                 
                             >
-                                <FaHome /> Inicio {/* <-- Usar el icono y texto descriptivo */}
+                                <FaHome />Ir a la página principal{/* <-- Usar el icono y texto descriptivo */}
                             </Link>
                         </li>
 

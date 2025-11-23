@@ -27,7 +27,7 @@ export const Home = () => {
       <header className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-md z-50">
         <div className="container mx-auto flex justify-between items-center px-8 py-4">
           <h1 className="font-extrabold text-2xl tracking-tight text-emerald-700">
-            Pet<span className="text-sky-600">ManageQ</span>
+            Estética<span className="text-sky-600">Canina</span>
           </h1>
           <nav>
             <ul className="hidden md:flex gap-10 font-medium text-gray-700">
