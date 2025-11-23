@@ -45,10 +45,15 @@ export const Home = () => {
         <div className="container mx-auto px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 text-center md:text-left">
             <h1 className="font-extrabold text-gray-900 text-4xl md:text-6xl leading-tight">
-              Gestión Inteligente <br /> para tu Peluquería Canina
+              CUIDADO <br /> Y BIENESTAR CANINO
             </h1>
+            
+            {/* <p className="mt-6 text-lg font-extrabold text-gray-900 max-w-md mx-auto md:mx-0 leading-tight">
+              Inspirando confianza a través del cuidado profesional
+            </p> */}
+
             <p className="mt-6 text-lg text-gray-600 max-w-md mx-auto md:mx-0 leading-relaxed">
-              Moderniza tu negocio con un panel administrativo intuitivo y un control total de tus servicios.
+              Servicios especializados, atención personalizada, bienestar y mucho más…
             </p>
             {/* Botón condicional */}
             {token ? (
@@ -81,24 +86,25 @@ export const Home = () => {
             <img src={logoDog} alt="Sobre nosotros" className="rounded-3xl shadow-xl" />
             <div>
               <p className="mb-10 text-lg text-gray-600 leading-relaxed">
-                <b>PetManageQ</b> es la plataforma que transforma la gestión de tu peluquería canina,
-                brindando control centralizado y herramientas fáciles de usar.
+                Nuestra peluquería canina es un espacio dedicado al cuidado, higiene y bienestar de tu mascota.
+                Trabajamos con dedicación y cariño para ofrecer un servicio profesional que respete la comodidad, 
+                salud y personalidad de cada mascota.
               </p>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
-                  <MdDashboard className="text-emerald-600 text-2xl" /> Panel administrativo
+                  <TbDog className="text-emerald-600 text-2xl" /> Cuidado Integral para Mascotas
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
-                  <BsCashCoin className="text-sky-600 text-2xl" /> Gestión de servicios
+                  <FaStar className="text-sky-600 text-2xl" /> Higiene y Bienestar
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
-                  <FaUsers className="text-emerald-600 text-2xl" /> Gestión de clientes
+                  <FaUsers className="text-emerald-600 text-2xl" /> Atención Personalizada
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition">
-                  <FaUser className="text-sky-600 text-2xl" /> Gestión de perfil
+                  <FaUser className="text-sky-600 text-2xl" /> Ambiente Seguro y Confiable
                 </div>
                 <div className="flex items-center gap-3 bg-white p-5 rounded-2xl shadow  transition sm:col-span-2">
-                  <FaStar className="text-yellow-500 text-2xl" /> Gestión de horarios de atención
+                  <FaStar className="text-yellow-500 text-2xl" /> Profesionales Comprometidos
                 </div>
               </div>
             </div>
@@ -115,8 +121,8 @@ export const Home = () => {
       <footer id="contact" className="bg-gray-900 text-gray-300 py-6 px-8 mt-20">
         <div className="container mx-auto grid gap-12 md:grid-cols-3">
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">PetManageQ</h3>
-            <p className="leading-relaxed">La gestión inteligente para tu peluquería canina 🐾</p>
+            <h3 className="text-xl font-bold mb-4 text-white">Nuestra Peluquería Canina</h3>
+            <p className="leading-relaxed">Cuidado, bienestar y atención profesional para tu mascota. 🐾</p>
           </div>
           <div>
             <h3 className="text-xl font-bold mb-4 text-white">Contacto</h3>
@@ -133,7 +139,7 @@ export const Home = () => {
           </div>
         </div>
         <div className="text-center mt-12 text-sm text-gray-500 border-t border-gray-700 pt-6">
-          © {new Date().getFullYear()} PetManageQ - Todos los derechos reservados.
+          © {new Date().getFullYear()} - Todos los derechos reservados.
         </div>
       </footer>
     </>
