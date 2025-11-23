@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaHome, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
+import { FaUser, FaList, FaHome, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard, FaCalendarAlt } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
 
 const Dashboard = () => {
     const location = useLocation();
@@ -405,6 +405,25 @@ const Dashboard = () => {
                                 </li>
                                 
                             </>
+                        )}
+
+
+
+
+
+                        {rol === 'estilista' && (
+                            <li>
+                                <Link
+                                    to="/dashboard/agenda-citas"
+                                    className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                        urlActual === '/dashboard/agenda-citas'
+                                            ? 'bg-sky-500 text-white'
+                                            : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                    }`}
+                                >
+                                    <FaCalendarAlt /> Agenda de Citas
+                                </Link>
+                            </li>
                         )}
 
 

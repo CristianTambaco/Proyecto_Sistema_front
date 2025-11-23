@@ -12,10 +12,10 @@ const ModalTreatments = () => {
 
     const registerTreatmentsForm = (data) => {
         // Si no hay cliente seleccionado, no se puede registrar
-        if (!selectedClientId) {
-            alert("No se ha seleccionado un cliente. Por favor, vuelve a la lista de clientes.");
-            return;
-        }
+        // if (!selectedClientId) {
+        //     alert("No se ha seleccionado un cliente. Por favor, vuelve a la lista de clientes.");
+        //     return;
+        // }
         const newData = { ...data, cliente: selectedClientId } // <-- Usar el ID del estado
         registerTreatments(newData)
     }
