@@ -57,6 +57,9 @@ import ListClientesEstilista from './pages/ListClientesEstilista'; // <-- Import
 import RegistrarTrabajo from './pages/RegistrarTrabajo'; // 
 
 
+import HistorialGeneral from './pages/HistorialGeneral';
+
+
 
 
 function App() {
@@ -221,6 +224,13 @@ function App() {
                     <PrivateRouteWithRole allowedRoles={['estilista']}>
                       <RegistrarTrabajo />
                     </PrivateRouteWithRole>
+                  } />
+
+
+                  <Route path='historial-general' element={
+                      <PrivateRouteWithRole allowedRoles={['estilista', 'administrador']}>
+                          <HistorialGeneral />
+                      </PrivateRouteWithRole>
                   } />
 
                   
