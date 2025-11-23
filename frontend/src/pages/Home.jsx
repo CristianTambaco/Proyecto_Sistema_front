@@ -68,7 +68,7 @@ export const Home = () => {
                 to="/login"
                 className="inline-block mt-10 bg-gradient-to-r from-emerald-600 to-sky-600 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform"
               >
-                Empezar ahora
+                Iniciar sesión
               </Link>
             )}
           </div>
