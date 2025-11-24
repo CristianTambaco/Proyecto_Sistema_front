@@ -72,7 +72,7 @@ const HistorialGeneral = () => {
         <div>
             <h1 className="font-black text-4xl text-gray-500">Historial General de Atenciones</h1>
             <hr className="my-4 border-t-2 border-gray-300" />
-            <p className="mb-4">Este módulo muestra el historial de atenciones de todas las mascotas registradas.</p>
+            <p className="mb-4">Este módulo muestra el historial de atenciones de la mascota de clientes registrados.</p>
 
             {/* Dropdown de selección de cliente */}
             <div className="mb-6 max-w-md">
