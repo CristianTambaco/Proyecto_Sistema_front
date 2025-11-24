@@ -17,7 +17,7 @@ const Reset = () => {
 
     const changePassword = (data) => {
         console.log(data)
-        const url = `${import.meta.env.VITE_BACKEND_URL}/nuevopassword/${token}`
+        const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/nuevopassword/${token}`
         fetchDataBackend(url,data,'POST')
         setTimeout(()=>{
             if(data.password === data.confirmPassword){

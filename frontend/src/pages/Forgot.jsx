@@ -12,7 +12,7 @@ export const Forgot = () => {
 
     const sendMail = (data) => {
         console.log(data);
-        const url = `${import.meta.env.VITE_BACKEND_URL}/recuperarpassword`
+        const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/recuperarpassword`
         fetchDataBackend(url,data,'POST')
     }
 
