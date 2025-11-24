@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import storeAuth from "../context/storeAuth";
+import { ToastContainer } from "react-toastify";
+
 const HistorialTrabajos = () => {
   const [trabajos, setTrabajos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +26,25 @@ const HistorialTrabajos = () => {
     }
   };
 
+  const eliminarTrabajo = async (id) => {
+    if (!window.confirm("¿Seguro que deseas eliminar este registro del historial?")) return;
+
+    const url = `${import.meta.env.VITE_BACKEND_URL}/trabajo-realizado/${id}`;
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    try {
+      // ✅ DELETE sin cuerpo
+      await fetchDataBackend(url, undefined, "DELETE", headers);
+      // Recargar lista
+      cargarTrabajos();
+    } catch (error) {
+      console.error("Error al eliminar trabajo:", error);
+    }
+  };
+
   useEffect(() => {
     if (rol === "estilista" || rol === "administrador") {
       cargarTrabajos();
@@ -39,13 +60,21 @@ const HistorialTrabajos = () => {
       <div>
         <h1 className="font-black text-4xl text-gray-500">Historial de Trabajos Realizados</h1>
         <hr className="my-4 border-t-2 border-gray-300" />
-        <p className="mb-8">No se han registrado trabajos aún.</p>
+        <p className="mb-8">
+          {rol === "estilista"
+            ? "No has registrado trabajos aún."
+            : "No se han registrado trabajos."}
+        </p>
       </div>
     );
   }
 
+  // Obtener ID del usuario autenticado
+  const userId = JSON.parse(localStorage.getItem("auth-token"))?.state?._id;
+
   return (
     <div>
+      <ToastContainer />
       <h1 className="font-black text-4xl text-gray-500">Historial de Trabajos Realizados</h1>
       <hr className="my-4 border-t-2 border-gray-300" />
       <p className="mb-8">
@@ -66,6 +95,7 @@ const HistorialTrabajos = () => {
               <th className="p-2">Precio</th>
               <th className="p-2">Observaciones</th>
               {rol === "administrador" && <th className="p-2">Estilista</th>}
+              <th className="p-2">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -100,12 +130,26 @@ const HistorialTrabajos = () => {
                   </span>
                 </td>
                 <td>$ {trabajo.precio.toFixed(2)}</td>
-                <td className="max-w-xs truncate px-2">{trabajo.observaciones || "— sin observaciones —"}</td>
+                <td className="max-w-xs truncate px-2">
+                  {trabajo.observaciones || "— sin observaciones —"}
+                </td>
                 {rol === "administrador" && (
                   <td>
                     {trabajo.estilista?.nombre || "—"} {trabajo.estilista?.apellido || ""}
                   </td>
                 )}
+                <td>
+                  {((rol === "administrador" || rol === "estilista") ||
+                    (rol === "estilista" && trabajo.estilista?._id === userId)) && (
+                    <button
+                      onClick={() => eliminarTrabajo(trabajo._id)}
+                      className="text-red-600 hover:text-red-800 ml-2"
+                      title="Eliminar del historial"
+                    >
+                      🗑️
+                    </button>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
