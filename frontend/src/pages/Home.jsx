@@ -18,8 +18,44 @@ import { FaXTwitter } from "react-icons/fa6";
 import HorariosLanding from '../components/info/HorariosLanding'; // <-- Importar el componente
 import storeAuth from '../context/storeAuth'; // Importar storeAuth
 
+
+import { useEffect, useState } from 'react';
+import useFetch from '../hooks/useFetch';
+
+
 export const Home = () => {
   const { token, rol } = storeAuth(); // Obtener el token y el rol
+
+
+
+  const { fetchDataBackend } = useFetch();
+  const [servicios, setServicios] = useState([]);
+  const [loadingServicios, setLoadingServicios] = useState(true);
+
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+
+
+  useEffect(() => {
+        const cargarServiciosPublicos = async () => {
+      try {
+        const url = `${import.meta.env.VITE_BACKEND_URL}/servicios-publicos?page=${currentPage}&limit=6`;
+        const response = await fetchDataBackend(url, null, "GET", null);
+        setServicios(response?.servicios || []);
+        setTotalPages(response?.pagination?.pages || 1);
+      } catch (error) {
+        console.error("Error al cargar servicios públicos:", error);
+      } finally {
+        setLoadingServicios(false);
+      }
+    };
+    cargarServiciosPublicos();
+  }, [currentPage]);
+
+
+
 
   return (
     <>
@@ -111,6 +147,69 @@ export const Home = () => {
           </div>
         </div>
       </section>
+
+
+            {/* SECCIÓN DE SERVICIOS */}
+            <section className="py-12 bg-white">
+              <div className="container mx-auto px-8">
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Nuestros Servicios</h2>
+                {loadingServicios ? (
+                  <div className="text-center py-4">Cargando servicios...</div>
+                ) : servicios.length === 0 ? (
+                  <div className="text-center py-4 text-gray-500">Próximamente disponibles.</div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {servicios.map((servicio) => (
+                      <div
+                        key={servicio._id}
+                        className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition-shadow"
+                      >
+                        <h3 className="text-xl font-bold text-emerald-600 mb-2">{servicio.nombre}</h3>
+                        <p className="text-gray-700 mb-3">{servicio.descripcion}</p>
+                        <div className="flex justify-between items-center mt-4">
+                          <span className="font-semibold text-green-700">💲 ${servicio.precio}</span>
+                          <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                            {servicio.duracionEstimada} min
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+
+                {/* Controles de paginación */}
+    <div className="flex justify-center mt-8">
+      <button
+        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+        disabled={currentPage === 1}
+        className={`px-4 py-2 mx-1 rounded ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-700'}`}
+      >
+        Anterior
+      </button>
+      <span className="px-4 py-2">Página {currentPage} de {totalPages}</span>
+      <button
+        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+        disabled={currentPage === totalPages}
+        className={`px-4 py-2 mx-1 rounded ${currentPage === totalPages ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white hover:bg-blue-700'}`}
+      >
+        Siguiente
+      </button>
+    </div>
+
+
+
+
+              </div>
+            </section>
+
+
+
+
+            
+
+
+
 
       {/* HORARIOS DE ATENCIÓN */}
       <section id="horarios">
