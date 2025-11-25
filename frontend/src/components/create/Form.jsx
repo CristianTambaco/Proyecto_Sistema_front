@@ -250,66 +250,9 @@ export const Form = ({patient}) => {
 
 
                 {/* Imagen de la mascota*/}
-                <label className="mb-2 block text-sm font-semibold">Imagen</label>
-                <div className="flex gap-4 mb-2">
-                    {/* Opción: Imagen con IA */}
 
 
-                    {/* <label className="flex items-center gap-2">
-                        <input
-                            type="radio"
-                            value="ia"
-                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
-                            // disabled={patient}
-                        />
-                        Generar con IA
-                    </label> */}
-
-
-
-                    {/* Opción: Subir Imagen */}
-                    <label className="flex items-center gap-2">
-                        <input
-                            type="radio"
-                            value="upload"
-                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
-                            // disabled={patient}
-                        />
-                        Subir Imagen
-                    </label>
-                    {errors.imageOption && <p className="text-red-800">{errors.imageOption.message}</p>}
-                </div>
-
-                {/* Imagen con IA */}
-                {selectedOption === "ia" && (
-                    <div className="mt-5">
-                        <label className="mb-2 block text-sm font-semibold">Imagen con IA</label>
-                        <div className="flex items-center gap-10 mb-5">
-                            <input
-                                type="text"
-                                placeholder="Ingresa el prompt"
-                                className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-                                value={avatar.prompt}
-                                onChange={(e) => setAvatar(prev => ({ ...prev, prompt: e.target.value }))}
-                            />
-                            <button
-                                type="button"
-                                className="py-1 px-8 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white sm:w-80"
-                                onClick={handleGenerateImage}
-                                disabled={avatar.loading}
-                            >
-                                {avatar.loading ? "Generando..." : "Generar con IA"}
-                            </button>
-                        </div>
-                        {avatar.image && (
-                            <img src={avatar.image} alt="Avatar IA" width={100} height={100} />
-                        )}
-                    </div>
-                )}
-
-                {/* Subir Imagen */}
-                {selectedOption === "upload" && (
-                    <div className="mt-5">
+                <div className="mt-5">
                         <label className="mb-2 block text-sm font-semibold">Subir Imagen</label>
                         <div className="flex items-center gap-4">
                             {/* Botón para seleccionar archivo */}
@@ -343,7 +286,119 @@ export const Form = ({patient}) => {
                             />
                         </div>
                     </div>
-                )}
+
+
+
+
+                    {/* --------------------------------- */}
+
+
+                {/* <label className="mb-2 block text-sm font-semibold">Imagen</label>
+                <div className="flex gap-4 mb-2"> */}
+                    {/* Opción: Imagen con IA */}
+
+
+                    {/* <label className="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            value="ia"
+                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+                            // disabled={patient}
+                        />
+                        Generar con IA
+                    </label> */}
+
+
+
+                    {/* Opción: Subir Imagen */}
+
+                    {/* <label className="flex items-center gap-2">
+                        <input
+                            type="radio"
+                            value="upload"
+                            {...register("imageOption",{ required: !patient && "Seleccione una opción"})}
+                            // disabled={patient}
+                        />
+                        Subir Imagen
+                    </label>
+                    {errors.imageOption && <p className="text-red-800">{errors.imageOption.message}</p>}
+                </div> */}
+
+                {/* Imagen con IA */}
+                {/* {selectedOption === "ia" && (
+                    <div className="mt-5">
+                        <label className="mb-2 block text-sm font-semibold">Imagen con IA</label>
+                        <div className="flex items-center gap-10 mb-5">
+                            <input
+                                type="text"
+                                placeholder="Ingresa el prompt"
+                                className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                                value={avatar.prompt}
+                                onChange={(e) => setAvatar(prev => ({ ...prev, prompt: e.target.value }))}
+                            />
+                            <button
+                                type="button"
+                                className="py-1 px-8 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white sm:w-80"
+                                onClick={handleGenerateImage}
+                                disabled={avatar.loading}
+                            >
+                                {avatar.loading ? "Generando..." : "Generar con IA"}
+                            </button>
+                        </div>
+                        {avatar.image && (
+                            <img src={avatar.image} alt="Avatar IA" width={100} height={100} />
+                        )}
+                    </div>
+                )} */}
+
+                {/* Subir Imagen */}
+
+                {/* {selectedOption === "upload" && (
+                    <div className="mt-5">
+                        <label className="mb-2 block text-sm font-semibold">Subir Imagen</label>
+                        <div className="flex items-center gap-4"> */}
+
+                            {/* Botón para seleccionar archivo */}
+
+                            {/* <button
+                                type="button"
+                                onClick={() => document.getElementById('fileInput').click()}
+                                className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition duration-200 flex items-center gap-2"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M15 12L12 9m0 0L9 12m3-3v12" />
+                                </svg>
+                                Seleccionar archivo
+                            </button> */}
+
+                            {/* Mostrar nombre del archivo seleccionado */}
+
+                            {/* {watch("imagen")?.[0] ? (
+                                <span className="text-sm text-gray-600 truncate max-w-xs">
+                                    {watch("imagen")[0].name}
+                                </span>
+                            ) : (
+                                <span className="text-sm text-gray-500">Sin archivos seleccionados</span>
+                            )} */}
+
+                            {/* Input oculto */}
+                            {/* <input
+                                id="fileInput"
+                                type="file"
+                                accept="image/*"
+                                className="hidden"
+                                {...register("imagen")}
+                            />
+                        </div>
+                    </div>
+                )} */}
+
+
+
+
+
+
+                {/* -------------------------- */}
 
 
 
