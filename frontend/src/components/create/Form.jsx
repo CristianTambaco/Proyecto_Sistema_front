@@ -267,6 +267,13 @@ export const Form = ({patient}) => {
                                 Seleccionar archivo
                             </button>
 
+
+
+                            
+
+
+
+
                             {/* Mostrar nombre del archivo seleccionado */}
                             {watch("imagen")?.[0] ? (
                                 <span className="text-sm text-gray-600 truncate max-w-xs">
@@ -284,6 +291,22 @@ export const Form = ({patient}) => {
                                 className="hidden"
                                 {...register("imagen")}
                             />
+
+
+                            {/* Vista previa de la imagen (opcional) */}
+                            {watch("imagen")?.[0] && (
+                                <div className="mt-4">
+                                    <img
+                                        src={URL.createObjectURL(watch("imagen")[0])}
+                                        alt="Vista previa"
+                                        className="w-20 h-20 object-cover rounded-md border border-gray-300"
+                                    />
+                                </div>
+                            )}
+
+
+
+
                         </div>
                     </div>
 
