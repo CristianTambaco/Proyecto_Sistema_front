@@ -41,7 +41,7 @@ export const Home = () => {
   useEffect(() => {
         const cargarServiciosPublicos = async () => {
       try {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/servicios-publicos?page=${currentPage}&limit=6`;
+        const url = `${import.meta.env.VITE_BACKEND_URL}/servicios-publicos?page=${currentPage}&limit=3`; //por defecto 3 servicios se muestran
         const response = await fetchDataBackend(url, null, "GET", null);
         setServicios(response?.servicios || []);
         setTotalPages(response?.pagination?.pages || 1);
@@ -69,7 +69,10 @@ export const Home = () => {
             <ul className="hidden md:flex gap-10 font-medium text-gray-700">
               <li><a href="#" className="hover:text-emerald-600 transition">Inicio</a></li>
               <li><a href="#about" className="hover:text-emerald-600 transition">Nosotros</a></li>
-              <li><a href="#horarios" className="hover:text-emerald-600 transition">Horarios</a></li> {/* Añadir enlace a horarios */}
+
+              {/* enlace a horarios */}
+              {/* <li><a href="#horarios" className="hover:text-emerald-600 transition">Horarios</a></li>  */}
+
               <li><a href="#contact" className="hover:text-emerald-600 transition">Contacto</a></li>
             </ul>
           </nav>
