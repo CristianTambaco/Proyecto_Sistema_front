@@ -65,6 +65,9 @@ import AgendaCitas from './pages/AgendaCitas';
 import HistorialTrabajos from './pages/HistorialTrabajos'; // <-- 
 
 
+import DashboardHome from './pages/DashboardHome'
+
+
 
 
 function App() {
@@ -104,7 +107,15 @@ function App() {
             <ProtectedRoute>
               <Routes>
                 <Route element={<Dashboard />}>
-                  <Route index element={<Profile />} />
+
+                  <Route index element={<DashboardHome />} /> {/* <-- Cambiado a DashboardHome */}
+                  <Route path='perfil' element={<Profile />} /> {/* <-- Opcional: mantener Profile accesible por URL */}
+
+
+
+
+
+
                   <Route path='listar' element={<List />} />
                   <Route path='visualizar/:id' element={<Details />} />
                   <Route path='crear' element={

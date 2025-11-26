@@ -3,7 +3,7 @@ import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
 
-import { FaUser, FaList, FaHome, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard, FaCalendarAlt } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
+import { FaUser, FaList, FaHome, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard, FaCalendarAlt, FaTachometerAlt } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
 
 const Dashboard = () => {
     const location = useLocation();
@@ -69,9 +69,14 @@ const Dashboard = () => {
                                 }`}
                                 
                             >
-                                <FaHome />Ir a la página principal{/* <-- Usar el icono y texto descriptivo */}
+                                <FaHome />Página principal{/* <-- Usar el icono y texto descriptivo */}
                             </Link>
                         </li>
+
+
+
+
+
 
 
                         <li>
@@ -82,12 +87,28 @@ const Dashboard = () => {
                                         ? 'bg-sky-500 text-white'
                                         : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
+                                
                             >
-                                <FaUser /> Perfil
+                                <FaTachometerAlt />Dashboard{/* <-- Usar el icono y texto descriptivo */}
                             </Link>
                         </li>
 
-                        <li>
+
+                        {/* <li>
+                            <Link
+                                to="/dashboard/perfil"
+                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                    urlActual === '/dashboard/perfil'
+                                        ? 'bg-sky-500 text-white'
+                                        : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                                }`}
+                            >
+                                <FaUser /> Perfil
+                            </Link>
+                        </li> */}
+                        
+
+                        {/* <li>
                             <Link
                                 to="/dashboard/listar"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -96,10 +117,10 @@ const Dashboard = () => {
                                         : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
-                                {/* cliente. titulo*/}
+                                
                                 <FaList /> Cliente
                             </Link>
-                        </li>
+                        </li> */}
 
 
 
@@ -131,11 +152,13 @@ const Dashboard = () => {
                         </li>
 
 
+
                         
                         {/* Nueva condición para mostrar enlaces de horarios solo al administrador */}
                         {rol === 'administrador' && (
                         <>
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/horarios"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -146,7 +169,8 @@ const Dashboard = () => {
                             >
                                 <FaClock /> Horarios
                             </Link>
-                            </li>
+                            </li> */}
+
 
 
                             {/* <li>
@@ -172,7 +196,8 @@ const Dashboard = () => {
                         {/* Enlace para horarios - Solo para cliente y opcionalmente admin */}
                         {(rol === 'cliente' ) && ( // Ajusta los roles según se necesite
                         <>
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/horarios-cliente" // <-- Nueva ruta
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -183,7 +208,9 @@ const Dashboard = () => {
                             >
                                 <FaRegClock /> Horarios 
                             </Link>
-                            </li>
+                            </li> */}
+
+
                         </>
                         )}
 
@@ -193,7 +220,8 @@ const Dashboard = () => {
                         {/* Nueva condición para mostrar enlaces de servicios solo al administrador */}
                         {rol === 'administrador' && (
                         <>
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/servicios"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -204,7 +232,7 @@ const Dashboard = () => {
                             >
                                 <FaCut /> Servicios
                             </Link>
-                            </li>
+                            </li> */}
 
 
                             {/* <li>
@@ -230,7 +258,8 @@ const Dashboard = () => {
                         {/* Nueva condición para mostrar enlaces de usuarios solo al administrador */}
                         {rol === 'administrador' && (
                         <>
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/usuarios"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -241,7 +270,7 @@ const Dashboard = () => {
                             >
                                 <FaUsers /> Usuarios
                             </Link>
-                            </li>
+                            </li> */}
 
 
                             {/* <li>
@@ -281,7 +310,8 @@ const Dashboard = () => {
                         {/* Nueva condición para mostrar enlaces de servicios al cliente y administrador */}
                         {(rol === 'cliente' ) && ( // Ajusta los roles según necesites
                         <>
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/servicios-cliente"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -292,9 +322,12 @@ const Dashboard = () => {
                             >
                                 <FaCut /> Servicios
                             </Link>
-                            </li>
+                            </li> */}
+
+
                             {/* Agrega el enlace para reservar servicios */}
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/reservar-servicio"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -305,7 +338,8 @@ const Dashboard = () => {
                             >
                                 <FaCalendarPlus /> Reservar
                             </Link>
-                            </li>
+                            </li> */}
+
                         </>
                         )}
 
@@ -313,7 +347,8 @@ const Dashboard = () => {
 
                         {rol === 'cliente' && (
                         <>
-                            <li>
+
+                            {/* <li>
                             <Link
                                 to="/dashboard/historial"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -324,7 +359,8 @@ const Dashboard = () => {
                             >
                                 <FaHistory /> Historial
                             </Link>
-                            </li>
+                            </li> */}
+
                         </>
                         )}
 
@@ -372,8 +408,11 @@ const Dashboard = () => {
 
 
                         {rol === 'estilista' && (
+
+
                             <li>
-                                <Link
+
+                                {/* <Link
                                     to="/dashboard/agenda-citas"
                                     className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
                                         urlActual === '/dashboard/agenda-citas'
@@ -382,8 +421,10 @@ const Dashboard = () => {
                                     }`}
                                 >
                                     <FaCalendarAlt /> Agenda de Citas
-                                </Link>
+                                </Link> */}
+
                             </li>
+                            
                         )}
                         
 
@@ -392,7 +433,9 @@ const Dashboard = () => {
 
                         {rol === 'estilista' && (
                             <>
-                                <li>
+
+
+                                {/* <li>
                                     <Link
                                         to="/dashboard/historial-general"
                                         className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -403,7 +446,7 @@ const Dashboard = () => {
                                     >
                                         <FaHistory /> Historial General
                                     </Link>
-                                </li>
+                                </li> */}
                                 
                             </>
                         )}
@@ -419,26 +462,30 @@ const Dashboard = () => {
                         {rol === 'estilista' && (
                         <>                            
 
-                            <li>
+                            {/* <li>
                             <Link
                                 to="/dashboard/registrar-trabajo"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
-                                urlActual === '/dashboard/registrar-trabajo' // <-- Ajustar condición de activo
+                                urlActual === '/dashboard/registrar-trabajo' 
                                     ? 'bg-sky-500 text-white'
                                     : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
-                                <FaRegClipboard /> Registrar Trabajo {/* <-- Usar el icono */}
+                                <FaRegClipboard /> Registrar Trabajo 
                             </Link>
-                            </li>
+                            </li> */}
+
+
                         </>
                         )}
 
 
 
                         {(rol === 'estilista' || rol === 'administrador' ) && (
+
                         <li>
-                            <Link
+
+                            {/* <Link
                             to="/dashboard/historial-trabajos"
                             className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
                                 urlActual === '/dashboard/historial-trabajos'
@@ -447,8 +494,10 @@ const Dashboard = () => {
                             }`}
                             >
                             <FaHistory /> Historial Trabajos
-                            </Link>
+                            </Link> */}
+
                         </li>
+                        
                         )}
 
 
