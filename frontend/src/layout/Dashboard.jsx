@@ -38,7 +38,7 @@ const Dashboard = () => {
                         className="w-12 h-12 border-2 border-sky-300 rounded-full"
                     />
                     <div>
-                        <h2 className="text-xl font-extrabold text-sky-300">Módulos</h2>
+                        <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2>
                         <p className="text-sm text-slate-300">
                             Bienvenido:{' '}
                             <span className="text-white font-semibold">
