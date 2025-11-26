@@ -31,7 +31,8 @@ const Dashboard = () => {
 
 
                 {/* Logo y usuario */}
-                <div className="flex items-center gap-4 mb-2 sm:mb-0">
+
+                {/* <div className="flex items-center gap-4 mb-2 sm:mb-0">
                     <img
                         src="https://img.freepik.com/vector-premium/peluqueria-perros-gatos-simbolo-peluqueria-canina-simbolo-peluqueria-animales_662695-70.jpg"
                         alt="img-client"
@@ -47,7 +48,40 @@ const Dashboard = () => {
                         </p>
                         <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
                     </div>
+                </div> */}
+
+
+
+
+
+                {/* Logo y usuario */}
+                <div className="flex items-center gap-4 mb-2 sm:mb-0">
+                    <img
+                        src="https://img.freepik.com/vector-premium/peluqueria-perros-gatos-simbolo-peluqueria-canina-simbolo-peluqueria-animales_662695-70.jpg"
+                        alt="img-client"
+                        className="w-12 h-12 border-2 border-sky-300 rounded-full"
+                    />
+                    <div>
+                        <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2>
+
+                        {/* <p className="text-sm text-slate-300">
+                            Bienvenido:{' '}
+                            <span className="text-white font-semibold">
+                                {user?.nombre || user?.nombrePropietario}
+                            </span>
+                        </p>
+                        <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p> */}
+
+
+
+                    </div>
                 </div>
+
+
+
+
+
+
                 
 
                 {/* Nav items */}
@@ -524,6 +558,35 @@ const Dashboard = () => {
                     /> */}
 
 
+
+
+                    {/* Logo y usuario */}
+                <div className="flex items-center gap-4 mb-2 sm:mb-0">
+                    <img
+                        src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
+                        alt="img-client"
+                        className="w-10 h-10 border-2 border-white rounded-full"
+                    />
+
+                    <div>
+
+                        {/* <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2> */}
+
+                        <p className="text-sm text-slate-300">
+                            Bienvenido:{' '}
+                            <span className="text-white font-semibold">
+                                {user?.nombre || user?.nombrePropietario}
+                            </span>
+                        </p>
+                        <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
+                    </div>
+                </div>
+
+
+
+
+
+
                     <button
                         className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition"
                         onClick={clearToken}
@@ -531,6 +594,8 @@ const Dashboard = () => {
                         <FaSignOutAlt /> Salir
                     </button>
                 </div>
+
+                
 
 
             </aside>
