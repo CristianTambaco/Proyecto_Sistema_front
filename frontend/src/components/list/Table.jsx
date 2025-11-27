@@ -83,8 +83,8 @@ const Table = () => {
                         <td>
                             <span className={`text-xs font-medium px-2.5 py-0.5 rounded ${
                             patient.estadoMascota 
-                                ? "bg-green-100 text-green-800" 
-                                : "bg-red-100 text-red-800"
+                                ? " text-green-600" 
+                                : " text-red-600"
                             }`}>
                             {patient.estadoMascota ? "Activo" : "Inactivo"}
                             </span>
