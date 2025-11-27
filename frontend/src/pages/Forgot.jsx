@@ -35,7 +35,7 @@ export const Forgot = () => {
 
                         <div className="mb-1">
                             <label className="mb-2 block text-sm font-semibold">Correo electrónico</label>
-                            <input type="email" placeholder="Ingresa un correo electrónico válido" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
+                            <input type="emaile" placeholder="Ingresa un correo electrónico válido" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
                             {...register("email",{required:"El correo electrónico es requerido"})}
                             />
                             {errors.email && <p className='text-red-800'>{errors.email.message}</p>}
