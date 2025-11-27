@@ -120,10 +120,10 @@ const HistorialTrabajos = () => {
                   <span
                     className={`px-2 py-1 rounded text-xs ${
                       trabajo.prioridad === "Alta"
-                        ? "bg-red-100 text-red-800"
+                        ? " text-red-800"
                         : trabajo.prioridad === "Media"
-                        ? "bg-yellow-100 text-yellow-800"
-                        : "bg-green-100 text-green-800"
+                        ? " text-yellow-800"
+                        : " text-green-800"
                     }`}
                   >
                     {trabajo.prioridad}
