@@ -132,7 +132,7 @@ const CreateServicio = () => {
           {errors.duracionEstimada && <p className="text-red-800">{errors.duracionEstimada.message}</p>}
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Estado</label>
           <select
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
@@ -141,7 +141,7 @@ const CreateServicio = () => {
             <option value="true">Activo</option>
             <option value="false">Inactivo</option>
           </select>
-        </div>
+        </div> */}
 
         <input
           type="submit"
