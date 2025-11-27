@@ -97,8 +97,12 @@ const Details = () => {
 
                                 <li className="text-md text-gray-00 mt-2">
                                     <span className="text-gray-600 font-bold">Estado: </span>
-                                    <span className=" text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                                    {patient?.estadoMascota && "activo"}
+                                    <span className={`text-xs font-medium px-2.5 py-0.5 rounded ${
+                                    patient.estadoMascota 
+                                        ? "bg-green-100 text-green-800" 
+                                        : "bg-red-100 text-red-800"
+                                    }`}>
+                                    {patient.estadoMascota ? "Activo" : "Inactivo"}
                                     </span>
                                 </li>
 
