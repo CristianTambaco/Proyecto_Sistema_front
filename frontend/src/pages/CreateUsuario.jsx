@@ -189,12 +189,22 @@ const CreateUsuario = () => {
                 value: 12, 
                 message: "La contraseña no puede superar los 12 caracteres" 
               },
-              pattern: {
-                value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
-                message:
-                  "Debe tener letras, números y caracteres especiales"
-              }
 
+
+              //  Validaciones condicionales según el tipo de usuario
+              validate: (value) => {
+                // Si el usuario que se está creando es admin → exigir mayúscula
+                if (tipoUsuario === "administrador" && !/[A-Z]/.test(value)) {
+                  return "La contraseña del administrador debe incluir una letra mayúscula.";
+                }
+
+                // Regla general para todos (admin y estilista)
+                if (!/[A-Za-z]/.test(value) || !/\d/.test(value) || !/[@$!%*#?&]/.test(value)) {
+                  return "Debe tener letras, números y caracteres especiales";
+                }
+
+                return true;
+              },
             })}
           />
           {errors.password && <p className="text-red-800">{errors.password.message}</p>}
