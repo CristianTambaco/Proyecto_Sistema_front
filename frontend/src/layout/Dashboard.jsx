@@ -62,7 +62,16 @@ const Dashboard = () => {
                         className="w-12 h-12 border-2 border-sky-300 rounded-full"
                     />
                     <div>
-                        <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2>
+
+                        {/* <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2> */}
+
+                        <Link to="/" className="text-xl font-extrabold text-sky-300 hover:text-sky-100">
+                            EstéticaCanina
+                        </Link>
+
+
+
+
 
                         {/* <p className="text-sm text-slate-300">
                             Bienvenido:{' '}
@@ -93,19 +102,19 @@ const Dashboard = () => {
 
 
 
-                        <li>
+                        {/* <li>
                             <Link
-                                to="/" // <-- Ruta a la landing page
+                                to="/" 
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
-                                    urlActual === '/' // <-- Condición de activo
+                                    urlActual === '/' 
                                         ? 'bg-sky-500 text-white'
                                         : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                                 
                             >
-                                <FaHome />Página principal{/* <-- Usar el icono y texto descriptivo */}
+                                <FaHome />Página principal
                             </Link>
-                        </li>
+                        </li> */}
 
 
 
