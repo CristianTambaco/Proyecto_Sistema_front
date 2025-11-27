@@ -570,7 +570,9 @@ const Dashboard = () => {
 
 
                     {/* Logo y usuario */}
+
                 <div className="flex items-center gap-4 mb-2 sm:mb-0">
+
                     <img
                         src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
                         alt="img-client"
@@ -588,7 +590,20 @@ const Dashboard = () => {
                             </span>
                         </p>
                         <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
+                        
                     </div>
+
+
+
+                    {/* <img
+                        src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
+                        alt="img-client"
+                        className="w-10 h-10 border-2 border-white rounded-full"
+                    /> */}
+
+
+
+
                 </div>
 
 
