@@ -81,7 +81,7 @@ const Table = () => {
                         <td>{patient.emailPropietario}</td>
                         <td>{patient.celularPropietario}</td>
                         <td>
-                            <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{patient.estadoMascota && "activo"}</span>
+                            <span className=" text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{patient.estadoMascota && "activo"}</span>
                         </td>
                         <td className='py-2 text-center'>
                             <MdInfo
