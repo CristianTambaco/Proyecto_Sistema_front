@@ -6,7 +6,7 @@ import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
 
 const CreateServicio = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const navigate = useNavigate();
   const { fetchDataBackend } = useFetch();
 
@@ -140,22 +140,65 @@ const CreateServicio = () => {
           />
           {errors.duracionEstimada && <p className="text-red-800">{errors.duracionEstimada.message}</p>}
         </div>
+
         {/* Campo para subir la imagen */}
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Imagen del Servicio</label>
-          <input
-            type="file"
-            accept="image/*"
-            {...register("imagen")}
-            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-          />
-          {errors.imagen && <p className="text-red-800">{errors.imagen.message}</p>}
+          <div className="flex items-center gap-4">
+            {/* Botón para seleccionar archivo */}
+            <button
+              type="button"
+              onClick={() => document.getElementById('fileInput').click()}
+              className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition duration-200 flex items-center gap-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M15 12L12 9m0 0L9 12m3-3v12" />
+              </svg>
+              Seleccionar archivo
+            </button>
+            {/* Mostrar nombre del archivo seleccionado */}
+            {watch("imagen")?.[0] ? (
+              <span className="text-sm text-gray-600 truncate max-w-xs">
+                {watch("imagen")[0].name}
+              </span>
+            ) : (
+              <span className="text-sm text-gray-500">Sin archivos seleccionados</span>
+            )}
+            {/* Input oculto */}
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              {...register("imagen")}
+            />
+            {/* Vista previa de la imagen (opcional) */}
+            {watch("imagen")?.[0] && (
+              <div className="mt-4">
+                <img
+                  src={URL.createObjectURL(watch("imagen")[0])}
+                  alt="Vista previa"
+                  className="w-20 h-20 object-cover rounded-md border border-gray-300"
+                />
+              </div>
+            )}
+          </div>
         </div>
+
+
+
+
+
         <input
           type="submit"
           value="Crear Servicio"
           className="bg-gray-800 w-full p-2 mt-5 text-slate-300 uppercase font-bold rounded-lg hover:bg-gray-600 cursor-pointer transition-all"
         />
+
+
+
+
+        
       </form>
     </div>
   );
