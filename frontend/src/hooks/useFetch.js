@@ -2,22 +2,22 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function useFetch() {
-    const fetchDataBackend = async (url, data = null, method = "GET", headers = {}) => {
+  const fetchDataBackend = async (url, data = null, method = "GET", headers = {}) => {
     const loadingToast = toast.loading("Procesando solicitud...");
     try {
-      // Determinar si es FormData
+      // Detectar si es FormData
       const isFormData = data instanceof FormData;
 
       // No forzar Content-Type si es FormData
       const finalHeaders = isFormData
-        ? { Authorization: headers.Authorization } // Deja que el navegador ponga el Content-Type correcto
+        ? { Authorization: headers.Authorization || "" } // Deja que el navegador ponga el Content-Type
         : { "Content-Type": "application/json", ...headers };
 
       const options = {
         method,
         url,
         headers: finalHeaders,
-        data: method === "DELETE" ? undefined : data, // DELETE no lleva cuerpo
+        data: method !== "DELETE" && data !== null && data !== undefined ? data : undefined,
       };
 
 
@@ -35,18 +35,17 @@ function useFetch() {
 
 
 
-            const response = await axios(options)
-            toast.dismiss(loadingToast); 
-            toast.success(response?.data?.msg)
-            return response?.data
-        } catch (error) {
-            toast.dismiss(loadingToast); 
-            console.error(error)
-            toast.error(error.response?.data?.msg)
-        }
+            const response = await axios(options);
+      toast.dismiss(loadingToast);
+      toast.success(response?.data?.msg);
+      return response?.data;
+    } catch (error) {
+      toast.dismiss(loadingToast);
+      console.error(error);
+      toast.error(error.response?.data?.msg || "Error en la solicitud");
     }
-
-    return { fetchDataBackend }
+  };
+  return { fetchDataBackend };
 }
 
 export default useFetch;

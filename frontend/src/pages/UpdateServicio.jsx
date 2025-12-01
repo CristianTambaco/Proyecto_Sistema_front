@@ -5,24 +5,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
 
-const [imagenPreview, setImagenPreview] = useState(null);
-
-
 const UpdateServicio = () => {
-  const { id } = useParams();
-  const [servicio, setServicio] = useState(null); // Estado para cargar el servicio existente
+  const { id } = useParams(); // ✅ Se obtiene el ID de los parámetros
+  const [servicio, setServicio] = useState(null); // Estado para cargar el servicio
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const navigate = useNavigate();
   const { fetchDataBackend } = useFetch();
 
+  // Función para obtener el servicio existente
   const obtenerServicio = async () => {
-    const url = `${import.meta.env.VITE_BACKEND_URL}/servicio/${id}`;
-    const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${storedUser.state.token}`,
-    };
+    if (!id) return; // ⚠️ Si no hay ID, no hagas nada
     try {
+      const url = `${import.meta.env.VITE_BACKEND_URL}/servicio/${id}`;
+      const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${storedUser.state.token}`,
+      };
       const response = await fetchDataBackend(url, null, "GET", headers);
       if (response) {
         setServicio(response);
@@ -32,55 +31,56 @@ const UpdateServicio = () => {
           descripcion: response.descripcion,
           precio: response.precio,
           duracionEstimada: response.duracionEstimada,
-          estado: response.estado.toString() // Convierte booleano a string para el select
+          estado: response.estado.toString(), // Convierte booleano a string para el select
         });
       }
     } catch (error) {
       console.error("Error al obtener servicio:", error);
-      // fetchDataBackend ya maneja el toast de error
     }
   };
 
-    if (response) {
-    setServicio(response);
-    setImagenPreview(response.imagen); // <-- URL actual de Cloudinary
-    reset({
-      nombre: response.nombre,
-      descripcion: response.descripcion,
-      precio: response.precio,
-      duracionEstimada: response.duracionEstimada,
-      estado: response.estado.toString()
-    });
-  }
-
+  // Actualizar el servicio
   const actualizarServicio = async (data) => {
+    if (!id) return; // ⚠️ Si no hay ID, no hagas nada
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicio/${id}`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
     const headers = {
-      "Content-Type": "application/json",
+      // No forzar Content-Type, dejar que FormData lo maneje
       Authorization: `Bearer ${storedUser.state.token}`,
     };
+
+    // Crear FormData
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      if (key === "imagen" && data.imagen?.[0]) {
+        formData.append("imagen", data.imagen[0]);
+      } else {
+        formData.append(key, data[key]);
+      }
+    });
+
     try {
-      const response = await fetchDataBackend(url, data, "PUT", headers);
-      if (response) { // Si la actualización fue exitosa
+      const response = await fetchDataBackend(url, formData, "PUT", headers);
+      if (response) {
         setTimeout(() => {
-          navigate("/dashboard/servicios"); // Redirige a la lista
+          navigate("/dashboard/servicios");
         }, 2000);
       }
     } catch (error) {
       console.error("Error al actualizar servicio:", error);
-      // fetchDataBackend ya maneja el toast de error
     }
   };
 
+  // Efecto para cargar el servicio cuando cambie el ID
   useEffect(() => {
     if (id) {
       obtenerServicio();
     }
-  }, [id]);
+  }, [id]); // ✅ Dependencia correcta
 
+  // Mostrar carga mientras se obtiene el servicio
   if (!servicio) {
-    return <div>Cargando servicio...</div>; // O un spinner
+    return <div>Cargando servicio...</div>;
   }
 
   return (
@@ -114,7 +114,6 @@ const UpdateServicio = () => {
           />
           {errors.nombre && <p className="text-red-800">{errors.nombre.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Descripción <span className="text-red-600">*</span></label>
           <textarea
@@ -134,7 +133,6 @@ const UpdateServicio = () => {
           />
           {errors.descripcion && <p className="text-red-800">{errors.descripcion.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Precio <span className="text-red-600">*</span></label>
           <input
@@ -152,8 +150,6 @@ const UpdateServicio = () => {
                 value: 1000,
                 message: "El precio no puede superar los $1000."
               },
-
-
               validate: value => {
                 if (value === "" || isNaN(value)) return "Por favor ingrese un número válido.";
               }
@@ -161,7 +157,6 @@ const UpdateServicio = () => {
           />
           {errors.precio && <p className="text-red-800">{errors.precio.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Duración Estimada (min) <span className="text-red-600">*</span></label>
           <input
@@ -178,8 +173,6 @@ const UpdateServicio = () => {
                 value: 480,
                 message: "La duración no puede ser mayor a 480 minutos (8 horas)."
               },
-
-
               validate: value => {
                 if (value === "" || isNaN(value)) return "Por favor ingrese un número válido.";
               }
@@ -187,7 +180,6 @@ const UpdateServicio = () => {
           />
           {errors.duracionEstimada && <p className="text-red-800">{errors.duracionEstimada.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Estado</label>
           <select
@@ -198,8 +190,6 @@ const UpdateServicio = () => {
             <option value="false">Inactivo</option>
           </select>
         </div>
-
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Imagen del Servicio</label>
           <input
@@ -209,12 +199,6 @@ const UpdateServicio = () => {
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
           />
         </div>
-
-
-
-
-
-
         <input
           type="submit"
           value="Actualizar Servicio"
