@@ -1,4 +1,5 @@
 // frontend/src/pages/CreateServicio.jsx
+
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
@@ -10,22 +11,35 @@ const CreateServicio = () => {
   const { fetchDataBackend } = useFetch();
 
   const crearServicio = async (data) => {
+    // Crear FormData
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      if (key === "imagen" && data.imagen?.[0]) {
+        // Si es el campo 'imagen' y tiene un archivo, agregarlo a FormData
+        formData.append("imagen", data.imagen[0]);
+      } else {
+        // Para otros campos, agregarlos como texto
+        formData.append(key, data[key]);
+      }
+    });
+
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicio`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
     const headers = {
-      "Content-Type": "application/json",
+      // No especificar Content-Type aquí, ya que FormData lo maneja automáticamente
       Authorization: `Bearer ${storedUser.state.token}`,
     };
+
     try {
-      const response = await fetchDataBackend(url, data, "POST", headers);
-      if (response) { // Si la creación fue exitosa
+      const response = await fetchDataBackend(url, formData, "POST", headers);
+      if (response) {
         setTimeout(() => {
-          navigate("/dashboard/servicios"); // Redirige a la lista
+          navigate("/dashboard/servicios");
         }, 2000);
       }
     } catch (error) {
       console.error("Error al crear servicio:", error);
-      // fetchDataBackend ya maneja el toast de error
+      // El toast de error ya lo maneja fetchDataBackend
     }
   };
 
@@ -60,7 +74,6 @@ const CreateServicio = () => {
           />
           {errors.nombre && <p className="text-red-800">{errors.nombre.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Descripción <span className="text-red-600">*</span></label>
           <textarea
@@ -80,7 +93,6 @@ const CreateServicio = () => {
           />
           {errors.descripcion && <p className="text-red-800">{errors.descripcion.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Precio <span className="text-red-600">*</span></label>
           <input
@@ -105,7 +117,6 @@ const CreateServicio = () => {
           />
           {errors.precio && <p className="text-red-800">{errors.precio.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Duración Estimada (min) <span className="text-red-600">*</span></label>
           <input
@@ -122,8 +133,6 @@ const CreateServicio = () => {
                 value: 480,
                 message: "La duración no puede ser mayor a 480 minutos (8 horas)."
               },
-
-
               validate: value => {
                 if (value === "" || isNaN(value)) return "Por favor ingrese un número válido.";
               }
@@ -131,18 +140,17 @@ const CreateServicio = () => {
           />
           {errors.duracionEstimada && <p className="text-red-800">{errors.duracionEstimada.message}</p>}
         </div>
-
-        {/* <div className="mb-4">
-          <label className="block text-sm font-semibold mb-1">Estado</label>
-          <select
+        {/* Campo para subir la imagen */}
+        <div className="mb-4">
+          <label className="block text-sm font-semibold mb-1">Imagen del Servicio</label>
+          <input
+            type="file"
+            accept="image/*"
+            {...register("imagen")}
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-            {...register("estado")}
-          >
-            <option value="true">Activo</option>
-            <option value="false">Inactivo</option>
-          </select>
-        </div> */}
-
+          />
+          {errors.imagen && <p className="text-red-800">{errors.imagen.message}</p>}
+        </div>
         <input
           type="submit"
           value="Crear Servicio"

@@ -163,10 +163,19 @@ export const Home = () => {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {servicios.map((servicio) => (
-                      <div
-                        key={servicio._id}
-                        className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition-shadow"
-                      >
+                      <div key={servicio._id} className="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition-shadow">
+                        {/* Mostrar imagen si existe */}
+                        {servicio.imagen ? (
+                          <img
+                            src={servicio.imagen}
+                            alt={servicio.nombre}
+                            className="w-full h-40 object-cover rounded-lg mb-3"
+                          />
+                        ) : (
+                          <div className="w-full h-40 bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
+                            <span className="text-gray-500">Sin imagen</span>
+                          </div>
+                        )}
                         <h3 className="text-xl font-bold text-emerald-600 mb-2">{servicio.nombre}</h3>
                         <p className="text-gray-700 mb-3">{servicio.descripcion}</p>
                         <div className="flex justify-between items-center mt-4">
