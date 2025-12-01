@@ -5,6 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
 
+const [imagenPreview, setImagenPreview] = useState(null);
+
+
 const UpdateServicio = () => {
   const { id } = useParams();
   const [servicio, setServicio] = useState(null); // Estado para cargar el servicio existente
@@ -37,6 +40,18 @@ const UpdateServicio = () => {
       // fetchDataBackend ya maneja el toast de error
     }
   };
+
+    if (response) {
+    setServicio(response);
+    setImagenPreview(response.imagen); // <-- URL actual de Cloudinary
+    reset({
+      nombre: response.nombre,
+      descripcion: response.descripcion,
+      precio: response.precio,
+      duracionEstimada: response.duracionEstimada,
+      estado: response.estado.toString()
+    });
+  }
 
   const actualizarServicio = async (data) => {
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicio/${id}`;
