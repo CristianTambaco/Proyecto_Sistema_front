@@ -78,6 +78,8 @@ const ListServicios = () => {
       <table className="w-full mt-5 table-auto shadow-lg bg-white">
         <thead className="bg-gray-800 text-slate-400">
           <tr>
+            {/* Nueva columna para la imagen */}
+            <th className="p-2">Imagen</th>
             {["Nombre", "Descripción", "Precio", "Duración (min)", "Estado", "Acciones"].map((header) => (
               <th key={header} className="p-2">{header}</th>
             ))}
@@ -86,6 +88,22 @@ const ListServicios = () => {
         <tbody>
           {servicios.map((servicio) => (
             <tr className="hover:bg-gray-300 text-center" key={servicio._id}>
+
+              {/* Mostrar la imagen del servicio */}
+              <td className="p-2">
+                {servicio.imagen ? (
+                  <img
+                    src={servicio.imagen}
+                    alt={servicio.nombre}
+                    className="w-16 h-16 object-cover rounded-md mx-auto"
+                  />
+                ) : (
+                  <div className="w-16 h-16 bg-gray-200 rounded-md mx-auto flex items-center justify-center">
+                    <span className="text-xs text-gray-500">Sin imagen</span>
+                  </div>
+                )}
+              </td>
+              
               <td>{servicio.nombre}</td>
               <td>{servicio.descripcion}</td>
               <td>$ {servicio.precio}</td>
