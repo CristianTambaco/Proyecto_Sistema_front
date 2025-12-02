@@ -16,7 +16,7 @@ const DashboardHome = () => {
     to="/dashboard/perfil"
     className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
     >
-    Ver mi perfil
+    Perfil
     </Link>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
