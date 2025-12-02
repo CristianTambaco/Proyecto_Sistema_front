@@ -7,7 +7,14 @@ import { Forgot } from './pages/Forgot'
 import { Confirm } from './pages/Confirm'
 import { NotFound } from './pages/NotFound'
 import Dashboard from './layout/Dashboard'
-import Profile from './pages/Profile'
+
+
+import Perfil from './pages/Perfil';
+import EditarPerfil from './pages/EditarPerfil';
+import CambiarContraseña from './pages/CambiarContraseña';
+
+
+
 import List from './pages/List'
 import Details from './pages/Details'
 import Create from './pages/Create'
@@ -109,9 +116,11 @@ function App() {
                 <Route element={<Dashboard />}>
 
                   <Route index element={<DashboardHome />} /> {/* <-- Cambiado a DashboardHome */}
-                  <Route path='perfil' element={<Profile />} /> {/* <-- Opcional: mantener Profile accesible por URL */}
+                  {/* <Route path='perfil' element={<Profile />} /> <-- Opcional: mantener Profile accesible por URL */}
 
-
+                  <Route path='perfil' element={<Perfil />} />
+                  <Route path='editar-perfil' element={<EditarPerfil />} />
+                  <Route path='cambiar-contraseña' element={<CambiarContraseña />} />
 
 
 
@@ -263,6 +272,15 @@ function App() {
                       <HistorialTrabajos />
                     </PrivateRouteWithRole>
                   } />
+
+
+
+
+
+
+                  <Route path='dashboard/perfil' element={<Perfil />} />
+                  <Route path='dashboard/editar-perfil' element={<EditarPerfil />} />
+                  <Route path='dashboard/cambiar-contraseña' element={<CambiarContraseña />} />
 
                   
                 

@@ -12,12 +12,12 @@ const DashboardHome = () => {
       <p className="mb-8 text-gray-600">Selecciona un módulo para comenzar.</p>
 
      
-    <Link
+    {/* <Link
     to="/dashboard/perfil"
     className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
     >
     Perfil
-    </Link>
+    </Link> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Clientes - visible para todos los roles */}

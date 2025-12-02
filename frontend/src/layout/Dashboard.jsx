@@ -2,6 +2,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
 
+import { useEffect, useState } from "react"
+
 
 
 
@@ -12,6 +14,8 @@ const Dashboard = () => {
     const urlActual = location.pathname;
     const { clearToken, rol } = storeAuth();
     const { user } = storeProfile();
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
     // Mostrar el botón SOLO si estás dentro de /dashboard/... (pero NO en /dashboard)
@@ -569,65 +573,66 @@ const Dashboard = () => {
 
                 {/* Botón salir */}
                 <div className="flex items-center gap-3 mt-3 sm:mt-0">
-
-                    {/* <img
-                        src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
-                        alt="img-client"
-                        className="w-10 h-10 border-2 border-white rounded-full"
-                    /> */}
-
-
-
-
-                    {/* Logo y usuario */}
-
-                <div className="flex items-center gap-4 mb-2 sm:mb-0">
-
-                    <img
-                        src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
-                        alt="img-client"
-                        className="w-10 h-10 border-2 border-white rounded-full"
-                    />
-
-                    <div>
-
-                        {/* <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2> */}
-
-                        <p className="text-sm text-slate-300">
-                            Bienvenido:{' '}
-                            <span className="text-white font-semibold">
-                                {user?.nombre || user?.nombrePropietario}
-                            </span>
-                        </p>
-                        <p className="text-xs text-sky-300 mt-1">Rol: {user?.rol}</p>
-                        
-                    </div>
+    {/* Avatar y menú desplegable */}
+    <div className="relative">
+        <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex items-center gap-2 bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-gray-700 transition"
+        >
+            <img
+                src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
+                alt="img-client"
+                className="w-8 h-8 border-2 border-white rounded-full"
+            />
+            <span className="text-sm">{user?.nombre || user?.nombrePropietario}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+        </button>
+        {isMenuOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <Link
+                    to="/dashboard/perfil"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                >
+                    Ver perfil
+                </Link>
 
 
-
-                    {/* <img
-                        src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
-                        alt="img-client"
-                        className="w-10 h-10 border-2 border-white rounded-full"
-                    /> */}
-
-
-
-
-                </div>
-
-
-
-
-
-
-                    <button
-                        className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md transition"
-                        onClick={clearToken}
+                {/* Mostrar "Editar perfil" solo si el rol NO es 'cliente' */}
+                {rol !== 'cliente' && (
+                    <Link
+                        to="/dashboard/editar-perfil"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setIsMenuOpen(false)}
                     >
-                        <FaSignOutAlt /> Salir
-                    </button>
-                </div>
+                        Editar perfil
+                    </Link>
+                )}
+
+
+                <Link
+                    to="/dashboard/cambiar-contraseña"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                >
+                    Cambiar contraseña
+                </Link>
+                <hr className="my-1" />
+                <button
+                    onClick={() => {
+                        clearToken();
+                        setIsMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                >
+                    Cerrar sesión
+                </button>
+            </div>
+        )}
+    </div>
+</div>
 
                 
 
