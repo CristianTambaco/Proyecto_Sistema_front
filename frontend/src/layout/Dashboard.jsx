@@ -17,6 +17,8 @@ const Dashboard = () => {
     // Mostrar el botón SOLO si estás dentro de /dashboard/... (pero NO en /dashboard)
     const showDashboardButton = location.pathname.startsWith('/dashboard/') && location.pathname !== '/dashboard';
 
+    const isInsideDashboard = location.pathname.startsWith('/dashboard/') && location.pathname !== '/dashboard';
+
     
 
     return (
@@ -157,7 +159,8 @@ const Dashboard = () => {
                         </li> */}
                         
 
-                        {/* <li>
+                        {showDashboardButton && (
+                        <li>
                             <Link
                                 to="/dashboard/listar"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -169,23 +172,24 @@ const Dashboard = () => {
                                 
                                 <FaList /> Cliente
                             </Link>
-                        </li> */}
+                        </li>
+                        )}
 
 
-
-                        {/* {(rol === 'administrador') && (
-                            <li>
-                                <Link
-                                    to="/dashboard/crear"
-                                    className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
-                                        urlActual === '/dashboard/crear'
-                                            ? 'bg-sky-500 text-white'
-                                            : 'hover:bg-sky-400 hover:text-white text-slate-300'
-                                    }`}
-                                >
-                                    <FaPlus /> Registrar cliente.
-                                </Link>
-                            </li>
+                        
+                        {/* {rol === 'administrador' && isInsideDashboard && (
+                        <li>
+                            <Link
+                            to="/dashboard/crear"
+                            className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/crear'
+                                ? 'bg-sky-500 text-white'
+                                : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                            }`}
+                            >
+                            <FaPlus /> Registrar cliente.
+                            </Link>
+                        </li>
                         )} */}
 
 
@@ -204,10 +208,10 @@ const Dashboard = () => {
 
                         
                         {/* Nueva condición para mostrar enlaces de horarios solo al administrador */}
-                        {rol === 'administrador' && (
+                        {rol === 'administrador' && isInsideDashboard && (
                         <>
 
-                            {/* <li>
+                            <li>
                             <Link
                                 to="/dashboard/horarios"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -218,7 +222,7 @@ const Dashboard = () => {
                             >
                                 <FaClock /> Horarios
                             </Link>
-                            </li> */}
+                            </li>
 
 
 
@@ -267,10 +271,10 @@ const Dashboard = () => {
 
 
                         {/* Nueva condición para mostrar enlaces de servicios solo al administrador */}
-                        {rol === 'administrador' && (
+                        {rol === 'administrador' && isInsideDashboard && (
                         <>
 
-                            {/* <li>
+                            <li>
                             <Link
                                 to="/dashboard/servicios"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -281,7 +285,7 @@ const Dashboard = () => {
                             >
                                 <FaCut /> Servicios
                             </Link>
-                            </li> */}
+                            </li>
 
 
                             {/* <li>
@@ -305,10 +309,10 @@ const Dashboard = () => {
 
 
                         {/* Nueva condición para mostrar enlaces de usuarios solo al administrador */}
-                        {rol === 'administrador' && (
+                        {rol === 'administrador' && isInsideDashboard && (
                         <>
 
-                            {/* <li>
+                            <li>
                             <Link
                                 to="/dashboard/usuarios"
                                 className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
@@ -319,7 +323,7 @@ const Dashboard = () => {
                             >
                                 <FaUsers /> Usuarios
                             </Link>
-                            </li> */}
+                            </li>
 
 
                             {/* <li>
@@ -530,11 +534,11 @@ const Dashboard = () => {
 
 
 
-                        {(rol === 'estilista' || rol === 'administrador' ) && (
+                        {(rol === 'estilista' || rol === 'administrador' ) && isInsideDashboard && (
 
                         <li>
 
-                            {/* <Link
+                            <Link
                             to="/dashboard/historial-trabajos"
                             className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
                                 urlActual === '/dashboard/historial-trabajos'
@@ -543,7 +547,7 @@ const Dashboard = () => {
                             }`}
                             >
                             <FaHistory /> Historial Trabajos
-                            </Link> */}
+                            </Link>
 
                         </li>
                         
