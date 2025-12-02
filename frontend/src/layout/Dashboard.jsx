@@ -576,8 +576,19 @@ const Dashboard = () => {
     {/* Avatar y menú desplegable */}
     <div className="relative">
         <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center gap-2 bg-gray-800 text-white px-3 py-1 rounded-md hover:bg-gray-700 transition"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}            
+
+            
+            className={`flex items-center gap-2 bg-gray-800 text-white px-3 py-1 rounded-md  ${
+                    rol === 'administrador'
+                    ? 'bg-slate-800'
+                    : rol === 'estilista'
+                    ? 'bg-orange-800'
+                    : rol === 'cliente'
+                    ? 'bg-green-800'
+                    : 'bg-slate-800'
+                }`}
+
         >
             <img
                 src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
