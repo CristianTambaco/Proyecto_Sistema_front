@@ -623,6 +623,19 @@ const Dashboard = () => {
                 )}
 
 
+
+
+                {rol == 'cliente' && (
+                    <Link
+                        to="/dashboard/listar"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        Actualizar información
+                    </Link>
+                )}
+
+
                 <Link
                     to="/dashboard/cambiar-contraseña"
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
