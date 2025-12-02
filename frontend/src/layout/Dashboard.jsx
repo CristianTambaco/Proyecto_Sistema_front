@@ -1,6 +1,8 @@
-import { Link, Outlet, useLocation } from 'react-router';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import storeAuth from '../context/storeAuth';
 import storeProfile from '../context/storeProfile';
+
+
 
 
 import { FaUser, FaList, FaHome, FaPlus, FaComments, FaSignOutAlt, FaClock, FaCut, FaUsers, FaCalendarPlus, FaHistory, FaRegClock, FaDog, FaRegClipboard, FaCalendarAlt, FaTachometerAlt } from 'react-icons/fa'; // Añadir FaUsers, FaCalendarPlus
@@ -10,6 +12,10 @@ const Dashboard = () => {
     const urlActual = location.pathname;
     const { clearToken, rol } = storeAuth();
     const { user } = storeProfile();
+
+
+    // Mostrar el botón SOLO si estás dentro de /dashboard/... (pero NO en /dashboard)
+    const showDashboardButton = location.pathname.startsWith('/dashboard/') && location.pathname !== '/dashboard';
 
     
 
@@ -121,20 +127,20 @@ const Dashboard = () => {
 
 
 
-
+                        {showDashboardButton && (
                         <li>
                             <Link
-                                to="/dashboard"
-                                className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
-                                    urlActual === '/dashboard'
-                                        ? 'bg-sky-500 text-white'
-                                        : 'hover:bg-sky-400 hover:text-white text-slate-300'
-                                }`}
-                                
+                            to="/dashboard"
+                            className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard'
+                                ? 'bg-sky-500 text-white'
+                                : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                            }`}
                             >
-                                <FaTachometerAlt />Dashboard{/* <-- Usar el icono y texto descriptivo */}
+                            <FaTachometerAlt /> Dashboard
                             </Link>
                         </li>
+                        )}
 
 
                         {/* <li>
