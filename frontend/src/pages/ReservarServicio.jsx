@@ -3,22 +3,23 @@ import { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import ConfirmModal from '../components/ConfirmModal'; // <-- Importar el nuevo componente
 
 const ReservarServicio = () => {
   const [servicios, setServicios] = useState([]);
   const [servicioSeleccionado, setServicioSeleccionado] = useState('');
   const [detallesAdicionales, setDetallesAdicionales] = useState('');
+  const [showModal, setShowModal] = useState(false); // <-- Estado para mostrar el modal
   const { fetchDataBackend } = useFetch();
   const navigate = useNavigate();
 
-  // Obtener el ID del cliente desde el token JWT almacenado
+  // Función para obtener el ID del cliente desde el token JWT
   const getClienteIdFromToken = () => {
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
     if (storedUser && storedUser.state && storedUser.state.token) {
       try {
-        // Decodificar el token JWT para obtener el ID del cliente
         const tokenPayload = JSON.parse(atob(storedUser.state.token.split('.')[1]));
-        return tokenPayload.id; // Asumiendo que el ID está en el payload como 'id'
+        return tokenPayload.id;
       } catch (error) {
         console.error("Error al decodificar el token:", error);
         return null;
@@ -34,7 +35,6 @@ const ReservarServicio = () => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${storedUser.state.token}`,
     };
-
     try {
       const response = await fetchDataBackend(url, null, "GET", headers);
       setServicios(response || []);
@@ -45,16 +45,8 @@ const ReservarServicio = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!servicioSeleccionado) {
       alert("Por favor, selecciona un servicio.");
-      return;
-    }
-
-    // Obtener el ID del cliente
-    const clienteId = getClienteIdFromToken();
-    if (!clienteId) {
-      alert("No se pudo obtener tu ID. Por favor, inicia sesión nuevamente.");
       return;
     }
 
@@ -65,12 +57,29 @@ const ReservarServicio = () => {
       return;
     }
 
-    // Construir los datos para la solicitud
+    // Mostrar el modal de confirmación
+    setShowModal(true);
+  };
+
+  // Función para enviar la reserva después de la confirmación
+  const confirmarReserva = async () => {
+    const clienteId = getClienteIdFromToken();
+    if (!clienteId) {
+      alert("No se pudo obtener tu ID. Por favor, inicia sesión nuevamente.");
+      return;
+    }
+
+    const servicio = servicios.find(s => s._id === servicioSeleccionado);
+    if (!servicio) {
+      alert("Servicio no encontrado.");
+      return;
+    }
+
     const datosAtencion = {
-      cliente: clienteId, // <-- Este es el campo clave que faltaba
+      cliente: clienteId,
       nombre: servicio.nombre,
       descripcion: detallesAdicionales || 'Solicitud de servicio.',
-      prioridad: 'Media', // Puedes cambiarlo o hacerlo seleccionable
+      prioridad: 'Media',
       precio: servicio.precio,
       estadoPago: 'Pendiente'
     };
@@ -88,11 +97,9 @@ const ReservarServicio = () => {
         // Limpiar el formulario
         setServicioSeleccionado('');
         setDetallesAdicionales('');
-        // Opcional: Redirigir a una página de confirmación o al perfil
+        // Opcional: Redirigir a una página de confirmación
         // navigate(`/dashboard/visualizar/${clienteId}`);
-
         // alert("¡Reserva realizada con éxito!");
-
       }
     } catch (error) {
       console.error("Error al reservar servicio:", error);
@@ -143,7 +150,6 @@ const ReservarServicio = () => {
             ))}
           </select>
         </div>
-
         <div className="mb-4">
           <label htmlFor="detalles" className="block text-sm font-semibold mb-1">
             Detalles Adicionales
@@ -157,7 +163,6 @@ const ReservarServicio = () => {
             rows="3"
           />
         </div>
-
         <button
           type="submit"
           className="bg-green-800 w-full p-2 text-slate-300 uppercase font-bold rounded-lg hover:bg-green-700 cursor-pointer transition-all"
@@ -165,6 +170,15 @@ const ReservarServicio = () => {
           Reservar Servicio
         </button>
       </form>
+
+      {/* Modal de confirmación */}
+      <ConfirmModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={confirmarReserva}
+        service={servicios.find(s => s._id === servicioSeleccionado)}
+        additionalDetails={detallesAdicionales}
+      />
     </div>
   );
 };
