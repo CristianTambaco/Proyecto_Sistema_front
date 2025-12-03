@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router'
 import storeAuth from "../../context/storeAuth";
 import { jwtDecode } from 'jwt-decode';
-const Table = () => {
+
+const Table = ({ clientes }) => { // <-- Recibir clientes como prop
     const navigate = useNavigate();
     const deletePatient = async(id) => {
         const confirmDelete = confirm("Vas a eliminar el registro, ¿Estás seguro?")
@@ -22,40 +23,18 @@ const Table = () => {
                 salidaMascota: new Date().toString()
             };
             await fetchDataBackend(url, data, "DELETE", options.headers);
-            setPatients(prevPatients => prevPatients.filter(patient => patient._id !== id));
+            // No es necesario actualizar el estado aquí porque se refresca desde List.jsx
         }
     };
     const { fetchDataBackend } = useFetch();
     const { rol } = storeAuth();
     const [patients, setPatients] = useState([]);
-    const listPatients = async () => {
-        const url = `${import.meta.env.VITE_BACKEND_URL}/clientes`;
-        const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-        const headers = {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${storedUser.state.token}`,
-        };
-        try {
-            const response = await fetchDataBackend(url, null, "GET", headers);
-            // Filtrar según rol
-            let filteredPatients = response;
-            if (rol === "cliente") {
-                // Cliente ve solo su propio registro
-                const userId = storedUser.state.token ? jwtDecode(storedUser.state.token)?.id : null;
-                filteredPatients = response.filter(patient => patient._id === userId);
-            } else if (rol === "estilista") {
-                // Estilista ve todos los clientes activos
-                filteredPatients = response.filter(patient => patient.estadoMascota === true);
-            }
-            // Para administrador, no se filtra (ya lo hace el backend o se puede dejar response completo)
-            setPatients(filteredPatients);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+
+    // Actualizar los pacientes cuando cambie la prop `clientes`
     useEffect(() => {
-        listPatients();
-    }, []);
+        setPatients(clientes); // <-- Asignar los clientes recibidos como prop
+    }, [clientes]);
+
     if (patients.length === 0) {
         return (
             <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
@@ -63,6 +42,7 @@ const Table = () => {
             </div>
         );
     }
+
     return (
         <table className="w-full mt-5 table-auto shadow-lg bg-white">
             <thead className="bg-gray-800 text-slate-400">
@@ -82,11 +62,11 @@ const Table = () => {
                         <td>{patient.celularPropietario}</td>
                         <td>
                             <span className={`text-xs font-medium px-2.5 py-0.5 rounded ${
-                            patient.estadoMascota 
-                                ? " text-green-600" 
-                                : " text-red-600"
+                                patient.estadoMascota 
+                                    ? " text-green-600" 
+                                    : " text-red-600"
                             }`}>
-                            {patient.estadoMascota ? "Activo" : "Inactivo"}
+                                {patient.estadoMascota ? "Activo" : "Inactivo"}
                             </span>
                         </td>
                         <td className='py-2 text-center'>
@@ -120,4 +100,5 @@ const Table = () => {
         </table>
     );
 };
+
 export default Table;
