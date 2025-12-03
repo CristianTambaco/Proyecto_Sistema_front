@@ -7,8 +7,14 @@ import storeAuth from '../context/storeAuth';
 
 const ListServicios = () => {
   const [servicios, setServicios] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filtroNombre, setFiltroNombre] = useState('');
+  const [filtroDescripcion, setFiltroDescripcion] = useState('');
+  const [filtroEstado, setFiltroEstado] = useState('todos'); // 'todos', 'activo', 'inactivo'
   const { fetchDataBackend } = useFetch();
-  const { rol } = storeAuth(); // Asegura que solo admin acceda aquí via PrivateRouteWithRole
+  const { rol } = storeAuth();
+
+  const [filtroImagen, setFiltroImagen] = useState('todos'); // 'todos', 'con', 'sin'
 
   const listServicios = async () => {
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicios`;
@@ -19,16 +25,56 @@ const ListServicios = () => {
     };
     try {
       const response = await fetchDataBackend(url, null, "GET", headers);
-      setServicios(response || []); // Manejar caso donde response es null
+      setServicios(response || []);
     } catch (error) {
       console.error("Error al listar servicios:", error);
       // fetchDataBackend ya maneja el toast de error
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     listServicios();
   }, []);
+
+  // Función para aplicar los filtros
+  const filtrarServicios = () => {
+    if (!servicios || servicios.length === 0) return [];
+
+    let resultados = [...servicios];
+
+    // Filtro por nombre
+    if (filtroNombre.trim() !== '') {
+      const term = filtroNombre.toLowerCase();
+      resultados = resultados.filter(servicio =>
+        servicio.nombre.toLowerCase().includes(term)
+      );
+    }
+
+    // Filtro por descripción
+    if (filtroDescripcion.trim() !== '') {
+      const term = filtroDescripcion.toLowerCase();
+      resultados = resultados.filter(servicio =>
+        servicio.descripcion.toLowerCase().includes(term)
+      );
+    }
+
+    // Filtro por estado
+    if (filtroEstado !== 'todos') {
+      const estadoBoolean = filtroEstado === 'activo';
+      resultados = resultados.filter(servicio => servicio.estado === estadoBoolean);
+    }
+
+    //  Filtro por imagen
+    if (filtroImagen === 'con') {
+      resultados = resultados.filter(servicio => servicio.imagen);
+    } else if (filtroImagen === 'sin') {
+      resultados = resultados.filter(servicio => !servicio.imagen);
+    }
+
+    return resultados;
+  };
 
   const eliminarServicio = async (id) => {
     if (window.confirm("¿Estás seguro de que deseas eliminar este servicio?")) {
@@ -50,7 +96,7 @@ const ListServicios = () => {
     }
   };
 
-  if (servicios.length === 0) {
+  if (servicios.length === 0 && !loading) {
     return (
       <div>
         <h1 className='font-black text-4xl text-gray-500'>Gestión de Servicios</h1>
@@ -66,31 +112,105 @@ const ListServicios = () => {
     );
   }
 
+  const serviciosFiltrados = filtrarServicios();
+
   return (
     <div>
       <ToastContainer />
       <h1 className='font-black text-4xl text-gray-500'>Gestión de Servicios</h1>
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite gestionar los servicios ofrecidos por el negocio.</p>
-      <Link to="/dashboard/servicios/crear" className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700 mb-4">
-        Crear Servicio
-      </Link>
+
+      {/* Botón para crear servicio */}
+      <div className="mb-4">
+        <Link to="/dashboard/servicios/crear" className="px-5 py-2 bg-green-800 text-white rounded-lg hover:bg-green-700">
+          Crear Servicio
+        </Link>
+      </div>
+
+      {/* Controles de filtro */}
+      <div className="flex flex-col md:flex-row gap-4 mb-6">
+        {/* Filtro por nombre */}
+        <div className="flex-1 max-w-md">
+          <label htmlFor="filtroNombre" className="block text-sm font-semibold mb-2">
+            Filtrar por Nombre
+          </label>
+          <input
+            id="filtroNombre"
+            type="text"
+            placeholder="Buscar por nombre..."
+            className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-700"
+            value={filtroNombre}
+            onChange={(e) => setFiltroNombre(e.target.value)}
+          />
+        </div>
+        {/* Filtro por descripción */}
+        <div className="flex-1 max-w-md">
+          <label htmlFor="filtroDescripcion" className="block text-sm font-semibold mb-2">
+            Filtrar por Descripción
+          </label>
+          <input
+            id="filtroDescripcion"
+            type="text"
+            placeholder="Buscar por descripción..."
+            className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-700"
+            value={filtroDescripcion}
+            onChange={(e) => setFiltroDescripcion(e.target.value)}
+          />
+        </div>
+        {/* Filtro por estado */}
+        <div className="max-w-xs">
+          <label htmlFor="filtroEstado" className="block text-sm font-semibold mb-2">
+            Estado
+          </label>
+          <select
+            id="filtroEstado"
+            value={filtroEstado}
+            onChange={(e) => setFiltroEstado(e.target.value)}
+            className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-700"
+          >
+            <option value="todos">Todos</option>
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+        </div>
+
+        {/* Filtro por imagen */}
+        <div className="max-w-xs">
+          <label htmlFor="filtroImagen" className="block text-sm font-semibold mb-2">
+            Imagen
+          </label>
+          <select
+            id="filtroImagen"
+            value={filtroImagen}
+            onChange={(e) => setFiltroImagen(e.target.value)}
+            className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-700"
+          >
+            <option value="todos">Todos</option>
+            <option value="con">Con imagen</option>
+            <option value="sin">Sin imagen</option>
+          </select>
+        </div>
+
+
+
+
+
+      </div>
+
+      {/* Tabla de servicios */}
       <table className="w-full mt-5 table-auto shadow-lg bg-white">
         <thead className="bg-gray-800 text-slate-400">
           <tr>
-            {/* Nueva columna para la imagen */}
-            <th className="p-2">Imagen</th>
-            {["Nombre", "Descripción", "Precio", "Duración (min)", "Estado", "Acciones"].map((header) => (
+            {["Imagen", "Nombre", "Descripción", "Precio", "Duración (min)", "Estado", "Acciones"].map((header) => (
               <th key={header} className="p-2">{header}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {servicios.map((servicio) => (
+          {serviciosFiltrados.map((servicio) => (
             <tr className="hover:bg-gray-300 text-center" key={servicio._id}>
-
-              {/* Mostrar la imagen del servicio */}
-              <td className="p-2">
+              <td>
                 {servicio.imagen ? (
                   <img
                     src={servicio.imagen}
@@ -103,7 +223,6 @@ const ListServicios = () => {
                   </div>
                 )}
               </td>
-              
               <td>{servicio.nombre}</td>
               <td>{servicio.descripcion}</td>
               <td>$ {servicio.precio}</td>
@@ -121,14 +240,14 @@ const ListServicios = () => {
                   className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
                   title="Actualizar"
                 >
-                  ✏️ {/* Puedes usar un icono real */}
+                  ✏️
                 </Link>
                 <button
                   onClick={() => eliminarServicio(servicio._id)}
                   className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600"
                   title="Eliminar"
                 >
-                  🗑️ {/* Puedes usar un icono real */}
+                  🗑️
                 </button>
               </td>
             </tr>
