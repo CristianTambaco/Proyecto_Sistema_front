@@ -1,4 +1,4 @@
-import logoDog from '../assets/imagehand.png'
+import logoDog from '../assets/imagehand.webp'
 import { ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router';

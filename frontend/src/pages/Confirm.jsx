@@ -1,4 +1,4 @@
-import logoDog from '../assets/imagehand.png'
+import logoDog from '../assets/imagehand.webp'
 import {Link, useParams} from 'react-router'
 import { useEffect } from 'react'
 import axios from 'axios';

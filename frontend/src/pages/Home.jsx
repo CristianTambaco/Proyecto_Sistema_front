@@ -1,6 +1,6 @@
 // frontend/src/pages/Home.jsx
-import logoDogCatMain from '../assets/imagemain.png'
-import logoDog from '../assets/imagehand.png'
+import logoDogCatMain from '../assets/imagemain.webp'
+import logoDog from '../assets/imagehand.webp'
 import { Link } from 'react-router'
 import { TbDog } from "react-icons/tb";
 import { FaStar, FaUsers, FaUser } from "react-icons/fa";
