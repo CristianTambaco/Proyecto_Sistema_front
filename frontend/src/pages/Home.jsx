@@ -9,7 +9,7 @@ import storeAuth from '../context/storeAuth';
 import { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { FaFacebook, FaInstagramSquare, FaTwitter } from "react-icons/fa";
-
+import React from 'react';
 
 
 export const Home = () => {
@@ -20,6 +20,8 @@ export const Home = () => {
   const [loadingServicios, setLoadingServicios] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const HorariosLanding = React.lazy(() => import('../components/info/HorariosLanding'));
 
   useEffect(() => {
     const cargarServiciosPublicos = async () => {
@@ -86,7 +88,7 @@ export const Home = () => {
           <div className="order-1 md:order-2">
             <img
               src={logoDogCatMain}
-              alt="Perro y gato disfrutando de un baño en nuestra peluquería canina"
+              alt="Perro disfrutando de un baño en nuestra peluquería canina"
               className="w-full rounded-3xl shadow-2xl"
               loading="lazy"
             />
@@ -210,7 +212,9 @@ export const Home = () => {
 
       {/* HORARIOS DE ATENCIÓN */}
       <section id="horarios">
-        <HorariosLanding />
+        <React.Suspense fallback={<div>Cargando horarios...</div>}>
+          <HorariosLanding />
+        </React.Suspense>
       </section>
 
       {/* FOOTER */}
