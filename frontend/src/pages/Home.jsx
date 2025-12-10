@@ -47,15 +47,37 @@ export const Home = () => {
           <h1 className="font-extrabold text-2xl tracking-tight text-emerald-700">
             Estética<span className="text-sky-600">Canina</span>
           </h1>
+
           <nav aria-label="Navegación principal">
-            <ul className="hidden md:flex gap-6 font-medium text-gray-700">
+            <ul className="hidden md:flex gap-6 font-medium text-gray-700 items-center">
+
               <li><a href="#" className="hover:text-emerald-600 transition">Inicio</a></li>
               <li><a href="#about" className="hover:text-emerald-600 transition">Nosotros</a></li>
               <li><a href="#contact" className="hover:text-emerald-600 transition">Contacto</a></li>
+
+              <li>
+                {token ? (
+                  <Link
+                    to="/dashboard"
+                    className="bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
+                  >
+                    Ir al Panel
+                  </Link>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="bg-gradient-to-r from-emerald-600 to-sky-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
+                  >
+                    Iniciar sesión
+                  </Link>
+                )}
+              </li>
+
             </ul>
           </nav>
         </div>
       </header>
+
 
       {/* HERO */}
       <main className="pt-2 bg-gradient-to-br from-emerald-50 via-white to-sky-50">
@@ -67,7 +89,9 @@ export const Home = () => {
             <p className="mt-6 text-lg text-gray-800 max-w-md mx-auto md:mx-0 leading-relaxed">
               Servicios especializados, atención personalizada, bienestar y mucho más…
             </p>
-            {token ? (
+
+
+            {/* {token ? (
               <Link
                 to="/dashboard"
                 className="inline-block mt-8 md:mt-10 bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-transform focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
@@ -83,7 +107,9 @@ export const Home = () => {
               >
                 Iniciar sesión
               </Link>
-            )}
+            )} */}
+
+
           </div>
           <div className="order-1 md:order-2">
             <img
