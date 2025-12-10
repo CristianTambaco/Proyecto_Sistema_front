@@ -60,8 +60,8 @@ export const Register = () => {
                             <input type="text" placeholder="Ingresa tu apellido" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
                             {...register("apellido", { required: "El apellido es obligatorio",
                                 minLength: {
-                                    value: 5,
-                                    message: "El apellido debe tener al menos 5 caracteres"
+                                    value: 3,
+                                    message: "El apellido debe tener al menos 3 caracteres"
                                 },
                                 pattern: {
                                     value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
