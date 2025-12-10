@@ -56,11 +56,14 @@ const HorariosLanding = () => {
               <p className="text-gray-700">
                 <span className="font-semibold">Cierre:</span> {horario.horaCierre} hs
               </p>
-              <span className={`inline-block mt-2 text-xs font-medium px-2.5 py-0.5 rounded ${
+
+              {/* <span className={`inline-block mt-2 text-xs font-medium px-2.5 py-0.5 rounded ${
                 horario.estado ? " text-green-800" : "bg-red-100 text-red-800"
               }`}>
                 {horario.estado ? "Activo" : "Inactivo"}
-              </span>
+              </span> */}
+
+              
             </div>
           ))}
         </div>
