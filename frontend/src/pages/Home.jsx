@@ -133,7 +133,7 @@ export const Home = () => {
 
             <img
               src={logoDog}
-              alt="Nuestra peluquería canina: cuidado y bienestar para tu mascota"
+              alt="EstéticaCanina: cuidado y bienestar para tu mascota"
               className="rounded-3xl shadow-xl w-full max-w-[450px] mx-auto"
               loading="lazy"
             />
@@ -253,7 +253,7 @@ export const Home = () => {
       <footer id="contact" className="bg-gray-900 text-gray-300 py-8 px-4 mt-16">
         <div className="container mx-auto grid gap-8 md:grid-cols-3">
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">Nuestra Peluquería Canina</h3>
+            <h3 className="text-xl font-bold mb-4 text-white">EstéticaCanina</h3>
             <p className="leading-relaxed">Cuidado, bienestar y atención profesional para tu mascota. 🐾</p>
           </div>
           <div>
