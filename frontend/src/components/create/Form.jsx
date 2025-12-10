@@ -118,8 +118,8 @@ export const Form = ({patient}) => {
                                 validate: {
                                     soloNumeros: (value) =>
                                         /^\d+$/.test(value) || "La cédula solo debe contener números",
-                                    noCeroInicial: (value) =>
-                                        !/^0/.test(value) || "La cédula no puede comenzar con 0",
+                                    
+                                    
                                 },
                             })}
                         />
