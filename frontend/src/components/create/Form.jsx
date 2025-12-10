@@ -138,8 +138,8 @@ export const Form = ({patient}) => {
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                         {...register("nombrePropietario", { required: "El campo es obligatorio",
                             minLength: {
-                                value: 5,
-                                message: "Debe tener al menos 5 caracteres",
+                                value: 3,
+                                message: "Debe tener al menos 3 caracteres",
                             },
                             maxLength: {
                                 value: 50,
@@ -453,8 +453,8 @@ export const Form = ({patient}) => {
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                         {...register("caracteristicasMascota", { required: "El campo es obligatorio",
                             minLength: {
-                                    value: 5,
-                                    message: "Debe existir al menos 5 caracteres"
+                                    value: 3,
+                                    message: "Debe existir al menos 3 caracteres"
                                 },
                         })}
                     />

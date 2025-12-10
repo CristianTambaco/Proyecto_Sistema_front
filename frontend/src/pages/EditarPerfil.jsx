@@ -87,8 +87,8 @@ const EditarPerfil = () => {
                 {...register("nombrePropietario", {
                   required: "El nombre del propietario es obligatorio.",
                   minLength: {
-                    value: 5,
-                    message: "Debe tener al menos 5 caracteres"
+                    value: 3,
+                    message: "Debe tener al menos 3 caracteres"
                   },
                   maxLength: {
                     value: 50,
@@ -211,8 +211,8 @@ const EditarPerfil = () => {
                 {...register("caracteristicasMascota", {
                   required: "Las características son obligatorias.",
                   minLength: {
-                    value: 5,
-                    message: "Debe existir al menos 5 caracteres"
+                    value: 3,
+                    message: "Debe existir al menos 3 caracteres"
                   },
                 })}
               />
@@ -275,8 +275,8 @@ const EditarPerfil = () => {
                 {...register("direccion", {
                   required: "La dirección es obligatoria.",
                   minLength: {
-                    value: 5,
-                    message: "La dirección debe tener al menos 5 caracteres"
+                    value: 3,
+                    message: "La dirección debe tener al menos 3 caracteres"
                   },
                   maxLength: {
                     value: 100,

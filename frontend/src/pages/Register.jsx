@@ -78,8 +78,8 @@ export const Register = () => {
                             <input type="text" placeholder="Ingresa tu dirección de domicilio" className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500" 
                             {...register("direccion", { required: "La direccion es obligatorio",
                                 minLength: {
-                                    value: 5,
-                                    message: "La dirección debe tener al menos 5 caracteres"
+                                    value: 3,
+                                    message: "La dirección debe tener al menos 3 caracteres"
                                 }
                              })}
                             />

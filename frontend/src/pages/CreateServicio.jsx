@@ -82,8 +82,8 @@ const CreateServicio = () => {
             {...register("descripcion", {
               required: "La descripción es obligatoria.",
               minLength: {
-                value: 5,
-                message: "La descripción debe tener al menos 5 caracteres"
+                value: 3,
+                message: "La descripción debe tener al menos 3 caracteres"
               },
               maxLength: {
                 value: 200,

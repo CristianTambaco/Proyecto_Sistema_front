@@ -100,8 +100,8 @@ const RegisterClient = () => {
                                     {...register("nombrePropietario", {
                                         required: "El nombre completo es obligatorio",
                                         minLength: {
-                                            value: 5,
-                                            message: "Debe tener al menos 5 caracteres",
+                                            value: 3,
+                                            message: "Debe tener al menos 3 caracteres",
                                         },
                                         maxLength: {
                                             value: 50,
@@ -281,8 +281,8 @@ const RegisterClient = () => {
                                     {...register("caracteristicasMascota", {
                                         required: "El campo es obligatorio",
                                         minLength: {
-                                            value: 5,
-                                            message: "Debe existir al menos 5 caracteres",
+                                            value: 3,
+                                            message: "Debe existir al menos 3 caracteres",
                                         },
                                     })}
                                 />

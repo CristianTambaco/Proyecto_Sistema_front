@@ -161,8 +161,8 @@ const UpdateUsuario = () => {
             {...register("direccion", {
               required: "La dirección es obligatoria.",
               minLength: {
-                value: 5,
-                message: "La dirección debe tener al menos 5 caracteres."
+                value: 3,
+                message: "La dirección debe tener al menos 3 caracteres."
               },
               maxLength: {
                 value: 50,

@@ -100,8 +100,8 @@ const FormularioPerfil = () => {
                             message: "La dirección contiene caracteres inválidos"
                         },
                         minLength: {
-                            value: 5,
-                            message: "La dirección debe tener al menos 5 caracteres"
+                            value: 3,
+                            message: "La dirección debe tener al menos 3 caracteres"
                         },
                         maxLength: {
                             value: 100,

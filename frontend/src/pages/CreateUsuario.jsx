@@ -109,8 +109,8 @@ const CreateUsuario = () => {
             {...register("direccion", {
             required: "La dirección es obligatoria", // Campo requerido
             minLength: {
-              value: 5,
-              message: "La dirección debe tener al menos 5 caracteres", // Mínimo de 5 caracteres
+              value: 3,
+              message: "La dirección debe tener al menos 3 caracteres", // Mínimo de 3 caracteres
             },
             maxLength: {
               value: 100,
