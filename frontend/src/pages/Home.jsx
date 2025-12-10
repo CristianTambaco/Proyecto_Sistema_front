@@ -111,14 +111,17 @@ export const Home = () => {
 
 
           </div>
-          <div className="order-1 md:order-2">
+
+          <div className="order-1 md:order-2 flex justify-center">
             <img
               src={logoDogCatMain}
               alt="Perro disfrutando de un baño en nuestra peluquería canina"
-              className="w-full rounded-3xl shadow-2xl"
+              className="w-full max-w-[450px] rounded-3xl shadow-2xl"
               loading="lazy"
             />
           </div>
+
+          
         </div>
       </main>
 
@@ -127,12 +130,15 @@ export const Home = () => {
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Sobre Nosotros</h2>
           <div className="grid gap-12 md:grid-cols-2 items-center">
+
             <img
               src={logoDog}
               alt="Nuestra peluquería canina: cuidado y bienestar para tu mascota"
-              className="rounded-3xl shadow-xl w-full"
+              className="rounded-3xl shadow-xl w-full max-w-[450px] mx-auto"
               loading="lazy"
             />
+
+
             <div>
               <p className="mb-8 text-lg text-gray-800 leading-relaxed">
                 Nuestra peluquería canina es un espacio dedicado al cuidado, higiene y bienestar de tu mascota.
