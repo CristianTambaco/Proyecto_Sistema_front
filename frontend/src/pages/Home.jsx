@@ -200,7 +200,7 @@ export const Home = () => {
                   <p className="text-gray-800 mb-3">{servicio.descripcion}</p>
                   <div className="flex justify-between items-center mt-4">
                     <span className="font-semibold text-green-800">💲 ${servicio.precio}</span>
-                    <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    <span className="text-sm  text-blue-800 px-2 py-1 rounded">
                       {servicio.duracionEstimada} min
                     </span>
                   </div>
