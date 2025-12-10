@@ -176,8 +176,8 @@ const EditarPerfil = () => {
                 {...register("nombreMascota", {
                   required: "El nombre de la mascota es obligatorio.",
                   minLength: {
-                    value: 5,
-                    message: "El nombre debe tener al menos 5 caracteres"
+                    value: 3,
+                    message: "El nombre debe tener al menos 3 caracteres"
                   },
                   pattern: {
                     value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -229,8 +229,8 @@ const EditarPerfil = () => {
                 {...register("nombre", {
                   required: "El nombre es obligatorio.",
                   minLength: {
-                    value: 5,
-                    message: "El nombre debe tener al menos 5 caracteres"
+                    value: 3,
+                    message: "El nombre debe tener al menos 3 caracteres"
                   },
                   maxLength: {
                     value: 20,

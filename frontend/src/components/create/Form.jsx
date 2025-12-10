@@ -227,8 +227,8 @@ export const Form = ({patient}) => {
                         className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
                         {...register("nombreMascota", { required: "El campo es obligatorio",
                             minLength: {
-                                value: 5,
-                                message: "El nombre debe tener al menos 5 caracteres"
+                                value: 3,
+                                message: "El nombre debe tener al menos 3 caracteres"
                             },
                             pattern: {
                                 value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,

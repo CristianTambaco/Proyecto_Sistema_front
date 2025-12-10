@@ -241,8 +241,8 @@ const RegisterClient = () => {
                                     {...register("nombreMascota", {
                                         required: "El campo es obligatorio",
                                         minLength: {
-                                            value: 5,
-                                            message: "El nombre debe tener al menos 5 caracteres",
+                                            value: 3,
+                                            message: "El nombre debe tener al menos 3 caracteres",
                                         },
                                         pattern: {
                                             value: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
