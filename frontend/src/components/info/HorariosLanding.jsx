@@ -43,34 +43,51 @@ const HorariosLanding = () => {
   const horariosOrdenados = horarios.sort((a, b) => ordenDias.indexOf(a.dia) - ordenDias.indexOf(b.dia));
 
   return (
-    <div className="py-12 bg-white">
-      <div className="container mx-auto px-8">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Horarios de Atención</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {horariosOrdenados.map((horario) => (
-            <div key={horario._id} className="bg-gray-50 p-6 rounded-2xl shadow text-center">
-              <h3 className="text-xl font-bold text-emerald-600 mb-2">{horario.dia}</h3>
-              <p className="text-gray-700">
-                <span className="font-semibold">Apertura:</span> {horario.horaApertura} hs
-              </p>
-              <p className="text-gray-700">
-                <span className="font-semibold">Cierre:</span> {horario.horaCierre} hs
-              </p>
+  <div className="py-12 bg-white">
+    <div className="container mx-auto px-8">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        Horarios de Atención
+      </h2>
 
-              {/* <span className={`inline-block mt-2 text-xs font-medium px-2.5 py-0.5 rounded ${
-                horario.estado ? " text-green-800" : "bg-red-100 text-red-800"
-              }`}>
-                {horario.estado ? "Activo" : "Inactivo"}
-              </span> */}
+      <div className="overflow-x-auto">
+        <table className="min-w-full border border-gray-200 rounded-lg overflow-hidden shadow">
+          <thead className="bg-emerald-600 text-white">
+            <tr>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Día
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Hora de Apertura
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-semibold">
+                Hora de Cierre
+              </th>
+            </tr>
+          </thead>
 
-              
-            </div>
-          ))}
-        </div>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {horariosOrdenados.map((horario) => (
+              <tr key={horario._id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 font-medium text-gray-800">
+                  {horario.dia}
+                </td>
+                <td className="px-6 py-4 text-gray-700">
+                  {horario.horaApertura} hs
+                </td>
+                <td className="px-6 py-4 text-gray-700">
+                  {horario.horaCierre} hs
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <ToastContainer />
     </div>
-  );
+
+    <ToastContainer />
+  </div>
+);
+
 };
 
 export default HorariosLanding;
