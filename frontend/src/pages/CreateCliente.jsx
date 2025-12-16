@@ -70,9 +70,14 @@ const CreateCliente = () => {
                     <div className="mb-3">
                         <label className="mb-2 block text-sm font-semibold">Cédula <span className="text-red-600">*</span></label>
                         <input
-                            type="number"
+                            type="text"
+                            inputMode="numeric"
+                            maxLength={10}
                             placeholder="Ingresa la cédula"
                             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                            onInput={(e) => {
+                                e.target.value = e.target.value.replace(/\D/g, "");
+                            }}
                             {...register("cedulaPropietario", {
                                 required: "La cédula es obligatoria",
                                 minLength: {
@@ -145,9 +150,14 @@ const CreateCliente = () => {
                     <div className="mb-3">
                         <label className="mb-2 block text-sm font-semibold">Celular <span className="text-red-600">*</span></label>
                         <input
-                            type="number"
+                            type="text"
+                            inputMode="numeric"
+                            maxLength={10}
                             placeholder="Ingresa el celular"
                             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
+                            onInput={(e) => {
+                                e.target.value = e.target.value.replace(/\D/g, "");
+                            }}
                             {...register("celularPropietario", {
                                 required: "El celular es obligatorio",
                                 pattern: {
