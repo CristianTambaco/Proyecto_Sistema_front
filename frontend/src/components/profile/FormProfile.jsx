@@ -122,9 +122,18 @@ const FormularioPerfil = () => {
                 </label>
 
                 <input
-                    type="number"
+
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={10}
+
                     placeholder="Ingresa tu teléfono"
                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500 mb-5"
+
+                    onInput={(e) => {
+                        e.target.value = e.target.value.replace(/\D/g, "");
+                    }}
+
                     {...register("celular", { required: "El celular es obligatorio",
                         
                         pattern: {
