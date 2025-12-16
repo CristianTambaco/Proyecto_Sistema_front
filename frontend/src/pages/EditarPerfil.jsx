@@ -105,8 +105,17 @@ const EditarPerfil = () => {
             <div className="mb-4">
               <label className="block text-sm font-semibold mb-1">Cédula <span className="text-red-600">*</span></label>
               <input
-                type="number"
+
+                type="text"
+                inputMode="numeric"
+                maxLength={10}
+
                 className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+
+                onInput={(e) => {
+                  e.target.value = e.target.value.replace(/\D/g, "");
+                }}
+
                 {...register("cedulaPropietario", {
                   required: "La cédula es obligatoria",
                   minLength: {
