@@ -61,7 +61,7 @@ export const Home = () => {
                     to="/dashboard"
                     className="bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
                   >
-                    Ir al Panel
+                    Dashboard
                   </Link>
                 ) : (
                   <Link
@@ -200,9 +200,39 @@ export const Home = () => {
                   <p className="text-gray-800 mb-3">{servicio.descripcion}</p>
                   <div className="flex justify-between items-center mt-4">
                     <span className="font-semibold text-green-800">💲 ${servicio.precio}</span>
+
+
+
+
+
+
+
+                    
                     <span className="text-sm  text-blue-800 px-2 py-1 rounded">
                       {servicio.duracionEstimada} min
                     </span>
+                    <li className="list-none">
+
+
+                {token ? (
+                  
+                  <Link
+                    to="/dashboard"
+                    className="bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
+                  >
+                    Ir al Dashboard
+                  </Link>
+
+                ) : (
+                  <Link
+                    to="/login"
+                    className="bg-gradient-to-r from-emerald-600 to-sky-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
+                  >
+                    Reservar
+                  </Link>
+                )}
+              </li>
+
                   </div>
                 </div>
               ))}
