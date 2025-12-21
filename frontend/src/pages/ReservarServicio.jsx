@@ -130,7 +130,7 @@ const ReservarServicio = () => {
       <h1 className='font-black text-4xl text-gray-500'>Reservar Servicio</h1>
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite solicitar un servicio disponible.</p>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto border-2 border-gray-300 p-6 rounded-lg shadow-lg">
         <div className="mb-4">
           <label htmlFor="servicio" className="block text-sm font-semibold mb-1">
             Selecciona un Servicio <span className="text-red-600">*</span>
