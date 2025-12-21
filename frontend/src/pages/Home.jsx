@@ -12,6 +12,10 @@ import { FaFacebook, FaInstagramSquare, FaTwitter } from "react-icons/fa";
 import React from 'react';
 
 
+
+
+
+
 export const Home = () => {
   const { token, rol } = storeAuth();
 
@@ -22,6 +26,39 @@ export const Home = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   const HorariosLanding = React.lazy(() => import('../components/info/HorariosLanding'));
+
+
+  const heroBackgrounds = [
+  "https://cacttus-media-prod.s3.sa-east-1.amazonaws.com/blog/headers_photos/659c82bbcbc4ac8d53213d22_corte20de20pelo20de20perros.jpg",
+  "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/post-cuidados-3-1.jpg",
+  "https://i0.wp.com/puppis.blog/wp-content/uploads/2020/01/Es-bueno-cortarle-el-pelo-a-los-perros.jpg?resize=900%2C450&ssl=1"
+  ];
+
+
+  const [active, setActive] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+
+      setTimeout(() => {
+        setActive(prev => (prev + 1) % heroBackgrounds.length);
+        setFade(true);
+      }, 1000);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+
+
+
+
+
 
   useEffect(() => {
     const cargarServiciosPublicos = async () => {
@@ -80,14 +117,41 @@ export const Home = () => {
       </header>
 
 
+    
       {/* HERO */}
-      <main className="pt-2 bg-gradient-to-br from-emerald-50 via-white to-sky-50">
-        <div className="container mx-auto px-4 py-20 md:py-24 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <main className="pt-2 bg-gradient-to-br from-emerald-50 via-white to-sky-50 relative">
+        {/* Imagen de fondo */}
+
+        {/* Fondo con transición suave */}
+        <div className="absolute inset-0">
+          <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+              fade ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ backgroundImage: `url(${heroBackgrounds[active]})` }}
+          />
+
+
+          {/* Overlay oscuro */}
+          <div className="absolute inset-0 bg-black/40 z-[1]" />
+
+          {/* CONTENIDO */}
+          <div className="container mx-auto px-4 py-20 md:py-24 grid md:grid-cols-2 gap-12 md:gap-16 items-center relative z-10"></div>
+
+
+
+        </div>
+
+
+
+
+
+        <div className="container mx-auto px-4 py-20 md:py-24 grid md:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
           <div className="order-2 md:order-1 text-center md:text-left">
-            <h1 className="font-extrabold text-gray-900 text-4xl md:text-5xl lg:text-6xl leading-tight">
+            <h1 className="font-extrabold text-gray-300 text-4xl md:text-5xl lg:text-6xl leading-tight">
               CUIDADO <br /> Y BIENESTAR CANINO
             </h1>
-            <p className="mt-6 text-lg text-gray-800 max-w-md mx-auto md:mx-0 leading-relaxed">
+            <p className="mt-6 text-lg text-gray-200 max-w-md mx-auto md:mx-0 leading-relaxed">
               Servicios especializados, atención personalizada, bienestar y mucho más…
             </p>
 
@@ -113,14 +177,14 @@ export const Home = () => {
 
           </div>
 
-          <div className="order-1 md:order-2 flex justify-center">
+          {/* <div className="order-1 md:order-2 flex justify-center">
             <img
               src={logoDogCatMain}
               alt="Perro disfrutando de un baño en nuestra peluquería canina"
               className="w-full max-w-[450px] rounded-3xl shadow-2xl"
               loading="lazy"
             />
-          </div>
+          </div> */}
 
           
         </div>
