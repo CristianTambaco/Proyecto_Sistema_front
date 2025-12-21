@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 const HorariosCliente = () => {
   const [horarios, setHorarios] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true);
   const { fetchDataBackend } = useFetch();
 
   const listHorarios = async () => {
@@ -17,7 +17,6 @@ const HorariosCliente = () => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${storedUser.state.token}`,
       };
-
       const response = await fetchDataBackend(url, null, "GET", headers);
       // Asegurar que response sea un array
       setHorarios(response || []);
@@ -25,7 +24,7 @@ const HorariosCliente = () => {
       console.error("Error al listar horarios cliente:", error);
       // fetchDataBackend ya maneja el toast de error
     } finally {
-      setLoading(false); // Detener la carga
+      setLoading(false);
     }
   };
 
@@ -56,25 +55,27 @@ const HorariosCliente = () => {
       <h1 className='font-black text-4xl text-gray-500'>Horarios de Atención</h1>
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite visualizar los horarios de atención del negocio.</p>
-      <table className="w-full mt-5 table-auto shadow-lg bg-white">
-        <thead className="bg-gray-800 text-slate-400">
-          <tr>
-            {["Día", "Apertura", "Cierre"].map((header) => ( // No mostrar estado para cliente
-              <th key={header} className="p-2">{header}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
+
+      {/* Contenedor principal */}
+      <div className="bg-white p-6 rounded-xl shadow-md">
+        {/* Encabezado de la tabla */}
+        <div className="grid grid-cols-3 gap-4 bg-emerald-600 text-white font-bold py-3 px-4 rounded-t-xl">
+          <div>Día</div>
+          <div>Hora de Apertura</div>
+          <div>Hora de Cierre</div>
+        </div>
+
+        {/* Cuerpo de la tabla */}
+        <div className="divide-y divide-gray-200">
           {horarios.map((horario) => (
-            <tr className="hover:bg-gray-300 text-center" key={horario._id}>
-              <td>{horario.dia}</td>
-              <td>{horario.horaApertura}</td>
-              <td>{horario.horaCierre}</td>
-              {/* No se muestra el estado para el cliente */}
-            </tr>
+            <div key={horario._id} className="grid grid-cols-3 gap-4 py-3 px-4 hover:bg-gray-50">
+              <div className="font-medium">{horario.dia}</div>
+              <div>{horario.horaApertura} hs</div>
+              <div>{horario.horaCierre} hs</div>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 };
