@@ -61,7 +61,7 @@ export const Home = () => {
                     to="/dashboard"
                     className="bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
                   >
-                    Dashboard
+                    Inicio de sesión
                   </Link>
                 ) : (
                   <Link
@@ -213,14 +213,14 @@ export const Home = () => {
                     </span>
                     <li className="list-none">
 
-
+                  {/* login reservar. */}
                 {token ? (
                   
                   <Link
                     to="/dashboard"
                     className="bg-gradient-to-r from-sky-600 to-emerald-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:scale-105 transition"
                   >
-                    Ir al Dashboard
+                    Reservar
                   </Link>
 
                 ) : (
