@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // <-- Importa useLocation
 import ConfirmModal from '../components/ConfirmModal'; // <-- Importar el nuevo componente
 
 const ReservarServicio = () => {
@@ -12,21 +12,14 @@ const ReservarServicio = () => {
   const [showModal, setShowModal] = useState(false); // <-- Estado para mostrar el modal
   const { fetchDataBackend } = useFetch();
   const navigate = useNavigate();
+  const location = useLocation(); // <-- Usa useLocation para obtener el estado
 
-  // Función para obtener el ID del cliente desde el token JWT
-  const getClienteIdFromToken = () => {
-    const storedUser = JSON.parse(localStorage.getItem("auth-token"));
-    if (storedUser && storedUser.state && storedUser.state.token) {
-      try {
-        const tokenPayload = JSON.parse(atob(storedUser.state.token.split('.')[1]));
-        return tokenPayload.id;
-      } catch (error) {
-        console.error("Error al decodificar el token:", error);
-        return null;
-      }
+  // Si llegamos aquí desde una tarjeta, usamos el servicio pasado en el estado
+  useEffect(() => {
+    if (location.state?.servicio) {
+      setServicioSeleccionado(location.state.servicio._id);
     }
-    return null;
-  };
+  }, [location.state]);
 
   const listServicios = async () => {
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicios?activo=true`;
@@ -49,14 +42,12 @@ const ReservarServicio = () => {
       alert("Por favor, selecciona un servicio.");
       return;
     }
-
     // Obtener los detalles del servicio seleccionado
     const servicio = servicios.find(s => s._id === servicioSeleccionado);
     if (!servicio) {
       alert("Servicio no encontrado.");
       return;
     }
-
     // Mostrar el modal de confirmación
     setShowModal(true);
   };
@@ -68,13 +59,11 @@ const ReservarServicio = () => {
       alert("No se pudo obtener tu ID. Por favor, inicia sesión nuevamente.");
       return;
     }
-
     const servicio = servicios.find(s => s._id === servicioSeleccionado);
     if (!servicio) {
       alert("Servicio no encontrado.");
       return;
     }
-
     const datosAtencion = {
       cliente: clienteId,
       nombre: servicio.nombre,
@@ -83,28 +72,40 @@ const ReservarServicio = () => {
       precio: servicio.precio,
       estadoPago: 'Pendiente'
     };
-
     const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/registro`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
     const headers = {
       "Content-Type": "application/json",
       Authorization: `Bearer ${storedUser.state.token}`,
     };
-
     try {
       const response = await fetchDataBackend(url, datosAtencion, "POST", headers);
       if (response) {
         // Limpiar el formulario
         setServicioSeleccionado('');
         setDetallesAdicionales('');
-        // Opcional: Redirigir a una página de confirmación
-        // navigate(`/dashboard/visualizar/${clienteId}`);
-        // alert("¡Reserva realizada con éxito!");
+        // Redirigir a la página de historial o dashboard
+        navigate(`/dashboard/historial`);
       }
     } catch (error) {
       console.error("Error al reservar servicio:", error);
       // El toast de error ya lo maneja `fetchDataBackend`
     }
+  };
+
+  // Función para obtener el ID del cliente desde el token JWT
+  const getClienteIdFromToken = () => {
+    const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+    if (storedUser && storedUser.state && storedUser.state.token) {
+      try {
+        const tokenPayload = JSON.parse(atob(storedUser.state.token.split('.')[1]));
+        return tokenPayload.id;
+      } catch (error) {
+        console.error("Error al decodificar el token:", error);
+        return null;
+      }
+    }
+    return null;
   };
 
   useEffect(() => {
@@ -170,7 +171,6 @@ const ReservarServicio = () => {
           Reservar Servicio
         </button>
       </form>
-
       {/* Modal de confirmación */}
       <ConfirmModal
         isOpen={showModal}
