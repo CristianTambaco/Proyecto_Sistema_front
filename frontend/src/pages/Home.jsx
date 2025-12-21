@@ -53,6 +53,7 @@ export const Home = () => {
 
               <li><a href="#" className="hover:text-emerald-600 transition">Inicio</a></li>
               <li><a href="#about" className="hover:text-emerald-600 transition">Nosotros</a></li>
+              <li><a href="#services" className="hover:text-emerald-600 transition">Servicios</a></li>
               <li><a href="#contact" className="hover:text-emerald-600 transition">Contacto</a></li>
 
               <li>
@@ -173,7 +174,7 @@ export const Home = () => {
       </section>
 
       {/* SECCIÓN DE SERVICIOS */}
-      <section className="py-12 bg-white px-4">
+      <section id="services" className="py-12 bg-white px-4">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Nuestros Servicios</h2>
           {loadingServicios ? (
