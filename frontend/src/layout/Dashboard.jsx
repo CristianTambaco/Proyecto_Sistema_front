@@ -414,7 +414,7 @@ const Dashboard = () => {
                                     : 'hover:bg-sky-400 hover:text-white text-slate-300'
                                 }`}
                             >
-                                <FaHistory /> Historial
+                                <FaHistory /> Atenciones
                             </Link>
                             </li>
 
