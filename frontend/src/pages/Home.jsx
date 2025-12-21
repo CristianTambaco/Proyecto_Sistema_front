@@ -38,20 +38,34 @@ export const Home = () => {
   const [active, setActive] = useState(0);
   const [fade, setFade] = useState(true);
 
+
+  const changeSlide = (index) => {
+    if (index === active) return;
+
+    setFade(false);
+    setTimeout(() => {
+      setActive(index);
+      setFade(true);
+    }, 800);
+  };
+
+
   
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
+  const interval = setInterval(() => {
+    changeSlide((active + 1) % heroBackgrounds.length);
+  }, 5000);
 
-      setTimeout(() => {
-        setActive(prev => (prev + 1) % heroBackgrounds.length);
-        setFade(true);
-      }, 1000);
-    }, 5000);
+  return () => clearInterval(interval);
+}, [active]);
 
-    return () => clearInterval(interval);
-  }, []);
+
+
+  
+
+
+  
 
 
 
@@ -143,6 +157,44 @@ export const Home = () => {
         </div>
 
 
+        {/* Botón anterior */}
+        <button
+          onClick={() =>
+            changeSlide(
+              (active - 1 + heroBackgrounds.length) % heroBackgrounds.length
+            )
+          }
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 transition"
+        >
+          ‹
+        </button>
+
+        {/* Botón siguiente */}
+        <button
+          onClick={() =>
+            changeSlide((active + 1) % heroBackgrounds.length)
+          }
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white p-3 rounded-full hover:bg-black/60 transition"
+        >
+          ›
+        </button>
+
+
+
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {heroBackgrounds.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => changeSlide(index)}
+              className={`w-3 h-3 rounded-full transition ${
+                index === active ? 'bg-white' : 'bg-white/40'
+              }`}
+            />
+          ))}
+        </div>
+
+
+
 
 
 
@@ -189,6 +241,9 @@ export const Home = () => {
           
         </div>
       </main>
+
+      
+
 
       {/* SOBRE NOSOTROS */}
       <section id="about" className="bg-gray-50 py-12 px-4">
