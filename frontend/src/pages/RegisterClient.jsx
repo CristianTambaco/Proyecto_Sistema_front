@@ -101,7 +101,7 @@ const RegisterClient = () => {
                             </div>
                             {/* Nombre completo */}
                             <div className="mb-3">
-                                <label className="mb-2 block text-sm font-semibold">Nombres completos<span className="text-red-600">*</span></label>
+                                <label className="mb-2 block text-sm font-semibold">Nombres<span className="text-red-600">*</span></label>
                                 <input
                                     type="text"
                                     placeholder="Ingresa nombre y apellido"
