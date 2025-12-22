@@ -34,14 +34,29 @@ const Perfil = () => {
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo muestra el perfil del usuario.</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="bg-white p-6 rounded-lg shadow md:col-span-2 max-w-xl mx-auto">
+
         {/* Información del usuario */}
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">Información Personal</h2>
           {isCliente ? (
             <>
+
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
+                  alt="img-client"
+                  className="w-16 h-16 border-2 border-gray-300 rounded-full"
+                />
+                <div>
+                  <p className="font-bold">{user.nombre || user.nombrePropietario}</p>
+                  <p className="text-gray-600">Rol: {user.rol}</p>
+                </div>
+              </div>
+
+
               <div className="mb-4">
-                <label className="block text-sm font-semibold">Nombre del propietario</label>
+                <label className="block text-sm font-semibold">Nombre</label>
                 <p className="mt-1">{user.nombrePropietario}</p>
               </div>
               <div className="mb-4">
@@ -57,20 +72,30 @@ const Perfil = () => {
                 <p className="mt-1">{user.celularPropietario}</p>
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-semibold">Nombre de la mascota</label>
+                <label className="block text-sm font-semibold">Mascota</label>
                 <p className="mt-1">{user.nombreMascota}</p>
               </div>
-              {/* <div className="mb-4">
-                <label className="block text-sm font-semibold">Sociable con otros animales</label>
-                <p className="mt-1">{user.tipoPelajeMascota}</p>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-semibold">Características de la mascota</label>
-                <p className="mt-1">{user.caracteristicasMascota}</p>
-              </div> */}
+              
+
             </>
           ) : (
             <>
+
+
+              <div className="flex items-center gap-4 mb-4">
+                <img
+                  src="https://cdn-icons-png.freepik.com/512/1177/1177568.png"
+                  alt="img-client"
+                  className="w-16 h-16 border-2 border-gray-300 rounded-full"
+                />
+                <div>
+                  <p className="font-bold">{user.nombre || user.nombrePropietario}</p>
+                  <p className="text-gray-600">Rol: {user.rol}</p>
+                </div>
+              </div>
+
+
+
               <div className="mb-4">
                 <label className="block text-sm font-semibold">Nombre</label>
                 <p className="mt-1">{user.nombre}</p>
@@ -96,7 +121,8 @@ const Perfil = () => {
         </div>
 
         {/* Resumen / Tarjeta de perfil */}
-        <div className="bg-white p-6 rounded-lg shadow">
+
+        {/* <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-xl font-bold mb-4">Resumen</h2>
           <div className="flex items-center gap-4 mb-4">
             <img
@@ -117,7 +143,10 @@ const Perfil = () => {
               <p><strong>Mascota:</strong> {user.nombreMascota}</p>
             )}
           </div>
-        </div>
+        </div> */}
+
+
+
       </div>
     </div>
   );
