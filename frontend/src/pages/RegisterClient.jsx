@@ -244,13 +244,20 @@ const RegisterClient = () => {
                                 </div>
                             </div>
                         </fieldset>
+
+
+
                         {/* Información de la mascota */}
-                        <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10">
-                            <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
+
+                        {/* <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10"> */}
+
+                            {/* <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
                                 Información de la mascota
-                            </legend>
+                            </legend> */}
+
                             {/* Nombre de la mascota */}
-                            <div className="mb-3">
+
+                            {/* <div className="mb-3">
                                 <label className="mb-2 block text-sm font-semibold">Nombre<span className="text-red-600">*</span></label>
                                 <input
                                     type="text"
@@ -273,9 +280,12 @@ const RegisterClient = () => {
                                     })}
                                 />
                                 {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
-                            </div>
+                            </div> */}
+
+
                             {/* Tipo de pelaje */}
-                            <div className="mb-3">
+
+                            {/* <div className="mb-3">
                                 <label className="mb-2 block text-sm font-semibold">Sociable con otros animales<span className="text-red-600">*</span></label>
                                 <select
                                     id="prioridad"
@@ -289,9 +299,11 @@ const RegisterClient = () => {
                                 {errors.tipoPelajeMascota && (
                                     <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>
                                 )}
-                            </div>
+                            </div> */}
+
                             {/* Detalles adicionales */}
-                            <div className="mb-3">
+
+                            {/* <div className="mb-3">
                                 <label className="mb-2 block text-sm font-semibold">Detalles adicionales<span className="text-red-600">*</span></label>
                                 <textarea
                                     placeholder="Detalles"
@@ -307,8 +319,14 @@ const RegisterClient = () => {
                                 {errors.caracteristicasMascota && (
                                     <p className="text-red-800">{errors.caracteristicasMascota.message}</p>
                                 )}
-                            </div>
-                        </fieldset>
+                            </div> */}
+
+                        {/* </fieldset> */}
+
+
+
+
+
                         {/* Botón de submit */}
                         <input
                             type="submit"
