@@ -3,7 +3,18 @@ import { toast } from "react-toastify";
 
 function useFetch() {
   const fetchDataBackend = async (url, data = null, method = "GET", headers = {}) => {
-    const loadingToast = toast.loading("Procesando solicitud...");
+
+
+    // ***comentar uno de los dos: const loadingToast***
+    // --------------------
+
+    // const loadingToast = toast.loading("Procesando solicitud...");
+
+    const loadingToast = toast.loading;
+
+    // ---------------
+
+    
     try {
       // Detectar si es FormData
       const isFormData = data instanceof FormData;
