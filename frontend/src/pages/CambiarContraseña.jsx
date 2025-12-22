@@ -50,7 +50,7 @@ const CambiarContraseña = () => {
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite cambiar tu contraseña.</p>
 
-      <form onSubmit={handleSubmit(onChangePassword)} className="max-w-md mx-auto">
+      <form onSubmit={handleSubmit(onChangePassword)} className="max-w-md mx-auto border border-gray-300 rounded-lg p-6 shadow-sm">
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">
             Contraseña actual <span className="text-red-600">*</span>
