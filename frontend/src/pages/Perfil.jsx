@@ -34,7 +34,8 @@ const Perfil = () => {
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo muestra el perfil del usuario.</p>
 
-      <div className="bg-white p-6 rounded-lg shadow md:col-span-2 max-w-xl mx-auto">
+      <div className="bg-white p-6 rounded-lg shadow-md border border-gray-300 md:col-span-2 max-w-xl mx-auto">
+
 
         {/* Información del usuario */}
         <div className="bg-white p-6 rounded-lg shadow">

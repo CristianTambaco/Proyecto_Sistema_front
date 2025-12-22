@@ -76,7 +76,7 @@ const EditarPerfil = () => {
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite editar tu información personal.</p>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl mx-auto border border-gray-300 rounded-lg p-6 shadow-md bg-white">
         {rol === 'cliente' ? (
           <>
             <div className="mb-4">
