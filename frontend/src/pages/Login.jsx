@@ -21,7 +21,7 @@ const Login = () => {
         let url;
         if (rol === 'cliente') {
             url = `${import.meta.env.VITE_BACKEND_URL}/cliente/login`;
-        } else if (rol === 'administrador') {
+        } else if (rol === 'administrador' || rol === '' ) {
             url = `${import.meta.env.VITE_BACKEND_URL}/loginad`;
         } else {
             url = `${import.meta.env.VITE_BACKEND_URL}/login`; // estilista
@@ -108,13 +108,14 @@ const Login = () => {
                         <div className="mb-3">
                             <label className="mb-2 block text-sm font-semibold">Rol</label>
                             <select
-                                {...register("rol", { required: "El rol es obligatorio" })}
+                                {...register("rol",)}
                                 className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
                             >
                                 <option value="">-- Seleccione --</option>
                                 <option value="cliente">Cliente</option>
                                 <option value="estilista">Estilista</option>
-                                <option value="administrador">Administrador</option>
+
+                                {/* <option value="administrador">Administrador</option> */}
                             </select>
                             {errors.rol && <p className="text-red-800">{errors.rol.message}</p>}
                         </div>
