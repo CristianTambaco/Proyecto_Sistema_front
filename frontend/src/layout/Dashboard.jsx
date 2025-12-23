@@ -163,7 +163,7 @@ const Dashboard = () => {
                         </li> */}
                         
 
-                        {showDashboardButton && (
+                        {(rol === 'administrador' || rol === 'estilista') && isInsideDashboard && (
                         <li>
                             <Link
                                 to="/dashboard/listar"
@@ -177,6 +177,7 @@ const Dashboard = () => {
                                 <FaList /> Cliente
                             </Link>
                         </li>
+
                         )}
 
 
@@ -207,6 +208,28 @@ const Dashboard = () => {
                                 <FaComments /> Chat
                             </Link> */}
                         </li>
+
+
+
+                        
+
+                        {rol === 'cliente' && isInsideDashboard && (
+                        <li>
+                            <Link
+                            to="/dashboard/listar-mascotas"
+                            className={`flex items-center gap-2 px-3 py-1 rounded-md transition ${
+                                urlActual === '/dashboard/listar-mascotas'
+                                ? 'bg-sky-500 text-white'
+                                : 'hover:bg-sky-400 hover:text-white text-slate-300'
+                            }`}
+                            >
+                            <FaDog /> Mis Mascotas
+                            </Link>
+                        </li>
+                        )}
+
+
+
 
 
 

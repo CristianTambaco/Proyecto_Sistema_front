@@ -1,6 +1,6 @@
 // src/pages/DashboardHome.jsx
 import { Link } from 'react-router-dom';
-import { FaList, FaClipboard, FaUsers, FaChartLine, FaCalendarAlt, FaUserCog, FaClock, FaHistory, FaCut, FaBook, FaUserAlt } from 'react-icons/fa';
+import { FaList, FaClipboard, FaUsers, FaChartLine, FaCalendarAlt, FaUserCog, FaClock, FaHistory, FaCut, FaBook, FaUserAlt, FaDog } from 'react-icons/fa';
 import storeAuth from '../context/storeAuth'; // <-- Importar storeAuth
 
 const DashboardHome = () => {
@@ -35,15 +35,27 @@ const DashboardHome = () => {
 
 
 
-
-
-        {userRole === 'cliente' && (
+        {/* {userRole === 'cliente' && (
         <Link
           to="/dashboard/listar"
           className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center justify-center h-40"
         >
           <FaUserAlt className="text-4xl text-blue-600 mb-3" />
           <span className="text-center text-sm font-medium text-gray-700">Cliente</span>
+        </Link>
+        )} */}
+
+
+
+
+
+        {userRole === 'cliente' && (
+        <Link
+          to="/dashboard/listar-mascotas"
+          className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center justify-center h-40"
+        >
+          <FaDog className="text-4xl text-blue-600 mb-3" />
+          <span className="text-center text-sm font-medium text-gray-700">Mascotas</span>
         </Link>
         )}
 

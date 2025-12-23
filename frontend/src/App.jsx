@@ -77,6 +77,15 @@ import DashboardHome from './pages/DashboardHome'
 
 
 
+import CrearMascota from './pages/CrearMascota';
+import ListarMascotas from './pages/ListarMascotas';
+import EditarMascota from './pages/EditarMascota';
+
+
+
+
+
+
 function App() {
 
   const { profile} = storeProfile()
@@ -273,6 +282,26 @@ function App() {
                     </PrivateRouteWithRole>
                   } />
 
+
+
+
+                 
+                    <Route path='listar-mascotas' element={
+                      <PrivateRouteWithRole allowedRoles={['cliente']}>
+                        <ListarMascotas />
+                      </PrivateRouteWithRole>
+                    } />
+                    <Route path='crear-mascota' element={
+                      <PrivateRouteWithRole allowedRoles={['cliente']}>
+                        <CrearMascota />
+                      </PrivateRouteWithRole>
+                    } />
+                    <Route path='editar-mascota/:id' element={
+                      <PrivateRouteWithRole allowedRoles={['cliente']}>
+                        <EditarMascota />
+                      </PrivateRouteWithRole>
+                    } />
+                  
 
 
 
