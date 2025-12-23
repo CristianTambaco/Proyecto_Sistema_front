@@ -1,5 +1,5 @@
 // frontend/src/components/mascotas/TableMascotas.jsx
-import { MdDeleteForever, MdInfo, MdPublishedWithChanges } from "react-icons/md";
+import { MdInfo, MdPublishedWithChanges } from "react-icons/md";
 import storeAuth from "../../context/storeAuth";
 import { Link } from "react-router-dom";
 
@@ -39,27 +39,21 @@ const TableMascotas = ({ mascotas, onDelete, onEdit }) => {
                             </span>
                         </td>
                         <td className='py-2 text-center'>
-                            <MdInfo
-                                title="Más información"
+                            {/* Botón de Información */}
+                            <Link
+                                to={`/dashboard/detalles-mascota/${mascota._id}`}
                                 className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-green-600"
-                                onClick={() => onEdit(mascota)}
-                            />
-                            {(rol === "cliente") && (
-                                <>
-                                    <span
-                                        title="Actualizar"
-                                        onClick={() => onEdit(mascota)}
-                                        className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
-                                    >
-                                        ✏️
-                                    </span>
-                                    <MdDeleteForever
-                                        title="Eliminar"
-                                        className="h-7 w-7 text-red-900 cursor-pointer inline-block hover:text-red-600"
-                                        onClick={() => onDelete(mascota._id)}
-                                    />
-                                </>
-                            )}
+                            >
+                                <MdInfo title="Más información" />
+                            </Link>
+                            {/* Botón de Actualizar */}
+                            <Link
+                                to={`/dashboard/editar-mascota/${mascota._id}`}
+                                className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
+                            >
+                                <MdPublishedWithChanges title="Actualizar" />
+                            </Link>
+                            {/* NO SE MUESTRA EL BOTÓN DE ELIMINAR */}
                         </td>
                     </tr>
                 ))}

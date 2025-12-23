@@ -80,6 +80,7 @@ import DashboardHome from './pages/DashboardHome'
 import CrearMascota from './pages/CrearMascota';
 import ListarMascotas from './pages/ListarMascotas';
 import EditarMascota from './pages/EditarMascota';
+import DetallesMascota from './pages/DetallesMascota'
 
 
 
@@ -286,20 +287,27 @@ function App() {
 
 
                  
+                    
                     <Route path='listar-mascotas' element={
-                      <PrivateRouteWithRole allowedRoles={['cliente']}>
-                        <ListarMascotas />
-                      </PrivateRouteWithRole>
+                        <PrivateRouteWithRole allowedRoles={['cliente']}>
+                            <ListarMascotas />
+                        </PrivateRouteWithRole>
                     } />
                     <Route path='crear-mascota' element={
-                      <PrivateRouteWithRole allowedRoles={['cliente']}>
-                        <CrearMascota />
-                      </PrivateRouteWithRole>
+                        <PrivateRouteWithRole allowedRoles={['cliente']}>
+                            <CrearMascota />
+                        </PrivateRouteWithRole>
+                    } />
+                    {/* NUEVAS RUTAS */}
+                    <Route path='detalles-mascota/:id' element={
+                        <PrivateRouteWithRole allowedRoles={['cliente']}>
+                            <DetallesMascota />
+                        </PrivateRouteWithRole>
                     } />
                     <Route path='editar-mascota/:id' element={
-                      <PrivateRouteWithRole allowedRoles={['cliente']}>
-                        <EditarMascota />
-                      </PrivateRouteWithRole>
+                        <PrivateRouteWithRole allowedRoles={['cliente']}>
+                            <EditarMascota />
+                        </PrivateRouteWithRole>
                     } />
                   
 

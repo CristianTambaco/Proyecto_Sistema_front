@@ -22,6 +22,19 @@ const FormMascota = ({ mascota, onSubmit }) => {
         // Esta función se puede implementar si quieres mostrar una vista previa
     };
 
+
+
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const minDate = new Date();
+    minDate.setFullYear(minDate.getFullYear() - 30);
+    const minDateFormatted = minDate.toISOString().split("T")[0];
+
+
+
+
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <ToastContainer />
@@ -81,15 +94,30 @@ const FormMascota = ({ mascota, onSubmit }) => {
                 {errors.caracteristicas && <p className="text-red-800">{errors.caracteristicas.message}</p>}
             </div>
 
-            {/* Fecha de Nacimiento (opcional) */}
+            {/* Fecha de Nacimiento */}
             <div className="mb-4">
-                <label className="block text-sm font-semibold mb-1">Fecha de Nacimiento</label>
+                <label className="block text-sm font-semibold mb-1">
+                    Fecha de Nacimiento
+                </label>
                 <input
                     type="date"
                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-                    {...register("fechaNacimiento")}
+                    min={minDateFormatted}
+                    max={today}
+                    {...register("fechaNacimiento", {
+                        validate: {
+                            notFuture: (value) =>
+                                !value || value <= today || "La fecha no puede ser futura",
+                            notTooOld: (value) =>
+                                !value || value >= minDateFormatted || "La mascota no puede tener más de 30 años",
+                        },
+                    })}
                 />
+                {errors.fechaNacimiento && (
+                    <p className="text-red-800">{errors.fechaNacimiento.message}</p>
+                )}
             </div>
+
 
             {/* Estado */}
             <div className="mb-4">
@@ -104,7 +132,9 @@ const FormMascota = ({ mascota, onSubmit }) => {
             </div>
 
             {/* Subir Imagen */}
-            <div className="mb-4">
+
+
+            {/* <div className="mb-4">
                 <label className="block text-sm font-semibold mb-1">Imagen de la Mascota</label>
                 <div className="flex items-center gap-4">
                     <button
@@ -141,7 +171,8 @@ const FormMascota = ({ mascota, onSubmit }) => {
                         </div>
                     )}
                 </div>
-            </div>
+
+            </div> */}
 
             <input
                 type="submit"
