@@ -106,7 +106,7 @@ const List = () => {
             <div className="flex flex-col md:flex-row gap-4 mb-6">
                 {/* Filtro por nombre de mascota */}
 
-                {rol === 'administrador' && (
+                {/* {rol === 'administrador' && (
                 <div className="flex-1 max-w-md">
                     <label htmlFor="filtroNombreMascota" className="block text-sm font-semibold mb-2">
                         Filtrar por Nombre de Mascota
@@ -120,7 +120,7 @@ const List = () => {
                         onChange={(e) => setFiltroNombreMascota(e.target.value)}
                     />
                 </div>
-                )}
+                )} */}
 
 
                 {/* Filtro por nombre de usuario */}

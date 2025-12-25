@@ -47,7 +47,7 @@ const Table = ({ clientes }) => { // <-- Recibir clientes como prop
         <table className="w-full mt-5 table-auto shadow-lg bg-white">
             <thead className="bg-gray-800 text-slate-400">
                 <tr>
-                    {["N°", "Nombre mascota", "Nombre usuario", "Email", "Celular", "Estado", "Acciones"].map((header) => (
+                    {["N°", "Nombre usuario", "Email", "Celular", "Estado", "Acciones"].map((header) => (
                         <th key={header} className="p-2">{header}</th>
                     ))}
                 </tr>
@@ -56,7 +56,9 @@ const Table = ({ clientes }) => { // <-- Recibir clientes como prop
                 {patients.map((patient, index) => (
                     <tr className="hover:bg-gray-300 text-center" key={patient._id}>
                         <td>{index + 1}</td>
-                        <td>{patient.nombreMascota}</td>
+
+                        {/* <td>{patient.nombreMascota}</td> */}
+                        
                         <td>{patient.nombrePropietario}</td>
                         <td>{patient.emailPropietario}</td>
                         <td>{patient.celularPropietario}</td>

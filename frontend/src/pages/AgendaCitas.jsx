@@ -87,7 +87,7 @@ const AgendaCitas = () => {
                     <input
                         id="filtro"
                         type="text"
-                        placeholder="Cliente, mascota o servicio..."
+                        placeholder="Cliente o servicio..."
                         className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-700"
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
@@ -127,8 +127,10 @@ const AgendaCitas = () => {
                         <tr>
                             <th className="p-2">Fecha Registro</th>
                             <th className="p-2">Servicio</th>
-                            <th className="p-2">Cliente / Mascota</th>
-                            <th className="p-2">Estado Pago</th>
+                            <th className="p-2">Cliente</th>
+
+                            {/* <th className="p-2">Estado Pago</th> */}
+
                         </tr>
                     </thead>
                     <tbody>
@@ -146,9 +148,12 @@ const AgendaCitas = () => {
                                 <td>{cita.nombre}</td>
                                 <td>
                                     {cita.cliente?.nombrePropietario || 'N/A'}<br />
-                                    <small className="text-gray-500">{cita.cliente?.nombreMascota || '–'}</small>
+
+                                    {/* <small className="text-gray-500">{cita.cliente?.nombreMascota || '–'}</small> */}
+                                
                                 </td>
-                                <td>
+
+                                {/* <td>
                                     <span className={`px-2 py-1 rounded text-xs ${
                                         cita.estadoPago === 'Pagado' 
                                             ? ' text-green-600' 
@@ -156,7 +161,8 @@ const AgendaCitas = () => {
                                     }`}>
                                         {cita.estadoPago}
                                     </span>
-                                </td>
+                                </td> */}
+
                             </tr>
                         ))}
                     </tbody>

@@ -89,7 +89,7 @@ const HistorialGeneral = () => {
                     <option value="">-- Todos los clientes --</option>
                     {clientes.map(cliente => (
                         <option key={cliente._id} value={cliente._id}>
-                            {cliente.nombreMascota} - {cliente.nombrePropietario}
+                            {cliente.nombrePropietario}
                         </option>
                     ))}
                 </select>

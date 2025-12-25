@@ -64,7 +64,7 @@ const CreateCliente = () => {
                 {/* Información del propietario */}
                 <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg">
                     <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
-                        Información del propietario
+                        Información del cliente
                     </legend>
                     {/* Cédula */}
                     <div className="mb-3">
@@ -100,7 +100,7 @@ const CreateCliente = () => {
                     </div>
                     {/* Nombre completo */}
                     <div className="mb-3">
-                        <label className="mb-2 block text-sm font-semibold">Nombres completos <span className="text-red-600">*</span></label>
+                        <label className="mb-2 block text-sm font-semibold">Nombres <span className="text-red-600">*</span></label>
                         <input
                             type="text"
                             placeholder="Ingresa nombre y apellido"
@@ -242,12 +242,16 @@ const CreateCliente = () => {
                 </fieldset>
 
                 {/* Información de la mascota */}
-                <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10">
-                    <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
-                        Información de la mascota
-                    </legend>
+
+                {/* <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10"> */}
+
+                    {/* <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
+                        Información de la mascota.
+                    </legend> */}
+
                     {/* Nombre de la mascota */}
-                    <div className="mb-3">
+
+                    {/* <div className="mb-3">
                         <label className="mb-2 block text-sm font-semibold">Nombre <span className="text-red-600">*</span></label>
                         <input
                             type="text"
@@ -270,9 +274,11 @@ const CreateCliente = () => {
                             })}
                         />
                         {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
-                    </div>
+                    </div> */}
+
                     {/* Tipo de pelaje */}
-                    <div className="mb-3">
+
+                    {/* <div className="mb-3">
                         <label className="mb-2 block text-sm font-semibold">Sociable con otros animales <span className="text-red-600">*</span></label>
                         <select
                             id="prioridad"
@@ -286,9 +292,11 @@ const CreateCliente = () => {
                         {errors.tipoPelajeMascota && (
                             <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>
                         )}
-                    </div>
+                    </div> */}
+
                     {/* Detalles adicionales */}
-                    <div className="mb-3">
+
+                    {/* <div className="mb-3">
                         <label className="mb-2 block text-sm font-semibold">Detalles adicionales <span className="text-red-600">*</span></label>
                         <textarea
                             placeholder="Detalles"
@@ -304,8 +312,11 @@ const CreateCliente = () => {
                         {errors.caracteristicasMascota && (
                             <p className="text-red-800">{errors.caracteristicasMascota.message}</p>
                         )}
-                    </div>
-                </fieldset>
+                    </div> */}
+
+
+                {/* </fieldset> */}
+
 
                 {/* Botón de submit */}
                 <input

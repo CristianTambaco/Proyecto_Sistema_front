@@ -88,14 +88,19 @@ const HistorialTrabajos = () => {
           <thead className="bg-gray-800 text-slate-400">
             <tr>
               <th className="p-2">Fecha</th>
-              <th className="p-2">Cliente / Mascota</th>
+              <th className="p-2">Cliente</th>
               <th className="p-2">Servicio</th>
               <th className="p-2">Descripción</th>
-              <th className="p-2">Prioridad</th>
+
+              {/* <th className="p-2">Prioridad</th> */}
+
               <th className="p-2">Precio</th>
               <th className="p-2">Observaciones</th>
               {rol === "administrador" && <th className="p-2">Estilista</th>}
-              <th className="p-2">Acciones</th>
+
+
+              {/* <th className="p-2">Acciones</th> */}
+
             </tr>
           </thead>
           <tbody>
@@ -112,12 +117,17 @@ const HistorialTrabajos = () => {
                 </td>
                 <td>
                   {trabajo.cliente?.nombrePropietario || "—"}<br />
-                  <small className="text-gray-500">{trabajo.cliente?.nombreMascota || "–"}</small>
+
+                  {/* <small className="text-gray-500">{trabajo.cliente?.nombreMascota || "–"}</small> */}                  
+                  
                 </td>
                 <td>{trabajo.nombreServicio}</td>
+
                 <td className="max-w-xs truncate px-2">{trabajo.descripcion}</td>
-                <td>
-                  <span
+
+                {/* <td> */}
+
+                  {/* <span
                     className={`px-2 py-1 rounded text-xs ${
                       trabajo.prioridad === "Alta"
                         ? " text-red-800"
@@ -127,8 +137,12 @@ const HistorialTrabajos = () => {
                     }`}
                   >
                     {trabajo.prioridad}
-                  </span>
-                </td>
+                  </span> */}
+
+
+                {/* </td> */}
+                
+
                 <td>$ {trabajo.precio.toFixed(2)}</td>
                 <td className="max-w-xs truncate px-2">
                   {trabajo.observaciones || "— sin observaciones —"}
@@ -138,7 +152,9 @@ const HistorialTrabajos = () => {
                     {trabajo.estilista?.nombre || "—"} {trabajo.estilista?.apellido || ""}
                   </td>
                 )}
-                <td>
+
+
+                {/* <td>
                   {((rol === "administrador" || rol === "estilista") ||
                     (rol === "estilista" && trabajo.estilista?._id === userId)) && (
                     <button
@@ -149,7 +165,9 @@ const HistorialTrabajos = () => {
                       🗑️
                     </button>
                   )}
-                </td>
+                </td> */}
+
+
               </tr>
             ))}
           </tbody>

@@ -126,7 +126,7 @@ const RegistrarTrabajo = () => {
             <option value="">-- Seleccionar cliente --</option>
             {clientes.map((c) => (
               <option key={c._id} value={c._id}>
-                {c.nombreMascota} • {c.nombrePropietario}
+                {c.nombrePropietario}
               </option>
             ))}
           </select>

@@ -58,7 +58,7 @@ const Details = () => {
                         <ul className="list-disc pl-5">
 
                             {/* Datos del cliente */}
-                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos del dueño</li>
+                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos del cliente</li>
 
                             <ul className="pl-5">
                                 <li className="text-md text-gray-00 mt-2">
@@ -80,7 +80,9 @@ const Details = () => {
 
 
                             {/* Datos de mascota */}
-                            <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos de la mascota</li>
+
+
+                            {/* <li className="text-md text-gray-00 mt-4 font-bold text-xl">Datos de la mascota</li>
 
                             <ul className="pl-5">
                                 <li className="text-md text-gray-00 mt-2">
@@ -90,10 +92,7 @@ const Details = () => {
                                 <li className="text-md text-gray-00 mt-2">
                                     <span className="text-gray-600 font-bold">Sociable con otros animales: {patient?.tipoPelajeMascota}</span>
                                 </li>
-
-                                {/* <li className="text-md text-gray-00 mt-2">
-                                    <span className="text-gray-600 font-bold">Fecha de nacimiento: {formatDate(patient?.fechaNacimientoMascota)}</span>
-                                </li> */}
+                                
 
                                 <li className="text-md text-gray-00 mt-2">
                                     <span className="text-gray-600 font-bold">Estado: </span>
@@ -110,13 +109,19 @@ const Details = () => {
                                     <span className="text-gray-600 font-bold">Detalles adicionales: {patient?.caracteristicasMascota}</span>
                                 </li>
 
-                            </ul>
+                            </ul> */}
+
+
+
+
                         </ul>
                     </div>
 
-                    <div>
+                    {/* <div>
                         <img src={patient?.avatarMascota || patient?.avatarMascotaIA} alt="dogandcat" className='h-80 w-80 rounded-full' />
-                    </div>
+                    </div> */}
+
+
                 </div>
 
                 <hr className='my-4 border-t-2 border-gray-300' />

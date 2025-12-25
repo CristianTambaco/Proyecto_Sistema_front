@@ -94,7 +94,7 @@ export const Form = ({patient}) => {
             {/* Información del propietario */}
             <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg">
                 <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
-                    Información del propietario
+                    Información del cliente
                 </legend>
                 {/* Cédula */}
                 <div>
@@ -229,13 +229,16 @@ export const Form = ({patient}) => {
             </fieldset>
 
             {/* Información de la mascota */}
-            <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10">
-                <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
+
+            {/* <fieldset className="border-2 border-gray-500 p-6 rounded-lg shadow-lg mt-10"> */}
+
+                {/* <legend className="text-xl font-bold text-gray-700 bg-gray-200 px-4 py-1 rounded-md">
                     Información de la mascota
-                </legend>
+                </legend> */}
 
                 {/* Nombre de la mascota */}
-                <div>
+
+                {/* <div>
                     <label className="mb-2 block text-sm font-semibold">
                         Nombre <span className="text-red-600">*</span>
                     </label>
@@ -259,22 +262,22 @@ export const Form = ({patient}) => {
                         })}
                     />
                     {errors.nombreMascota && <p className="text-red-800">{errors.nombreMascota.message}</p>}
-                </div>
+                </div> */}
 
-
-
-                
-
+              
 
 
                 {/* Imagen de la mascota*/}
 
 
-                <div className="mt-5">
-                        <label className="mb-2 block text-sm font-semibold">Subir Imagen</label>
-                        <div className="flex items-center gap-4">
+                {/* <div className="mt-5"> */}
+{/* 
+                        <label className="mb-2 block text-sm font-semibold">Subir Imagen</label> */}
+                        {/* <div className="flex items-center gap-4"> */}
+
                             {/* Botón para seleccionar archivo */}
-                            <button
+
+                            {/* <button
                                 type="button"
                                 onClick={() => document.getElementById('fileInput').click()}
                                 className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition duration-200 flex items-center gap-2"
@@ -283,36 +286,34 @@ export const Form = ({patient}) => {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M15 12L12 9m0 0L9 12m3-3v12" />
                                 </svg>
                                 Seleccionar archivo
-                            </button>
-
-
-
-                            
-
-
+                            </button> */}
+                    
 
 
                             {/* Mostrar nombre del archivo seleccionado */}
-                            {watch("imagen")?.[0] ? (
+
+                            {/* {watch("imagen")?.[0] ? (
                                 <span className="text-sm text-gray-600 truncate max-w-xs">
                                     {watch("imagen")[0].name}
                                 </span>
                             ) : (
                                 <span className="text-sm text-gray-500">Sin archivos seleccionados</span>
-                            )}
+                            )} */}
 
                             {/* Input oculto */}
-                            <input
+
+                            {/* <input
                                 id="fileInput"
                                 type="file"
                                 accept="image/*"
                                 className="hidden"
                                 {...register("imagen")}
-                            />
+                            /> */}
 
 
                             {/* Vista previa de la imagen (opcional) */}
-                            {watch("imagen")?.[0] && (
+
+                            {/* {watch("imagen")?.[0] && (
                                 <div className="mt-4">
                                     <img
                                         src={URL.createObjectURL(watch("imagen")[0])}
@@ -320,13 +321,12 @@ export const Form = ({patient}) => {
                                         className="w-20 h-20 object-cover rounded-md border border-gray-300"
                                     />
                                 </div>
-                            )}
+                            )} */}
 
 
+                        {/* </div> */}
 
-
-                        </div>
-                    </div>
+                    {/* </div> */}
 
 
 
@@ -445,7 +445,8 @@ export const Form = ({patient}) => {
 
 
                 {/* Tipo de mascota */}
-                <div>
+
+                {/* <div>
                     <label className="mb-2 block text-sm font-semibold">
                         Sociable con otros animales <span className="text-red-600">*</span>
                     </label>
@@ -459,10 +460,11 @@ export const Form = ({patient}) => {
                         <option value="no">No</option>
                     </select>
                     {errors.tipoPelajeMascota && <p className="text-red-800">{errors.tipoPelajeMascota.message}</p>}
-                </div>
+                </div> */}
 
                 {/* Detalles */}
-                <div>
+
+                {/* <div>
                     <label className="mb-2 block text-sm font-semibold">
                         Detalles adicionales <span className="text-red-600">*</span>
                     </label>
@@ -477,10 +479,11 @@ export const Form = ({patient}) => {
                         })}
                     />
                     {errors.caracteristicasMascota && <p className="text-red-800">{errors.caracteristicasMascota.message}</p>}
-                </div>
+                </div> */}
 
                 {/* Estado de la mascota - Ocultar si el rol es cliente */}
-                {patient && rol !== 'cliente' && ( // Mostrar solo si es edición Y el rol no es cliente
+
+                {/* {patient && rol !== 'cliente' && ( 
                     <div>
                         <label className="mb-2 block text-sm font-semibold">
                             Estado <span className="text-red-600">*</span>
@@ -494,8 +497,11 @@ export const Form = ({patient}) => {
                         </select>
                         {errors.estadoMascota && <p className="text-red-800">{errors.estadoMascota.message}</p>}
                     </div>
-                )}
-            </fieldset>
+                )} */}
+
+
+            {/* </fieldset> */}
+
 
             {/* Botón de submit */}
             <input
