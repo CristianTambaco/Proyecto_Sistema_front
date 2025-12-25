@@ -38,23 +38,28 @@ const TableMascotas = ({ mascotas, onDelete, onEdit }) => {
                                 {mascota.estado ? "Activo" : "Inactivo"}
                             </span>
                         </td>
-                        <td className='py-2 text-center'>
-                            {/* Botón de Información */}
-                            <Link
-                                to={`/dashboard/detalles-mascota/${mascota._id}`}
-                                className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-green-600"
-                            >
-                                <MdInfo title="Más información" />
-                            </Link>
-                            {/* Botón de Actualizar */}
-                            <Link
-                                to={`/dashboard/editar-mascota/${mascota._id}`}
-                                className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-blue-600"
-                            >
-                                <MdPublishedWithChanges title="Actualizar" />
-                            </Link>
-                            {/* NO SE MUESTRA EL BOTÓN DE ELIMINAR */}
-                        </td>
+                        <td className="py-2">
+  <div className="flex justify-center items-center gap-2">
+    {/* Botón de Información */}
+    <Link
+      to={`/dashboard/detalles-mascota/${mascota._id}`}
+      className="h-10 w-10 text-slate-800 cursor-pointer flex items-center justify-center hover:text-green-600"
+      title="Más información"
+    >
+      <MdInfo size={28} />
+    </Link>
+
+    {/* Botón de Editar usando emoji ✏️ */}
+    <Link
+      to={`/dashboard/editar-mascota/${mascota._id}`}
+      className="h-10 w-10 text-slate-800 cursor-pointer flex items-center justify-center text-2xl hover:text-blue-600"
+      title="Editar"
+    >
+      ✏️
+    </Link>
+  </div>
+</td>
+
                     </tr>
                 ))}
             </tbody>

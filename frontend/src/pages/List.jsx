@@ -81,7 +81,7 @@ const List = () => {
                     } else if (rol === "estilista") {
                         return "Este módulo te permite ver los clientes.";
                     } else if (rol === "cliente") {
-                        return "Sección de los clientes.";
+                        return "Gestión de información.";
                     } else {
                         return "Este módulo te permite gestionar .";
                     }
