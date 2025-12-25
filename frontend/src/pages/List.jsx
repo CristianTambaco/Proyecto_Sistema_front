@@ -69,10 +69,23 @@ const List = () => {
 
     const clientesFiltrados = filtrarClientes();
 
+
+
+    // Definir el título según el rol
+    const titulo = rol === "administrador"
+        ? "Clientes"
+        : rol === "estilista"
+        ? "Clientes registrados"
+        : rol === "cliente"
+        ? "Cliente"
+        : "Usuarios";
+
+
+
     return (
         <div>
             
-            <h1 className='font-black text-4xl text-gray-500'>Clientes</h1>
+            <h1 className='font-black text-4xl text-gray-500'>{titulo}</h1>
             <hr className='my-4 border-t-2 border-gray-300' />
             {/* Mensaje según el rol */}
             <p className='mb-8'>
