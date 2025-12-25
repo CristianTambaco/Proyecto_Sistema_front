@@ -68,11 +68,31 @@ const Dashboard = () => {
 
                 {/* Logo y usuario */}
                 <div className="flex items-center gap-4 mb-2 sm:mb-0">
+
+
+                    {/* Logo clickeable */}
+
+                    {/* <Link to="/" className="shrink-0">
+                        <img
+                        src="https://img.freepik.com/vector-premium/peluqueria-perros-gatos-simbolo-peluqueria-canina-simbolo-peluqueria-animales_662695-70.jpg"
+                        alt="Logo Estética Canina"
+                        className="w-12 h-12 border-2 border-sky-300 rounded-full cursor-pointer hover:opacity-90 transition"
+                        />
+                    </Link> */}
+
+
+
                     <img
                         src="https://img.freepik.com/vector-premium/peluqueria-perros-gatos-simbolo-peluqueria-canina-simbolo-peluqueria-animales_662695-70.jpg"
                         alt="img-client"
                         className="w-12 h-12 border-2 border-sky-300 rounded-full"
                     />
+
+
+
+
+
+                    
                     <div>
 
                         {/* <h2 className="text-xl font-extrabold text-sky-300">EstéticaCanina</h2> */}
