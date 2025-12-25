@@ -133,17 +133,20 @@ export const Home = () => {
 
     
       {/* HERO */}
-      <main className="pt-2 bg-gradient-to-br from-emerald-50 via-white to-sky-50 relative">
+      <main className="pt-2 bg-gradient-to-br from-emerald-50 via-white to-sky-50 relative min-h-[80vh] max-h-[900px]">
+
         {/* Imagen de fondo */}
 
         {/* Fondo con transición suave */}
         <div className="absolute inset-0">
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+          <img
+            src={heroBackgrounds[active]}
+            alt=""
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
               fade ? 'opacity-100' : 'opacity-0'
             }`}
-            style={{ backgroundImage: `url(${heroBackgrounds[active]})` }}
           />
+
 
 
           {/* Overlay oscuro */}
