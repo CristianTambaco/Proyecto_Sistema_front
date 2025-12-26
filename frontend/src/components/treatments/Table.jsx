@@ -7,6 +7,10 @@ import { loadStripe } from "@stripe/stripe-js"
 import { useState } from "react"
 const stripePromise = loadStripe(import.meta.env.VITE_STRAPI_KEY)
 
+
+
+
+
 const TableTreatments = ({ treatments, listPatient }) => {
     const { deleteTreatments } = storeTreatments()
     const { rol } = storeAuth()
@@ -98,7 +102,7 @@ const TableTreatments = ({ treatments, listPatient }) => {
                                 
                             </td>
 
-
+                                    
                             {/* <td>{treatment.descripcion}</td> */}
 
                             
