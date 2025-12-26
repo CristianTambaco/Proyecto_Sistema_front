@@ -47,8 +47,8 @@ const FormMascota = ({ mascota, onSubmit }) => {
                     {...register("nombre", {
                         required: "El nombre es obligatorio",
                         minLength: {
-                            value: 2,
-                            message: "El nombre debe tener al menos 2 caracteres"
+                            value: 3,
+                            message: "El nombre debe tener al menos 3 caracteres"
                         },
                         maxLength: {
                             value: 20,
@@ -120,7 +120,8 @@ const FormMascota = ({ mascota, onSubmit }) => {
 
 
             {/* Estado */}
-            <div className="mb-4">
+
+            {/* <div className="mb-4">
                 <label className="block text-sm font-semibold mb-1">Estado</label>
                 <select
                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
@@ -129,7 +130,7 @@ const FormMascota = ({ mascota, onSubmit }) => {
                     <option value="true">Activo</option>
                     <option value="false">Inactivo</option>
                 </select>
-            </div>
+            </div> */}
 
             {/* Subir Imagen */}
 
