@@ -38,6 +38,7 @@ const UpdateUsuario = () => {
         reset({
           nombre: response.nombre,
           apellido: response.apellido,
+          cedula: response.cedula || "", // 
           direccion: response.direccion,
           celular: response.celular,
           email: response.email,
@@ -151,6 +152,37 @@ const UpdateUsuario = () => {
           />
           {errors.apellido && <p className="text-red-800">{errors.apellido.message}</p>}
         </div>
+
+
+        {/* Campo de Cédula (solo para administrador) */}
+        {tipoUsuario === 'administrador' && (
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">
+              Cédula <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength={10}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              placeholder="Cédula del administrador"
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+              {...register("cedula", {
+                required: "La cédula es obligatoria.",
+                minLength: { value: 10, message: "La cédula debe tener 10 dígitos" },
+                maxLength: { value: 10, message: "La cédula debe tener 10 dígitos" },
+                validate: {
+                  soloNumeros: (value) => /^\d+$/.test(value) || "La cédula solo debe contener números",
+                },
+              })}
+            />
+            {errors.cedula && <p className="text-red-800">{errors.cedula.message}</p>}
+          </div>
+        )}
+
+
 
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Dirección<span className="text-red-600">*</span></label>

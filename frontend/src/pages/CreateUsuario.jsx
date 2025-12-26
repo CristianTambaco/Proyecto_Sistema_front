@@ -58,6 +58,7 @@ const CreateUsuario = () => {
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite crear un nuevo {rolTexto}.</p>
       <form onSubmit={handleSubmit(crearUsuario)}>
+        {/* Campos comunes */}
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Nombre <span className="text-red-600">*</span></label>
           <input
@@ -78,7 +79,6 @@ const CreateUsuario = () => {
           />
           {errors.nombre && <p className="text-red-800">{errors.nombre.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Apellido <span className="text-red-600">*</span></label>
           <input
@@ -99,7 +99,6 @@ const CreateUsuario = () => {
           />
           {errors.apellido && <p className="text-red-800">{errors.apellido.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Dirección<span className="text-red-600">*</span></label>
           <input
@@ -107,42 +106,36 @@ const CreateUsuario = () => {
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Dirección del ${rolTexto}`}
             {...register("direccion", {
-            required: "La dirección es obligatoria", // Campo requerido
-            minLength: {
-              value: 3,
-              message: "La dirección debe tener al menos 3 caracteres", // Mínimo de 3 caracteres
-            },
-            maxLength: {
-              value: 100,
-              message: "La dirección no puede tener más de 100 caracteres", // Máximo de 100 caracteres
-            },
-            // pattern: {
-            //   value: /^[a-zA-Z0-9\s,.'-]*$/,
-            //   message: "La dirección contiene caracteres no permitidos", // Regex para caracteres válidos
-            // }
-          })}
-        />
-        {errors.direccion && (
-          <p className="text-red-800">{errors.direccion.message}</p>
-        )}
-      </div>
-
-
+              required: "La dirección es obligatoria", // Campo requerido
+              minLength: {
+                value: 3,
+                message: "La dirección debe tener al menos 3 caracteres", // Mínimo de 3 caracteres
+              },
+              maxLength: {
+                value: 100,
+                message: "La dirección no puede tener más de 100 caracteres", // Máximo de 100 caracteres
+              },
+              // pattern: {
+              //   value: /^[a-zA-Z0-9\s,.'-]*$/,
+              //   message: "La dirección contiene caracteres no permitidos", // Regex para caracteres válidos
+              // }
+            })}
+          />
+          {errors.direccion && (
+            <p className="text-red-800">{errors.direccion.message}</p>
+          )}
+        </div>
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Teléfono<span className="text-red-600">*</span></label>
           <input
-
             type="text"
             inputMode="numeric"
             maxLength={10}
-
             className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             placeholder={`Teléfono del ${rolTexto}`}
-
             onInput={(e) => {
               e.target.value = e.target.value.replace(/\D/g, "");
             }}
-
             {...register("celular", {
               required: `El campo es obligatorio.`,
               pattern: {
@@ -164,7 +157,6 @@ const CreateUsuario = () => {
           />
           {errors.celular && <p className="text-red-800">{errors.celular.message}</p>}
         </div>
-
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Correo electrónico <span className="text-red-600">*</span></label>
           <input
@@ -182,6 +174,39 @@ const CreateUsuario = () => {
           {errors.email && <p className="text-red-800">{errors.email.message}</p>}
         </div>
 
+        {/* 👇 NUEVO: Campo de Cédula solo para Administrador */}
+        {tipoUsuario === 'administrador' && (
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">Cédula <span className="text-red-600">*</span></label>
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength={10}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              placeholder={`Cédula del ${rolTexto}`}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+              {...register("cedula", {
+                required: `La cédula es obligatoria.`,
+                minLength: {
+                  value: 10,
+                  message: "La cédula debe tener 10 dígitos"
+                },
+                maxLength: {
+                  value: 10,
+                  message: "La cédula debe tener 10 dígitos"
+                },
+                validate: {
+                  soloNumeros: (value) =>
+                    /^\d+$/.test(value) || "La cédula solo debe contener números",
+                },
+              })}
+            />
+            {errors.cedula && <p className="text-red-800">{errors.cedula.message}</p>}
+          </div>
+        )}
+
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Contraseña <span className="text-red-600">*</span></label>
           <input
@@ -194,24 +219,20 @@ const CreateUsuario = () => {
                 value: 8,
                 message: "La contraseña debe tener al menos 8 caracteres"
               },
-              maxLength: { 
-                value: 12, 
-                message: "La contraseña no puede superar los 12 caracteres" 
+              maxLength: {
+                value: 12,
+                message: "La contraseña no puede superar los 12 caracteres"
               },
-
-
               //  Validaciones condicionales según el tipo de usuario
               validate: (value) => {
                 // Si el usuario que se está creando es admin → exigir mayúscula
                 if (tipoUsuario === "administrador" && !/[A-Z]/.test(value)) {
                   return "La contraseña del administrador debe incluir una letra mayúscula.";
                 }
-
                 // Regla general para todos (admin y estilista)
                 if (!/[A-Za-z]/.test(value) || !/\d/.test(value) || !/[@$!%*#?&]/.test(value)) {
                   return "Debe tener letras, números y caracteres especiales";
                 }
-
                 return true;
               },
             })}
@@ -228,5 +249,6 @@ const CreateUsuario = () => {
     </div>
   );
 };
+
 
 export default CreateUsuario;
