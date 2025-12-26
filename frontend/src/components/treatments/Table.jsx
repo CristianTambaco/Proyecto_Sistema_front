@@ -25,14 +25,46 @@ const TableTreatments = ({ treatments, listPatient }) => {
                 <thead className="bg-gray-800 text-slate-400">
                     <tr>
                         <th className="p-2">N°</th>
-                        <th className="p-2">Cliente</th>
+
+
+                        {rol === 'estilista' &&(
+                                    <th className="p-2">Cliente</th>
+                        )} 
+
+                        
+
+
+                        {rol === 'estilista' &&(
                         <th className="p-2">Servicio</th>
+                        )} 
 
                         {/* <th className="p-2">Descripción</th> */}
 
-
+                        {rol === 'estilista' &&(
                         <th className="p-2">Precio</th>
+                        )} 
+
+                        {rol === 'estilista' &&(
                         <th className="p-2">Prioridad</th>
+                        )} 
+
+
+
+                        {(rol === 'cliente' || rol === 'administrador' )  &&(
+                                    <th className="p-2">Nombre</th>
+                        )} 
+
+
+
+                        {(rol === 'cliente' || rol === 'administrador' ) &&(
+                        <th className="p-2">Precio</th>
+                        )} 
+
+                        {(rol === 'cliente' || rol === 'administrador' ) &&(
+                        <th className="p-2">Prioridad</th>
+                        )} 
+
+
                         
 
                         {/* <th className="p-2">Estado pago</th> */}
@@ -48,9 +80,9 @@ const TableTreatments = ({ treatments, listPatient }) => {
                         <tr className="hover:bg-gray-300 text-center" key={treatment._id || index}>
                             <td>{index + 1}</td>
 
-
+                            {rol === 'estilista' &&(
                             <td>{treatment.cliente.nombrePropietario}</td>
-
+                            )} 
 
 
                             <td>
