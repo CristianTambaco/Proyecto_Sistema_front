@@ -25,6 +25,7 @@ const TableTreatments = ({ treatments, listPatient }) => {
                 <thead className="bg-gray-800 text-slate-400">
                     <tr>
                         <th className="p-2">N°</th>
+                        <th className="p-2">Cliente</th>
                         <th className="p-2">Servicio</th>
 
                         {/* <th className="p-2">Descripción</th> */}
@@ -46,6 +47,12 @@ const TableTreatments = ({ treatments, listPatient }) => {
                     {treatments.map((treatment, index) => (
                         <tr className="hover:bg-gray-300 text-center" key={treatment._id || index}>
                             <td>{index + 1}</td>
+
+
+                            <td>{treatment.cliente.nombrePropietario}</td>
+
+
+
                             <td>
                                 {treatment.nombre}
                                 {/* Mostrar datos del cliente solo si el rol es 'estilista' */}
@@ -62,6 +69,7 @@ const TableTreatments = ({ treatments, listPatient }) => {
 
                             {/* <td>{treatment.descripcion}</td> */}
 
+                            
 
                             <td>$ {treatment.precio}</td>
                             <td>{treatment.prioridad}</td>
