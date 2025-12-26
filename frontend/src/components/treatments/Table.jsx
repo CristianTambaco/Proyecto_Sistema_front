@@ -25,10 +25,14 @@ const TableTreatments = ({ treatments, listPatient }) => {
                 <thead className="bg-gray-800 text-slate-400">
                     <tr>
                         <th className="p-2">N°</th>
-                        <th className="p-2">Nombre servicio</th>
-                        <th className="p-2">Descripción</th>
-                        <th className="p-2">Prioridad</th>
+                        <th className="p-2">Servicio</th>
+
+                        {/* <th className="p-2">Descripción</th> */}
+
+
                         <th className="p-2">Precio</th>
+                        <th className="p-2">Prioridad</th>
+                        
 
                         {/* <th className="p-2">Estado pago</th> */}
 
@@ -54,9 +58,14 @@ const TableTreatments = ({ treatments, listPatient }) => {
 
                                 
                             </td>
-                            <td>{treatment.descripcion}</td>
-                            <td>{treatment.prioridad}</td>
+
+
+                            {/* <td>{treatment.descripcion}</td> */}
+
+
                             <td>$ {treatment.precio}</td>
+                            <td>{treatment.prioridad}</td>
+                            
 
                             {/* <td className={treatment.estadoPago === "Pagado" ? "text-green-500 text-sm" : "text-red-500 text-sm"}>
                                 {treatment.estadoPago}
