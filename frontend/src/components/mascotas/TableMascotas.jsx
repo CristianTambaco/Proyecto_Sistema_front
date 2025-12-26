@@ -22,7 +22,7 @@ const TableMascotas = ({ mascotas, onDelete, onEdit }) => {
             <thead className="bg-gray-800 text-slate-400">
                 <tr>
                     <th className="p-2">N°</th>
-                    <th className="p-2">Nombre</th>
+                    <th className="p-2">Nombre mascota</th>
                     <th className="p-2">Sociable</th>
                     <th className="p-2">Estado</th>
                     <th className="p-2">Acciones</th>
