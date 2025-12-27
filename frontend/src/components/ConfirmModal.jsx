@@ -10,6 +10,16 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, service, additionalDetails, 
     onClose();  // Cierra el modal
   };
 
+
+  const formatFecha = (fecha) => {
+  if (!fecha) return '';
+  const [year, month, day] = fecha.split('-');
+  return `${day}-${month}-${year}`;
+};
+
+
+
+
   return (
     <div className="fixed inset-0 bg-transparent flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
@@ -28,7 +38,9 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, service, additionalDetails, 
           {fechaCita && horaCita && (
             <>
               <br />
-              <span className="text-purple-600 font-medium">Fecha: {fechaCita}</span>
+              <span className="text-purple-600 font-medium">
+  Fecha: {formatFecha(fechaCita)}
+</span>
               <br />
               <span className="text-purple-600 font-medium">Hora: {horaCita}</span>
             </>
