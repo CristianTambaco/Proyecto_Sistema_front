@@ -168,7 +168,7 @@ const ReservarServicio = () => {
           {/* Campo de Fecha */}
         <div className="mb-4">
           <label htmlFor="fechaCita" className="block text-sm font-semibold mb-1">
-            Fecha de la Cita <span className="text-red-600">*</span>
+            Fecha <span className="text-red-600">*</span>
           </label>
           <input
             type="date"
@@ -184,7 +184,7 @@ const ReservarServicio = () => {
         {/* Campo de Hora */}
         <div className="mb-4">
           <label htmlFor="horaCita" className="block text-sm font-semibold mb-1">
-            Hora de la Cita <span className="text-red-600">*</span>
+            Hora <span className="text-red-600">*</span>
           </label>
           <input
             type="time"
