@@ -14,6 +14,13 @@ const ReservarServicio = () => {
   const navigate = useNavigate();
   const location = useLocation(); // <-- Usa useLocation para obtener el estado
 
+
+
+  const [fechaCita, setFechaCita] = useState('');
+  const [horaCita, setHoraCita] = useState('');
+
+
+
   // Si llegamos aquí desde una tarjeta, usamos el servicio pasado en el estado
   useEffect(() => {
     if (location.state?.servicio) {
@@ -70,7 +77,9 @@ const ReservarServicio = () => {
       descripcion: detallesAdicionales || 'Solicitud de servicio.',
       prioridad: 'Media',
       precio: servicio.precio,
-      estadoPago: 'Pendiente'
+      estadoPago: 'Pendiente',
+      fechaCita,  // 
+      horaCita    // 
     };
     const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/registro`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
@@ -151,6 +160,34 @@ const ReservarServicio = () => {
             ))}
           </select>
         </div>
+
+
+          {/* Fecha */}
+          <input
+            type="date"
+            value={fechaCita}
+            onChange={(e) => setFechaCita(e.target.value)}
+            min={new Date().toISOString().split('T')[0]}
+            className="..."
+            required
+          />
+
+          {/* Hora */}
+          <input
+            type="time"
+            value={horaCita}
+            onChange={(e) => setHoraCita(e.target.value)}
+            className="..."
+            required
+          />
+
+
+
+
+
+
+
+
         <div className="mb-4">
           <label htmlFor="detalles" className="block text-sm font-semibold mb-1">
             Detalles Adicionales
