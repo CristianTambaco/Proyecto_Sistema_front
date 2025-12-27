@@ -202,11 +202,16 @@ const TableTreatments = ({ treatments, listPatient }) => {
                                 {/* Botón de Información */}
 
                                 {(rol === "estilista" || rol === "cliente")&& (
-                                <MdInfo
+
+                                <span
                                 title="Ver detalles"
-                                className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-green-600"
+                                className="text-xl cursor-pointer inline-block mr-2 hover:scale-110"
                                 onClick={() => handleViewDetails(treatment._id)}
-                                />
+                                >
+                                👁️
+                                </span>
+
+
                                 )}
 
 
