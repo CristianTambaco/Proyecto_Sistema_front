@@ -11,6 +11,25 @@ const HistorialGeneral = () => {
     const [loading, setLoading] = useState(true);
     const { fetchDataBackend } = useFetch();
 
+
+    const [ordenFecha, setOrdenFecha] = useState("recientes");
+
+
+    const ordenarPorFecha = (lista, orden) => {
+    return [...lista].sort((a, b) => {
+        const fechaA = new Date(a.
+fechaCita);
+        const fechaB = new Date(b.
+fechaCita);
+
+        return orden === "recientes"
+            ? fechaB - fechaA
+            : fechaA - fechaB;
+    });
+};
+
+
+
     // Cargar todas las atenciones
     const cargarAtenciones = async () => {
         const url = `${import.meta.env.VITE_BACKEND_URL}/atenciones-todas`;
@@ -46,17 +65,33 @@ const HistorialGeneral = () => {
 
     // Manejar el cambio de selección
     const handleClienteChange = (e) => {
-        const id = e.target.value;
-        setClienteSeleccionado(id);
-        if (!id) {
-            setAtencionesFiltradas(atencionesOriginales);
-        } else {
-            const filtradas = atencionesOriginales.filter(
-                atencion => atencion.cliente?._id === id
-            );
-            setAtencionesFiltradas(filtradas);
-        }
-    };
+    const id = e.target.value;
+    setClienteSeleccionado(id);
+
+    let filtradas = [];
+
+    if (!id) {
+        filtradas = atencionesOriginales;
+    } else {
+        filtradas = atencionesOriginales.filter(
+            atencion => atencion.cliente?._id === id
+        );
+    }
+
+    setAtencionesFiltradas(ordenarPorFecha(filtradas, ordenFecha));
+};
+
+const handleOrdenChange = (e) => {
+    const nuevoOrden = e.target.value;
+    setOrdenFecha(nuevoOrden);
+    setAtencionesFiltradas(
+        ordenarPorFecha(atencionesFiltradas, nuevoOrden)
+    );
+};
+
+
+
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -93,6 +128,24 @@ const HistorialGeneral = () => {
                         </option>
                     ))}
                 </select>
+
+                <div className="mb-6 max-w-md">
+    <label className="block text-sm font-semibold mb-2">
+        Ordenar por 
+    </label>
+    <select
+        value={ordenFecha}
+        onChange={handleOrdenChange}
+        className="block w-full rounded-md border border-gray-300 py-2 px-3 text-gray-700"
+    >
+        <option value="recientes">Más recientes</option>
+        <option value="antiguos">Más antiguos</option>
+    </select>
+</div>
+
+
+
+
             </div>
 
             {atencionesFiltradas.length === 0 ? (

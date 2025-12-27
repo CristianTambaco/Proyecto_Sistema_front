@@ -45,10 +45,14 @@ const AgendaCitas = () => {
         // 2. Aplicar orden
         switch (orden) {
             case "fecha-desc":
-                resultado.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                resultado.sort((a, b) => new Date(b.
+fechaCita) - new Date(a.
+fechaCita));
                 break;
             case "fecha-asc":
-                resultado.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                resultado.sort((a, b) => new Date(a.
+fechaCita) - new Date(b.
+fechaCita));
                 break;
             case "servicio-asc":
                 resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
