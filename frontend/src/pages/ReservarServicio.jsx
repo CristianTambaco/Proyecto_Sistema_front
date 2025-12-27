@@ -78,8 +78,9 @@ const ReservarServicio = () => {
       prioridad: 'Media',
       precio: servicio.precio,
       estadoPago: 'Pendiente',
-      fechaCita,  // 
-      horaCita    // 
+      // Añadir fecha y hora
+      fechaCita: fechaCita,
+      horaCita: horaCita
     };
     const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/registro`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
@@ -93,6 +94,8 @@ const ReservarServicio = () => {
         // Limpiar el formulario
         setServicioSeleccionado('');
         setDetallesAdicionales('');
+        setFechaCita('');
+        setHoraCita('');
         // Redirigir a la página de historial o dashboard
         navigate(`/dashboard/historial`);
       }
@@ -162,28 +165,36 @@ const ReservarServicio = () => {
         </div>
 
 
-          {/* Fecha */}
+          {/* Campo de Fecha */}
+        <div className="mb-4">
+          <label htmlFor="fechaCita" className="block text-sm font-semibold mb-1">
+            Fecha de la Cita <span className="text-red-600">*</span>
+          </label>
           <input
             type="date"
+            id="fechaCita"
             value={fechaCita}
             onChange={(e) => setFechaCita(e.target.value)}
-            min={new Date().toISOString().split('T')[0]}
-            className="..."
+            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+            min={new Date().toISOString().split('T')[0]} // No permitir fechas pasadas
             required
           />
+        </div>
 
-          {/* Hora */}
+        {/* Campo de Hora */}
+        <div className="mb-4">
+          <label htmlFor="horaCita" className="block text-sm font-semibold mb-1">
+            Hora de la Cita <span className="text-red-600">*</span>
+          </label>
           <input
             type="time"
+            id="horaCita"
             value={horaCita}
             onChange={(e) => setHoraCita(e.target.value)}
-            className="..."
+            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
             required
           />
-
-
-
-
+        </div>
 
 
 
@@ -215,6 +226,8 @@ const ReservarServicio = () => {
         onConfirm={confirmarReserva}
         service={servicios.find(s => s._id === servicioSeleccionado)}
         additionalDetails={detallesAdicionales}
+        fechaCita={fechaCita} // <-- 
+        horaCita={horaCita}   // <-- 
       />
     </div>
   );

@@ -1,7 +1,8 @@
 // frontend/src/components/ConfirmModal.jsx
+
 import { useEffect, useState } from 'react';
 
-const ConfirmModal = ({ isOpen, onClose, onConfirm, service, additionalDetails }) => {
+const ConfirmModal = ({ isOpen, onClose, onConfirm, service, additionalDetails, fechaCita, horaCita }) => {
   if (!isOpen) return null;
 
   const handleConfirm = () => {
@@ -22,13 +23,25 @@ const ConfirmModal = ({ isOpen, onClose, onConfirm, service, additionalDetails }
           <span className="text-green-600 font-semibold">Precio: $ {service?.precio || "0"}</span>
           <br />
           <span className="text-blue-600">Duración: {service?.duracionEstimada || "0"} min</span>
+
+          {/* Mostrar Fecha y Hora EXACTAMENTE como fueron ingresadas */}
+          {fechaCita && horaCita && (
+            <>
+              <br />
+              <span className="text-purple-600 font-medium">Fecha: {fechaCita}</span>
+              <br />
+              <span className="text-purple-600 font-medium">Hora: {horaCita}</span>
+            </>
+          )}
         </div>
+
         {additionalDetails && (
           <div className="mb-4">
             <strong>Detalles adicionales:</strong>
             <p className="mt-1 text-sm text-gray-700">{additionalDetails}</p>
           </div>
         )}
+
         <div className="flex justify-end gap-3 mt-6">
           <button
             onClick={onClose}
