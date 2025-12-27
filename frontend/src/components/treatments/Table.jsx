@@ -26,14 +26,25 @@ const TableTreatments = ({ treatments, listPatient }) => {
     }
 
 
+
+    const formatFecha = (fechaISO) => {
+  if (!fechaISO) return "";
+
+  return new Date(fechaISO).toLocaleDateString("es-ES", {
+    timeZone: "UTC",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
+};
+
+
+
+
     const { fetchDataBackend } = useFetch();
 
     
-      const formatFecha = (fecha) => {
-        if (!fecha) return '';
-        const [year, month, day] = fecha.split('-');
-        return `${day}-${month}-${year}`;
-        };
+      
 
 
 
@@ -265,13 +276,15 @@ const TableTreatments = ({ treatments, listPatient }) => {
               </div>
             )}
             {/* Mostrar Fecha y Hora de la Cita */}
+            
             <div className="mb-4">
-              <strong>Fecha de la cita:</strong><br />
-              {new Date(selectedTreatment.fechaCita).toLocaleDateString('es-ES')}
+            <strong>Fecha de la cita:</strong><br />
+            {formatFecha(selectedTreatment.fechaCita)}
+ {/* Muestra el valor exacto que llega */}
             </div>
             <div className="mb-4">
-              <strong>Hora de la cita:</strong><br />
-              {selectedTreatment.horaCita}
+            <strong>Hora de la cita:</strong><br />
+            {selectedTreatment.horaCita} {/* Muestra el valor exacto que llega */}
             </div>
             
             {/* Estado de Pago */}
