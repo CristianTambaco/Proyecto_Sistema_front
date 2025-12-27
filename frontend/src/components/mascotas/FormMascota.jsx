@@ -84,7 +84,8 @@ const FormMascota = ({ mascota, onSubmit }) => {
             {/* Características */}
             <div className="mb-4">
                 <label className="block text-sm font-semibold mb-1">Características <span className="text-red-600">*</span></label>
-                <textarea
+                <input
+                    type="text"
                     className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
                     rows="3"
                     {...register("caracteristicas", {
