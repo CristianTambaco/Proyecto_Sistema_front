@@ -125,7 +125,8 @@ const AgendaCitas = () => {
                 <table className="w-full mt-5 table-auto shadow-lg bg-white">
                     <thead className="bg-gray-800 text-slate-400">
                         <tr>
-                            <th className="p-2">Fecha Registro</th>
+                            <th className="p-2">Fecha de la Cita</th>
+                            <th className="p-2">Hora</th>
                             <th className="p-2">Servicio</th>
                             <th className="p-2">Cliente</th>
 
@@ -137,20 +138,33 @@ const AgendaCitas = () => {
                         {citasFiltradas.map((cita, index) => (
                             <tr key={cita._id || index} className="hover:bg-gray-300 text-center">
                                 <td>
-                                    {new Date(cita.createdAt).toLocaleDateString('es-ES', {
-                                        year: 'numeric',
-                                        month: '2-digit',
-                                        day: '2-digit',
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    })}
+                                    {cita.fechaCita ? (
+                                        <>
+                                            {new Date(cita.fechaCita).toLocaleDateString('es-ES', {
+                                                year: 'numeric',
+                                                month: '2-digit',
+                                                day: '2-digit',
+                                                timeZone: 'UTC'
+                                            })}
+
+                                            <br />
+                                            {/* <span className="text-gray-500">
+                                                {cita.horaCita}
+                                            </span> */}
+                                        </>
+                                    ) : (
+                                        "N/A"
+                                    )}
                                 </td>
+                                
+                                <td>{cita.horaCita}</td>
+
                                 <td>{cita.nombre}</td>
                                 <td>
                                     {cita.cliente?.nombrePropietario || 'N/A'}<br />
 
                                     {/* <small className="text-gray-500">{cita.cliente?.nombreMascota || '–'}</small> */}
-                                
+
                                 </td>
 
                                 {/* <td>
