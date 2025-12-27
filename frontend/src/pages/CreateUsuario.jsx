@@ -35,7 +35,7 @@ const CreateUsuario = () => {
       const response = await fetchDataBackend(url, data, "POST", headers);
       if (response) { // Si la creación fue exitosa
         setTimeout(() => {
-          navigate(`/dashboard/usuarios`); // Redirige a la lista de usuarios
+          navigate(`/dashboard/usuarios?tipo=${tipoUsuario}`);
         }, 2000);
       }
     } catch (error) {

@@ -5,11 +5,31 @@ import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
 import storeAuth from '../context/storeAuth';
 
+import { useSearchParams } from 'react-router-dom';
+
+
 const ListUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [tipoUsuario, setTipoUsuario] = useState('estilista'); // 'estilista' o 'administrador'
   const { fetchDataBackend } = useFetch();
   const { rol } = storeAuth();
+
+
+
+  // Dentro de la función ListUsuarios
+  
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const tipo = searchParams.get('tipo');
+    if (tipo === 'administrador' || tipo === 'estilista') {
+      setTipoUsuario(tipo);
+    }
+    // Cargar usuarios según el tipo
+  }, [searchParams]); // Reacciona a cambios en la URL
+  
+
+
 
   const listUsuarios = async () => {
     if (rol !== 'administrador') return; // Solo admin puede acceder

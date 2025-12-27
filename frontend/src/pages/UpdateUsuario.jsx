@@ -74,7 +74,7 @@ const UpdateUsuario = () => {
       const response = await fetchDataBackend(url, data, "PUT", headers);
       if (response) { // Si la actualización fue exitosa
         setTimeout(() => {
-          navigate(`/dashboard/usuarios`); // Redirige a la lista de usuarios
+          navigate(`/dashboard/usuarios?tipo=${tipoUsuario}`);
         }, 2000);
       }
     } catch (error) {
