@@ -143,6 +143,11 @@ const TableTreatments = ({ treatments, listPatient }) => {
                         )} 
 
 
+                        {(rol === 'cliente'  ) &&(
+                        <th className="p-2">Acciones</th>
+                        )} 
+
+
                         
 
                         {/* <th className="p-2">Estado pago</th> */}
@@ -196,7 +201,7 @@ const TableTreatments = ({ treatments, listPatient }) => {
 
                                 {/* Botón de Información */}
 
-                                {rol === "estilista" && (
+                                {(rol === "estilista" || rol === "cliente")&& (
                                 <MdInfo
                                 title="Ver detalles"
                                 className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2 hover:text-green-600"
