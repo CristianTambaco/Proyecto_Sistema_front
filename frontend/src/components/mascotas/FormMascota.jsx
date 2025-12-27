@@ -174,7 +174,7 @@ const FormMascota = ({ mascota, onSubmit }) => {
             {/* Subir Imagen */}
 
 
-            {/* <div className="mb-4">
+            <div className="mb-4">
                 <label className="block text-sm font-semibold mb-1">Imagen de la Mascota</label>
                 <div className="flex items-center gap-4">
                     <button
@@ -212,7 +212,7 @@ const FormMascota = ({ mascota, onSubmit }) => {
                     )}
                 </div>
 
-            </div> */}
+            </div>
 
             <input
                 type="submit"
