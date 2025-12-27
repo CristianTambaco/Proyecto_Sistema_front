@@ -69,6 +69,27 @@ const DetallesMascota = () => {
                             <p className="mt-1">{new Date(mascota.fechaNacimiento).toLocaleDateString()}</p>
                         </div>
                     )}
+
+
+
+                    {/* --- MOSTRAR LOS NUEVOS CAMPOS --- */}
+                    {/* Mostrar Tamaño */}
+                    {mascota.tamaño && (
+                    <div>
+                        <label className="block text-sm font-semibold">Tamaño</label>
+                        <p className="mt-1">{mascota.tamaño.charAt(0).toUpperCase() + mascota.tamaño.slice(1)}</p>
+                    </div>
+                    )}
+
+                    {/* Mostrar Esterilizado */}
+                    <div>
+                    <label className="block text-sm font-semibold">Esterilizado/a</label>
+                    <p className="mt-1">{mascota.esterilizado ? 'Sí' : 'No'}</p>
+                    </div>
+
+
+
+
                     <div>
                         <label className="block text-sm font-semibold">Estado</label>
                         <span className={`px-2 py-1 rounded text-xs ${

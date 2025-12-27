@@ -15,7 +15,11 @@ const FormMascota = ({ mascota, onSubmit }) => {
             setValue("caracteristicas", mascota.caracteristicas || "");
             setValue("fechaNacimiento", mascota.fechaNacimiento ? new Date(mascota.fechaNacimiento).toISOString().split('T')[0] : "");
             setValue("estado", mascota.estado !== undefined ? mascota.estado.toString() : "true");
-        }
+
+            // --- NUEVOS CAMPOS ---
+            setValue("tamaño", mascota.tamaño || "mediano");
+            setValue("esterilizado", mascota.esterilizado !== undefined ? mascota.esterilizado.toString() : "");
+                }
     }, [mascota, setValue]);
 
     const handleImageUpload = (e) => {
@@ -117,6 +121,41 @@ const FormMascota = ({ mascota, onSubmit }) => {
                     <p className="text-red-800">{errors.fechaNacimiento.message}</p>
                 )}
             </div>
+
+
+
+            {/* --- NUEVOS CAMPOS --- */}
+            {/* --- TAMAÑO  --- */}
+            <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">Tamaño<span className="text-red-600">*</span></label>
+            <select
+                className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                {...register("tamaño", { required: "El tamaño es obligatorio" })}
+            >
+                <option value="">-- Seleccionar --</option>
+                <option value="pequeño">Pequeño</option>
+                <option value="mediano">Mediano</option>
+                <option value="grande">Grande</option>
+            </select>
+            {errors.tamaño && <p className="text-red-800">{errors.tamaño.message}</p>}
+            </div>
+
+            {/* --- ESTERILIZADO  --- */}
+            <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">¿Está esterilizado/a?<span className="text-red-600">*</span></label>
+            <select
+                className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                {...register("esterilizado", { required: "Este campo es obligatorio" })}
+            >
+                <option value="">-- Seleccionar --</option>
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+            </select>
+            {errors.esterilizado && <p className="text-red-800">{errors.esterilizado.message}</p>}
+            </div>
+
+
+
 
 
             {/* Estado */}
