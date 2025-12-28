@@ -133,6 +133,11 @@ const TableTreatments = ({ treatments, listPatient }) => {
                         )} 
 
 
+                        {(rol === 'cliente' || rol === 'administrador' )  &&(
+                                    <th className="p-2">Descripción</th>
+                        )} 
+
+
 
                         {(rol === 'cliente' || rol === 'administrador' ) &&(
                         <th className="p-2">Precio</th>
@@ -181,9 +186,9 @@ const TableTreatments = ({ treatments, listPatient }) => {
                                 
                             </td>
 
-                                    
-                            {/* <td>{treatment.descripcion}</td> */}
-
+                            {(rol === 'cliente' || rol === 'administrador') &&(
+                            <td>{treatment.descripcion}</td>
+                            )} 
                             
 
                             <td>$ {treatment.precio}</td>
