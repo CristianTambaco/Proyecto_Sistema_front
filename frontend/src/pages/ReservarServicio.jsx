@@ -2,42 +2,24 @@
 import { useEffect, useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import { ToastContainer } from 'react-toastify';
-import { useNavigate, useLocation } from 'react-router-dom'; // <-- Importa useLocation
-import ConfirmModal from '../components/ConfirmModal'; // <-- Importar el nuevo componente
+import { useNavigate, useLocation } from 'react-router-dom';
+import ConfirmModal from '../components/ConfirmModal';
 
 const ReservarServicio = () => {
   const [servicios, setServicios] = useState([]);
   const [servicioSeleccionado, setServicioSeleccionado] = useState('');
   const [detallesAdicionales, setDetallesAdicionales] = useState('');
-  const [showModal, setShowModal] = useState(false); // <-- Estado para mostrar el modal
-
-  const [horarios, setHorarios] = useState([]); // <-- Nuevo estado para los horarios
-
+  const [showModal, setShowModal] = useState(false);
+  const [horarios, setHorarios] = useState([]); // <-- Estado para los horarios
   const [loadingHorarios, setLoadingHorarios] = useState(true);
-
-
-  const { fetchDataBackend } = useFetch();
-  const navigate = useNavigate();
-  const location = useLocation(); // <-- Usa useLocation para obtener el estado
-
-
-
   const [fechaCita, setFechaCita] = useState('');
   const [horaCita, setHoraCita] = useState('');
+  const [validacionError, setValidacionError] = useState(''); // <-- Nuevo estado para mensajes de error
+  const { fetchDataBackend } = useFetch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-
-  
-
-
-
-  // Si llegamos aquí desde una tarjeta, usamos el servicio pasado en el estado
-  useEffect(() => {
-    if (location.state?.servicio) {
-      setServicioSeleccionado(location.state.servicio._id);
-    }
-  }, [location.state]);
-
-  // Función para cargar servicios
+  // Cargar servicios al montar el componente
   const listServicios = async () => {
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicios?activo=true`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
@@ -53,118 +35,142 @@ const ReservarServicio = () => {
     }
   };
 
+  // --- NUEVO: Función para cargar horarios activos ---
+  const cargarHorarios = async () => {
+    try {
+      // Usamos la ruta pública que ya tienes configurada
+      const url = `${import.meta.env.VITE_BACKEND_URL}/horarios-activos2`;
+      const response = await fetchDataBackend(url, null, "GET", null); // Sin token
+      setHorarios(response || []);
+    } catch (error) {
+      console.error("Error al cargar horarios:", error);
+    } finally {
+      setLoadingHorarios(false);
+    }
+  };
 
+  // --- NUEVO: Función para validar la fecha y hora ---
+  const validarFechaYHora = (fecha, hora) => {
+    if (!fecha || !hora) return false;
 
+    const [year, month, day] = fecha.split('-');
+// Creamos la fecha usando el constructor de Date con los números separados.
+// Esto crea la fecha a las 00:00 en la zona horaria LOCAL del usuario.
+    const fechaObj = new Date(Number(year), Number(month) - 1, Number(day));
 
-  
-    // --- NUEVO: Función para cargar horarios activos ---
-    const cargarHorarios = async () => {
-        try {
-            // Usamos la ruta pública que ya tienes configurada
-            const url = `${import.meta.env.VITE_BACKEND_URL}/horarios-activos2`;
-            const response = await fetchDataBackend(url, null, "GET", null); // Sin token
-            setHorarios(response || []);
-        } catch (error) {
-            console.error("Error al cargar horarios:", error);
-        } finally {
-            setLoadingHorarios(false);
-        }
-    };
+    
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
 
-    // Cargar servicios y horarios al montar el componente
-    useEffect(() => {
-        listServicios();
-        cargarHorarios(); // <-- Llamada aquí
-    }, []);
+    // Validar que la fecha no sea pasada
+    if (fechaObj < hoy) {
+      setValidacionError("No puedes seleccionar una fecha pasada.");
+      return false;
+    }
 
-    // --------------
+    
+    // Obtener el día de la semana (0=Domingo, 1=Lunes, ..., 6=Sábado)
+const diaSemana = fechaObj.getDay();
+let nombreDia;
+switch (diaSemana) {
+  case 0:
+    nombreDia = "Domingo";
+    break;
+  case 1:
+    nombreDia = "Lunes";
+    break;
+  case 2:
+    nombreDia = "Martes";
+    break;
+  case 3:
+    nombreDia = "Miércoles";
+    break;
+  case 4:
+    nombreDia = "Jueves";
+    break;
+  case 5:
+    nombreDia = "Viernes";
+    break;
+  case 6:
+    nombreDia = "Sábado";
+    break;
+  default:
+    return false;
+}
 
+    // Buscar el horario correspondiente
+    const horarioDelDia = horarios.find(h => h.dia === nombreDia);
+    if (!horarioDelDia) {
+      setValidacionError(`No atendemos los ${nombreDia.toLowerCase()}.`);
+      return false; // Día no laborable
+    }
 
+    // Validar que la hora esté dentro del rango
+    const [horaInput, minutoInput] = hora.split(':').map(Number);
+    const [horaApertura, minutoApertura] = horarioDelDia.horaApertura.split(':').map(Number);
+    const [horaCierre, minutoCierre] = horarioDelDia.horaCierre.split(':').map(Number);
+    const tiempoInput = horaInput * 60 + minutoInput;
+    const tiempoApertura = horaApertura * 60 + minutoApertura;
+    const tiempoCierre = horaCierre * 60 + minutoCierre;
 
+    // La hora debe ser mayor o igual a la apertura y menor que el cierre
+    if (tiempoInput < tiempoApertura || tiempoInput >= tiempoCierre) {
+      setValidacionError(`Nuestros horarios para ${nombreDia} son de ${horarioDelDia.horaApertura} a ${horarioDelDia.horaCierre}. Por favor, elige otra hora.`);
+      return false;
+    }
 
-        // NUEVA: Función para validar la fecha y hora
-    const validarFechaYHora = (fecha, hora) => {
-        if (!fecha || !hora) return false;
+    // Si llega aquí, la validación es exitosa
+    setValidacionError('');
+    return true;
+  };
 
-        const fechaObj = new Date(fecha);
-        const hoy = new Date();
-        hoy.setHours(0, 0, 0, 0);
+  // --- NUEVO: Efecto para validar cuando cambian fecha u hora ---
+  useEffect(() => {
+    if (fechaCita && horaCita) {
+      validarFechaYHora(fechaCita, horaCita);
+    }
+  }, [fechaCita, horaCita]);
 
-        // Validar que la fecha no sea pasada
-        if (fechaObj < hoy) {
-            return false;
-        }
+  // Cargar servicios y horarios al montar el componente
+  useEffect(() => {
+    listServicios();
+    cargarHorarios(); // <-- Llamada aquí
+  }, []);
 
-        // Obtener el día de la semana (Lunes=1, Domingo=7)
-        const diaSemana = fechaObj.getDay();
-        let nombreDia;
-        switch(diaSemana) {
-            case 0: nombreDia = "Domingo"; break;
-            case 1: nombreDia = "Lunes"; break;
-            case 2: nombreDia = "Martes"; break;
-            case 3: nombreDia = "Miércoles"; break;
-            case 4: nombreDia = "Jueves"; break;
-            case 5: nombreDia = "Viernes"; break;
-            case 6: nombreDia = "Sábado"; break;
-            default: return false;
-        }
+  // Si llegamos aquí desde una tarjeta, usamos el servicio pasado en el estado
+  useEffect(() => {
+    if (location.state?.servicio) {
+      setServicioSeleccionado(location.state.servicio._id);
+    }
+  }, [location.state]);
 
-        // Buscar el horario correspondiente
-        const horarioDelDia = horarios.find(h => h.dia === nombreDia);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!servicioSeleccionado) {
+      alert("Por favor, selecciona un servicio.");
+      return;
+    }
 
-        if (!horarioDelDia) {
-            return false; // Día no laborable
-        }
+    // VALIDAR FECHA Y HORA ANTES DE ABRIR EL MODAL
+    if (!fechaCita || !horaCita) {
+      alert("Por favor, selecciona una fecha y hora válidas.");
+      return;
+    }
 
-        // Validar que la hora esté dentro del rango
-        const [horaInput, minutoInput] = hora.split(':').map(Number);
-        const [horaApertura, minutoApertura] = horarioDelDia.horaApertura.split(':').map(Number);
-        const [horaCierre, minutoCierre] = horarioDelDia.horaCierre.split(':').map(Number);
+    // La validación ya se hace en tiempo real, pero volvemos a validar para estar seguros
+    if (!validarFechaYHora(fechaCita, horaCita)) {
+      // El mensaje de error ya se muestra en el estado 'validacionError'
+      return;
+    }
 
-        const tiempoInput = horaInput * 60 + minutoInput;
-        const tiempoApertura = horaApertura * 60 + minutoApertura;
-        const tiempoCierre = horaCierre * 60 + minutoCierre;
-
-        // La hora debe ser mayor o igual a la apertura y menor que el cierre
-        return tiempoInput >= tiempoApertura && tiempoInput < tiempoCierre;
-    };
-
-
-
-
-
-    // ---------------
-
-
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!servicioSeleccionado) {
-            alert("Por favor, selecciona un servicio.");
-            return;
-        }
-
-        //  VALIDAR FECHA Y HORA ANTES DE ABRIR EL MODAL
-        if (!fechaCita || !horaCita) {
-            alert("Por favor, selecciona una fecha y hora válidas.");
-            return;
-        }
-
-        if (!validarFechaYHora(fechaCita, horaCita)) {
-            alert("La fecha y hora seleccionadas no están dentro de nuestros horarios de atención. Por favor, elige otra opción.");
-            return;
-        }
-
-        // Si pasa la validación, proceder a mostrar el modal
-        const servicio = servicios.find(s => s._id === servicioSeleccionado);
-        if (!servicio) {
-            alert("Servicio no encontrado.");
-            return;
-        }
-        setShowModal(true);
-    };
-
-
-
+    // Si pasa la validación, proceder a mostrar el modal
+    const servicio = servicios.find(s => s._id === servicioSeleccionado);
+    if (!servicio) {
+      alert("Servicio no encontrado.");
+      return;
+    }
+    setShowModal(true);
+  };
 
   // Función para enviar la reserva después de la confirmación
   const confirmarReserva = async () => {
@@ -209,7 +215,7 @@ const ReservarServicio = () => {
     } catch (error) {
       console.error("Error al reservar servicio:", error);
       // El toast de error ya lo maneja `fetchDataBackend`
-    }
+    };
   };
 
   // Función para obtener el ID del cliente desde el token JWT
@@ -226,10 +232,6 @@ const ReservarServicio = () => {
     }
     return null;
   };
-
-  useEffect(() => {
-    listServicios();
-  }, []);
 
   if (servicios.length === 0) {
     return (
@@ -271,8 +273,7 @@ const ReservarServicio = () => {
           </select>
         </div>
 
-
-          {/* Campo de Fecha */}
+        {/* Campo de Fecha */}
         <div className="mb-4">
           <label htmlFor="fechaCita" className="block text-sm font-semibold mb-1">
             Fecha <span className="text-red-600">*</span>
@@ -303,8 +304,12 @@ const ReservarServicio = () => {
           />
         </div>
 
-
-
+        {/* Mensaje de error de validación */}
+        {validacionError && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 border border-red-300 rounded-md">
+            {validacionError}
+          </div>
+        )}
 
         <div className="mb-4">
           <label htmlFor="detalles" className="block text-sm font-semibold mb-1">
@@ -319,51 +324,45 @@ const ReservarServicio = () => {
             rows="3"
           />
         </div>
+
+        {/* Botón de reserva, deshabilitado si hay error de validación */}
         <button
           type="submit"
-          className="bg-green-800 w-full p-2 text-slate-300 uppercase font-bold rounded-lg hover:bg-green-700 cursor-pointer transition-all"
+          className={`bg-green-800 w-full p-2 text-slate-300 uppercase font-bold rounded-lg hover:bg-green-700 cursor-pointer transition-all ${validacionError ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={!!validacionError} // Deshabilitar si hay error
         >
           Reservar Servicio
         </button>
       </form>
 
-
-
-
       {/* --- NUEVA TABLA DE HORARIOS --- */}
-            <div className="mt-8 bg-white p-6 rounded-xl shadow-md">
-                <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
-                {loadingHorarios ? (
-                    <div className="text-center py-4">Cargando horarios...</div>
-                ) : horarios.length === 0 ? (
-                    <div className="text-center py-4 text-gray-500">No hay horarios definidos.</div>
-                ) : (
-                    <table className="w-full table-auto">
-                        <thead className="bg-emerald-600 text-white">
-                            <tr>
-                                <th className="px-4 py-2 text-left">Día</th>
-                                <th className="px-4 py-2 text-left">Apertura</th>
-                                <th className="px-4 py-2 text-left">Cierre</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {horarios.map((horario) => (
-                                <tr key={horario._id} className="border-b border-gray-200 hover:bg-gray-50">
-                                    <td className="px-4 py-3">{horario.dia}</td>
-                                    <td className="px-4 py-3">{horario.horaApertura} hs</td>
-                                    <td className="px-4 py-3">{horario.horaCierre} hs</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
-            </div>
-
-
-
-
-
-
+      <div className="mt-8 bg-white p-6 rounded-xl shadow-md">
+        <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
+        {loadingHorarios ? (
+          <div className="text-center py-4">Cargando horarios...</div>
+        ) : horarios.length === 0 ? (
+          <div className="text-center py-4 text-gray-500">No hay horarios definidos.</div>
+        ) : (
+          <table className="w-full table-auto">
+            <thead className="bg-emerald-600 text-white">
+              <tr>
+                <th className="px-4 py-2 text-left">Día</th>
+                <th className="px-4 py-2 text-left">Apertura</th>
+                <th className="px-4 py-2 text-left">Cierre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {horarios.map((horario) => (
+                <tr key={horario._id} className="border-b border-gray-200 hover:bg-gray-50">
+                  <td className="px-4 py-3">{horario.dia}</td>
+                  <td className="px-4 py-3">{horario.horaApertura} hs</td>
+                  <td className="px-4 py-3">{horario.horaCierre} hs</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
 
       {/* Modal de confirmación */}
       <ConfirmModal
@@ -372,8 +371,8 @@ const ReservarServicio = () => {
         onConfirm={confirmarReserva}
         service={servicios.find(s => s._id === servicioSeleccionado)}
         additionalDetails={detallesAdicionales}
-        fechaCita={fechaCita} // <-- 
-        horaCita={horaCita}   // <-- 
+        fechaCita={fechaCita}
+        horaCita={horaCita}
       />
     </div>
   );
