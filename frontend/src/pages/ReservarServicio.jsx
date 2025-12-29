@@ -10,6 +10,10 @@ const ReservarServicio = () => {
   const [servicioSeleccionado, setServicioSeleccionado] = useState('');
   const [detallesAdicionales, setDetallesAdicionales] = useState('');
   const [showModal, setShowModal] = useState(false); // <-- Estado para mostrar el modal
+
+  const [horarios, setHorarios] = useState([]); // <-- Nuevo estado para los horarios
+
+
   const { fetchDataBackend } = useFetch();
   const navigate = useNavigate();
   const location = useLocation(); // <-- Usa useLocation para obtener el estado
@@ -28,6 +32,7 @@ const ReservarServicio = () => {
     }
   }, [location.state]);
 
+  // Función para cargar servicios
   const listServicios = async () => {
     const url = `${import.meta.env.VITE_BACKEND_URL}/servicios?activo=true`;
     const storedUser = JSON.parse(localStorage.getItem("auth-token"));
@@ -43,21 +48,114 @@ const ReservarServicio = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!servicioSeleccionado) {
-      alert("Por favor, selecciona un servicio.");
-      return;
-    }
-    // Obtener los detalles del servicio seleccionado
-    const servicio = servicios.find(s => s._id === servicioSeleccionado);
-    if (!servicio) {
-      alert("Servicio no encontrado.");
-      return;
-    }
-    // Mostrar el modal de confirmación
-    setShowModal(true);
-  };
+
+
+
+  // NUEVA: Función para cargar horarios activos
+    const cargarHorarios = async () => {
+        const url = `${import.meta.env.VITE_BACKEND_URL}/horarios-activos2`; // <-- Ruta pública
+        try {
+            const response = await fetchDataBackend(url, null, "GET", null); // No necesita token
+            setHorarios(response || []);
+        } catch (error) {
+            console.error("Error al cargar horarios:", error);
+        }
+    };
+
+    // Cargar servicios y horarios al montar el componente
+    useEffect(() => {
+        listServicios();
+        cargarHorarios(); // <-- Llamada aquí
+    }, []);
+
+    // --------------
+
+
+
+
+        // NUEVA: Función para validar la fecha y hora
+    const validarFechaYHora = (fecha, hora) => {
+        if (!fecha || !hora) return false;
+
+        const fechaObj = new Date(fecha);
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+
+        // Validar que la fecha no sea pasada
+        if (fechaObj < hoy) {
+            return false;
+        }
+
+        // Obtener el día de la semana (Lunes=1, Domingo=7)
+        const diaSemana = fechaObj.getDay();
+        let nombreDia;
+        switch(diaSemana) {
+            case 0: nombreDia = "Domingo"; break;
+            case 1: nombreDia = "Lunes"; break;
+            case 2: nombreDia = "Martes"; break;
+            case 3: nombreDia = "Miércoles"; break;
+            case 4: nombreDia = "Jueves"; break;
+            case 5: nombreDia = "Viernes"; break;
+            case 6: nombreDia = "Sábado"; break;
+            default: return false;
+        }
+
+        // Buscar el horario correspondiente
+        const horarioDelDia = horarios.find(h => h.dia === nombreDia);
+
+        if (!horarioDelDia) {
+            return false; // Día no laborable
+        }
+
+        // Validar que la hora esté dentro del rango
+        const [horaInput, minutoInput] = hora.split(':').map(Number);
+        const [horaApertura, minutoApertura] = horarioDelDia.horaApertura.split(':').map(Number);
+        const [horaCierre, minutoCierre] = horarioDelDia.horaCierre.split(':').map(Number);
+
+        const tiempoInput = horaInput * 60 + minutoInput;
+        const tiempoApertura = horaApertura * 60 + minutoApertura;
+        const tiempoCierre = horaCierre * 60 + minutoCierre;
+
+        // La hora debe ser mayor o igual a la apertura y menor que el cierre
+        return tiempoInput >= tiempoApertura && tiempoInput < tiempoCierre;
+    };
+
+
+
+
+
+    // ---------------
+
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!servicioSeleccionado) {
+            alert("Por favor, selecciona un servicio.");
+            return;
+        }
+
+        //  VALIDAR FECHA Y HORA ANTES DE ABRIR EL MODAL
+        if (!fechaCita || !horaCita) {
+            alert("Por favor, selecciona una fecha y hora válidas.");
+            return;
+        }
+
+        if (!validarFechaYHora(fechaCita, horaCita)) {
+            alert("La fecha y hora seleccionadas no están dentro de nuestros horarios de atención. Por favor, elige otra opción.");
+            return;
+        }
+
+        // Si pasa la validación, proceder a mostrar el modal
+        const servicio = servicios.find(s => s._id === servicioSeleccionado);
+        if (!servicio) {
+            alert("Servicio no encontrado.");
+            return;
+        }
+        setShowModal(true);
+    };
+
+
+
 
   // Función para enviar la reserva después de la confirmación
   const confirmarReserva = async () => {
