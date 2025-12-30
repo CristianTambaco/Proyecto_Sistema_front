@@ -8,9 +8,9 @@ function useFetch() {
     // ***comentar uno de los dos: const loadingToast***
     // --------------------
 
-    // const loadingToast = toast.loading("Procesando solicitud...");
+    const loadingToast = toast.loading("Procesando solicitud...");
 
-    const loadingToast = toast.loading;
+    // const loadingToast = toast.loading;
 
     // ---------------
 
