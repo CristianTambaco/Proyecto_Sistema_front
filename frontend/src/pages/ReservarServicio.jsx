@@ -5,6 +5,11 @@ import { ToastContainer } from 'react-toastify';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ConfirmModal from '../components/ConfirmModal';
 
+
+import TableTreatments from '../components/treatments/Table';
+import storeAuth from '../context/storeAuth';
+
+
 const ReservarServicio = () => {
   const [servicios, setServicios] = useState([]);
   const [servicioSeleccionado, setServicioSeleccionado] = useState('');
@@ -21,6 +26,79 @@ const ReservarServicio = () => {
   const { fetchDataBackend } = useFetch();
   const navigate = useNavigate();
   const location = useLocation();
+
+
+  const [atenciones, setAtenciones] = useState([]);
+  const [loadingHistorial, setLoadingHistorial] = useState(true);
+
+  const { token } = storeAuth(); // Para obtener el token del usuario autenticado
+
+
+
+
+  // Función para cargar el historial de atenciones del cliente
+const cargarHistorial = async () => {
+try {
+if (!token) {
+console.error("No hay token disponible.");
+return;
+}
+const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+if (!storedUser || !storedUser.state || !storedUser.state.token) {
+console.error("No se pudo obtener el token del almacenamiento local.");
+return;
+}
+
+// Extraer el ID del cliente del token JWT
+let idCliente;
+try {
+const tokenPayload = JSON.parse(atob(storedUser.state.token.split('.')[1]));
+idCliente = tokenPayload.id;
+} catch (decodeError) {
+console.error("Error al decodificar el token:", decodeError);
+return;
+}
+
+if (!idCliente) {
+console.error("No se pudo obtener el ID del cliente del token.");
+return;
+}
+
+const url = `${import.meta.env.VITE_BACKEND_URL}/cliente/${idCliente}`;
+const headers = {
+"Content-Type": "application/json",
+Authorization: `Bearer ${storedUser.state.token}`,
+};
+
+const response = await fetchDataBackend(url, null, "GET", headers);
+
+// Asegurarse de que la respuesta tenga el formato correcto
+if (response && Array.isArray(response.atencions)) {
+setAtenciones(response.atencions);
+} else {
+setAtenciones([]);
+}
+} catch (error) {
+console.error("Error al cargar historial:", error);
+setAtenciones([]); // Limpiar el estado en caso de error
+} finally {
+setLoadingHistorial(false);
+}
+};
+
+// Efecto para cargar el historial al montar el componente
+useEffect(() => {
+cargarHistorial();
+}, [token]); // Recarga si cambia el token
+
+
+
+
+
+
+
+
+
 
   // Cargar servicios al montar el componente
   const listServicios = async () => {
@@ -434,6 +512,14 @@ const ReservarServicio = () => {
           </button>
         </form>
 
+
+
+         
+          
+
+
+
+
         {/* Modal de confirmación */}
         <ConfirmModal
           isOpen={showModal}
@@ -445,6 +531,25 @@ const ReservarServicio = () => {
           horaCita={horaCita}
         />
       </div>
+
+
+          
+        
+        {!loadingHistorial && (
+            <div className="mt-8 bg-white p-6 rounded-lg shadow">
+              <h2 className="text-xl font-bold mb-4">Servicios reservados</h2>
+              {atenciones.length === 0 ? (
+                <p className="text-gray-500">No tienes atenciones registradas.</p>
+              ) : (
+                <TableTreatments treatments={atenciones} listPatient={cargarHistorial} />
+              )}
+            </div>
+          )}
+
+
+
+
+
     </div>
   );
 };
