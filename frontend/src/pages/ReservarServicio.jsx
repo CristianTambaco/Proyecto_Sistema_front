@@ -267,7 +267,7 @@ const ReservarServicio = () => {
         setFechaCita('');
         setHoraCita('');
         // Redirigir a la página de historial o dashboard
-        navigate(`/dashboard/historial`);
+        navigate(`/dashboard/reservar-servicio`);
       }
     } catch (error) {
       console.error("Error al reservar servicio:", error);
