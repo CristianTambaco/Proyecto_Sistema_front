@@ -252,6 +252,40 @@ switch (diaSemana) {
       <h1 className='font-black text-4xl text-gray-500'>Reservar Servicio</h1>
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite solicitar un servicio disponible.</p>
+
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+      {/* --- NUEVA TABLA DE HORARIOS --- */}
+      <div className="mt-8 bg-white p-6 rounded-xl shadow-md">
+        <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
+        {loadingHorarios ? (
+          <div className="text-center py-4">Cargando horarios...</div>
+        ) : horarios.length === 0 ? (
+          <div className="text-center py-4 text-gray-500">No hay horarios definidos.</div>
+        ) : (
+          <table className="w-full table-auto">
+            <thead className="bg-emerald-600 text-white">
+              <tr>
+                <th className="px-4 py-2 text-left">Día</th>
+                <th className="px-4 py-2 text-left">Apertura</th>
+                <th className="px-4 py-2 text-left">Cierre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {horarios.map((horario) => (
+                <tr key={horario._id} className="border-b border-gray-200 hover:bg-gray-50">
+                  <td className="px-4 py-3">{horario.dia}</td>
+                  <td className="px-4 py-3">{horario.horaApertura} hs</td>
+                  <td className="px-4 py-3">{horario.horaCierre} hs</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+        
       <form onSubmit={handleSubmit} className="max-w-md mx-auto border-2 border-gray-300 p-6 rounded-lg shadow-lg">
         <div className="mb-4">
           <label htmlFor="servicio" className="block text-sm font-semibold mb-1">
@@ -335,34 +369,7 @@ switch (diaSemana) {
         </button>
       </form>
 
-      {/* --- NUEVA TABLA DE HORARIOS --- */}
-      <div className="mt-8 bg-white p-6 rounded-xl shadow-md">
-        <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
-        {loadingHorarios ? (
-          <div className="text-center py-4">Cargando horarios...</div>
-        ) : horarios.length === 0 ? (
-          <div className="text-center py-4 text-gray-500">No hay horarios definidos.</div>
-        ) : (
-          <table className="w-full table-auto">
-            <thead className="bg-emerald-600 text-white">
-              <tr>
-                <th className="px-4 py-2 text-left">Día</th>
-                <th className="px-4 py-2 text-left">Apertura</th>
-                <th className="px-4 py-2 text-left">Cierre</th>
-              </tr>
-            </thead>
-            <tbody>
-              {horarios.map((horario) => (
-                <tr key={horario._id} className="border-b border-gray-200 hover:bg-gray-50">
-                  <td className="px-4 py-3">{horario.dia}</td>
-                  <td className="px-4 py-3">{horario.horaApertura} hs</td>
-                  <td className="px-4 py-3">{horario.horaCierre} hs</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+      
 
       {/* Modal de confirmación */}
       <ConfirmModal
@@ -374,6 +381,8 @@ switch (diaSemana) {
         fechaCita={fechaCita}
         horaCita={horaCita}
       />
+    </div>
+
     </div>
   );
 };
