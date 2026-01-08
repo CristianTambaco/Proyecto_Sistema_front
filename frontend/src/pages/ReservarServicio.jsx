@@ -14,7 +14,10 @@ const ReservarServicio = () => {
   const [loadingHorarios, setLoadingHorarios] = useState(true);
   const [fechaCita, setFechaCita] = useState('');
   const [horaCita, setHoraCita] = useState('');
-  const [validacionError, setValidacionError] = useState(''); // <-- Nuevo estado para mensajes de error
+  // --- NUEVO: Estados separados para errores ---
+  const [fechaError, setFechaError] = useState('');
+  const [horaError, setHoraError] = useState('');
+  // --- FIN NUEVO ---
   const { fetchDataBackend } = useFetch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,60 +52,106 @@ const ReservarServicio = () => {
     }
   };
 
-  // --- NUEVO: Función para validar la fecha y hora ---
-  const validarFechaYHora = (fecha, hora) => {
-    if (!fecha || !hora) return false;
-
+  // --- NUEVO: Función para validar la fecha ---
+  const validarFecha = (fecha) => {
+    if (!fecha) return false;
     const [year, month, day] = fecha.split('-');
-// Creamos la fecha usando el constructor de Date con los números separados.
-// Esto crea la fecha a las 00:00 en la zona horaria LOCAL del usuario.
+    // Creamos la fecha usando el constructor de Date con los números separados.
+    // Esto crea la fecha a las 00:00 en la zona horaria LOCAL del usuario.
     const fechaObj = new Date(Number(year), Number(month) - 1, Number(day));
-
-    
     const hoy = new Date();
     hoy.setHours(0, 0, 0, 0);
-
     // Validar que la fecha no sea pasada
     if (fechaObj < hoy) {
-      setValidacionError("No puedes seleccionar una fecha pasada.");
+      setFechaError("No puedes seleccionar una fecha pasada.");
       return false;
     }
-
-    
     // Obtener el día de la semana (0=Domingo, 1=Lunes, ..., 6=Sábado)
-const diaSemana = fechaObj.getDay();
-let nombreDia;
-switch (diaSemana) {
-  case 0:
-    nombreDia = "Domingo";
-    break;
-  case 1:
-    nombreDia = "Lunes";
-    break;
-  case 2:
-    nombreDia = "Martes";
-    break;
-  case 3:
-    nombreDia = "Miércoles";
-    break;
-  case 4:
-    nombreDia = "Jueves";
-    break;
-  case 5:
-    nombreDia = "Viernes";
-    break;
-  case 6:
-    nombreDia = "Sábado";
-    break;
-  default:
-    return false;
-}
-
+    const diaSemana = fechaObj.getDay();
+    let nombreDia;
+    switch (diaSemana) {
+      case 0:
+        nombreDia = "Domingo";
+        break;
+      case 1:
+        nombreDia = "Lunes";
+        break;
+      case 2:
+        nombreDia = "Martes";
+        break;
+      case 3:
+        nombreDia = "Miércoles";
+        break;
+      case 4:
+        nombreDia = "Jueves";
+        break;
+      case 5:
+        nombreDia = "Viernes";
+        break;
+      case 6:
+        nombreDia = "Sábado";
+        break;
+      default:
+        return false;
+    }
     // Buscar el horario correspondiente
     const horarioDelDia = horarios.find(h => h.dia === nombreDia);
     if (!horarioDelDia) {
-      setValidacionError(`No atendemos los ${nombreDia.toLowerCase()}.`);
+      setFechaError(`No atendemos los ${nombreDia.toLowerCase()}.`);
       return false; // Día no laborable
+    }
+    // Si llega aquí, la validación de fecha es exitosa
+    setFechaError('');
+    return true;
+  };
+
+  // --- NUEVO: Función para validar la hora ---
+    // --- NUEVO: Función para validar la hora (SÓLO el rango horario) ---
+  const validarHora = (fecha, hora) => {
+    if (!fecha || !hora) return false;
+
+    // Si no hay error de fecha, procedemos a validar la hora.
+    // (La validación del día ya se hizo en 'validarFecha')
+    const [year, month, day] = fecha.split('-');
+    const fechaObj = new Date(Number(year), Number(month) - 1, Number(day));
+    const diaSemana = fechaObj.getDay();
+    let nombreDia;
+    switch (diaSemana) {
+      case 0:
+        nombreDia = "Domingo";
+        break;
+      case 1:
+        nombreDia = "Lunes";
+        break;
+      case 2:
+        nombreDia = "Martes";
+        break;
+      case 3:
+        nombreDia = "Miércoles";
+        break;
+      case 4:
+        nombreDia = "Jueves";
+        break;
+      case 5:
+        nombreDia = "Viernes";
+        break;
+      case 6:
+        nombreDia = "Sábado";
+        break;
+      default:
+        return false;
+    }
+
+    // Buscar el horario correspondiente
+    const horarioDelDia = horarios.find(h => h.dia === nombreDia);
+
+    // Si no encontramos el horario, significa que no atendemos ese día.
+    // Pero esto NO debería pasar si la fecha ya pasó la validación.
+    // Para evitar errores, manejamos este caso.
+    if (!horarioDelDia) {
+      // En lugar de mostrar un mensaje de "día no laborable", mostramos un error genérico.
+      setHoraError(`No tenemos horarios definidos para ${nombreDia}.`);
+      return false;
     }
 
     // Validar que la hora esté dentro del rango
@@ -115,21 +164,28 @@ switch (diaSemana) {
 
     // La hora debe ser mayor o igual a la apertura y menor que el cierre
     if (tiempoInput < tiempoApertura || tiempoInput >= tiempoCierre) {
-      setValidacionError(`Nuestros horarios para ${nombreDia} son de ${horarioDelDia.horaApertura} a ${horarioDelDia.horaCierre}. Por favor, elige otra hora.`);
+      setHoraError(`Nuestros horarios para ${nombreDia} son de ${horarioDelDia.horaApertura} a ${horarioDelDia.horaCierre}. Por favor, elige otra hora.`);
       return false;
     }
 
-    // Si llega aquí, la validación es exitosa
-    setValidacionError('');
+    // Si llega aquí, la validación de hora es exitosa
+    setHoraError('');
     return true;
   };
 
-  // --- NUEVO: Efecto para validar cuando cambian fecha u hora ---
+  // --- NUEVO: Efecto para validar cuando cambia la fecha ---
+  useEffect(() => {
+    if (fechaCita) {
+      validarFecha(fechaCita);
+    }
+  }, [fechaCita]);
+
+  // --- NUEVO: Efecto para validar cuando cambia la hora ---
   useEffect(() => {
     if (fechaCita && horaCita) {
-      validarFechaYHora(fechaCita, horaCita);
+      validarHora(fechaCita, horaCita);
     }
-  }, [fechaCita, horaCita]);
+  }, [horaCita, fechaCita]);
 
   // Cargar servicios y horarios al montar el componente
   useEffect(() => {
@@ -150,16 +206,17 @@ switch (diaSemana) {
       alert("Por favor, selecciona un servicio.");
       return;
     }
-
     // VALIDAR FECHA Y HORA ANTES DE ABRIR EL MODAL
     if (!fechaCita || !horaCita) {
       alert("Por favor, selecciona una fecha y hora válidas.");
       return;
     }
-
     // La validación ya se hace en tiempo real, pero volvemos a validar para estar seguros
-    if (!validarFechaYHora(fechaCita, horaCita)) {
-      // El mensaje de error ya se muestra en el estado 'validacionError'
+    const fechaValida = validarFecha(fechaCita);
+    const horaValida = validarHora(fechaCita, horaCita);
+
+    if (!fechaValida || !horaValida) {
+      // El mensaje de error ya se muestra en los estados 'fechaError' y 'horaError'
       return;
     }
 
@@ -252,141 +309,135 @@ switch (diaSemana) {
       <h1 className='font-black text-4xl text-gray-500'>Reservar Servicio</h1>
       <hr className='my-4 border-t-2 border-gray-300' />
       <p className='mb-8'>Este módulo te permite solicitar un servicio disponible.</p>
-
-
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-
-      {/* --- NUEVA TABLA DE HORARIOS --- */}
-      <div className="mt-8 bg-white p-4 rounded-lg shadow max-w-lg">
-        <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
-        {loadingHorarios ? (
-          <div className="text-center py-4">Cargando horarios...</div>
-        ) : horarios.length === 0 ? (
-          <div className="text-center py-4 text-gray-500">No hay horarios definidos.</div>
-        ) : (
-          <table className="w-full table-auto">
-            <thead className="bg-emerald-600 text-white">
-              <tr>
-                <th className="px-4 py-2 text-left">Día</th>
-                <th className="px-4 py-2 text-left">Apertura</th>
-                <th className="px-4 py-2 text-left">Cierre</th>
-              </tr>
-            </thead>
-            <tbody>
-              {horarios.map((horario) => (
-                <tr key={horario._id} className="border-b border-gray-200 hover:bg-gray-50">
-                  <td className="px-4 py-3">{horario.dia}</td>
-                  <td className="px-4 py-3">{horario.horaApertura} hs</td>
-                  <td className="px-4 py-3">{horario.horaCierre} hs</td>
+        {/* --- NUEVA TABLA DE HORARIOS --- */}
+        <div className="mt-8 bg-white p-6 rounded-xl shadow-md">
+          <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
+          {loadingHorarios ? (
+            <div className="text-center py-4">Cargando horarios...</div>
+          ) : horarios.length === 0 ? (
+            <div className="text-center py-4 text-gray-500">No hay horarios definidos.</div>
+          ) : (
+            <table className="w-full table-auto">
+              <thead className="bg-emerald-600 text-white">
+                <tr>
+                  <th className="px-4 py-2 text-left">Día</th>
+                  <th className="px-4 py-2 text-left">Apertura</th>
+                  <th className="px-4 py-2 text-left">Cierre</th>
                 </tr>
+              </thead>
+              <tbody>
+                {horarios.map((horario) => (
+                  <tr key={horario._id} className="border-b border-gray-200 hover:bg-gray-50">
+                    <td className="px-4 py-3">{horario.dia}</td>
+                    <td className="px-4 py-3">{horario.horaApertura} hs</td>
+                    <td className="px-4 py-3">{horario.horaCierre} hs</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto border-2 border-gray-300 p-6 rounded-lg shadow-lg">
+          <div className="mb-4">
+            <label htmlFor="servicio" className="block text-sm font-semibold mb-1">
+              Selecciona un Servicio <span className="text-red-600">*</span>
+            </label>
+            <select
+              id="servicio"
+              value={servicioSeleccionado}
+              onChange={(e) => setServicioSeleccionado(e.target.value)}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              required
+            >
+              <option value="">-- Seleccionar --</option>
+              {servicios.map((servicio) => (
+                <option key={servicio._id} value={servicio._id}>
+                  {servicio.nombre} - $ {servicio.precio}
+                </option>
               ))}
-            </tbody>
-          </table>
-        )}
-      </div>
-
-        
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-2xl w-full mx-auto border-2 border-gray-300 p-6 rounded-lg shadow-lg"
-      >
-
-        <div className="mb-4">
-          <label htmlFor="servicio" className="block text-sm font-semibold mb-1">
-            Selecciona un Servicio <span className="text-red-600">*</span>
-          </label>
-          <select
-            id="servicio"
-            value={servicioSeleccionado}
-            onChange={(e) => setServicioSeleccionado(e.target.value)}
-            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-            required
-          >
-            <option value="">-- Seleccionar --</option>
-            {servicios.map((servicio) => (
-              <option key={servicio._id} value={servicio._id}>
-                {servicio.nombre} - $ {servicio.precio}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Campo de Fecha */}
-        <div className="mb-4">
-          <label htmlFor="fechaCita" className="block text-sm font-semibold mb-1">
-            Fecha <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="date"
-            id="fechaCita"
-            value={fechaCita}
-            onChange={(e) => setFechaCita(e.target.value)}
-            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-            min={new Date().toISOString().split('T')[0]} // No permitir fechas pasadas
-            required
-          />
-        </div>
-
-        {/* Campo de Hora */}
-        <div className="mb-4">
-          <label htmlFor="horaCita" className="block text-sm font-semibold mb-1">
-            Hora <span className="text-red-600">*</span>
-          </label>
-          <input
-            type="time"
-            id="horaCita"
-            value={horaCita}
-            onChange={(e) => setHoraCita(e.target.value)}
-            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-            required
-          />
-        </div>
-
-        {/* Mensaje de error de validación */}
-        {validacionError && (
-          <div className="mb-4 p-3 bg-red-100 text-red-700 border border-red-300 rounded-md">
-            {validacionError}
+            </select>
           </div>
-        )}
 
-        <div className="mb-4">
-          <label htmlFor="detalles" className="block text-sm font-semibold mb-1">
-            Detalles Adicionales
-          </label>
-          <textarea
-            id="detalles"
-            value={detallesAdicionales}
-            onChange={(e) => setDetallesAdicionales(e.target.value)}
-            className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-            placeholder="Agrega cualquier detalle importante sobre la reserva..."
-            rows="3"
-          />
-        </div>
+          {/* Campo de Fecha */}
+          <div className="mb-4">
+            <label htmlFor="fechaCita" className="block text-sm font-semibold mb-1">
+              Fecha <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="date"
+              id="fechaCita"
+              value={fechaCita}
+              onChange={(e) => setFechaCita(e.target.value)}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              min={new Date().toISOString().split('T')[0]} // No permitir fechas pasadas
+              required
+            />
+            {/* Mensaje de error específico para la fecha */}
+            {fechaError && (
+              <div className="mt-1 p-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm">
+                {fechaError}
+              </div>
+            )}
+          </div>
 
-        {/* Botón de reserva, deshabilitado si hay error de validación */}
-        <button
-          type="submit"
-          className={`bg-green-800 w-full p-2 text-slate-300 uppercase font-bold rounded-lg hover:bg-green-700 cursor-pointer transition-all ${validacionError ? 'opacity-50 cursor-not-allowed' : ''}`}
-          disabled={!!validacionError} // Deshabilitar si hay error
-        >
-          Reservar Servicio
-        </button>
-      </form>
+          {/* Campo de Hora */}
+          <div className="mb-4">
+            <label htmlFor="horaCita" className="block text-sm font-semibold mb-1">
+              Hora <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="time"
+              id="horaCita"
+              value={horaCita}
+              onChange={(e) => setHoraCita(e.target.value)}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              required
+            />
+            {/* Mensaje de error específico para la hora */}
+            {horaError && (
+              <div className="mt-1 p-2 bg-red-100 text-red-700 border border-red-300 rounded-md text-sm">
+                {horaError}
+              </div>
+            )}
+          </div>
 
-      
+          <div className="mb-4">
+            <label htmlFor="detalles" className="block text-sm font-semibold mb-1">
+              Detalles Adicionales
+            </label>
+            <textarea
+              id="detalles"
+              value={detallesAdicionales}
+              onChange={(e) => setDetallesAdicionales(e.target.value)}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              placeholder="Agrega cualquier detalle importante sobre la reserva..."
+              rows="3"
+            />
+          </div>
 
-      {/* Modal de confirmación */}
-      <ConfirmModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        onConfirm={confirmarReserva}
-        service={servicios.find(s => s._id === servicioSeleccionado)}
-        additionalDetails={detallesAdicionales}
-        fechaCita={fechaCita}
-        horaCita={horaCita}
-      />
-    </div>
+          {/* Botón de reserva, deshabilitado si hay error de validación */}
+          <button
+            type="submit"
+            className={`bg-green-800 w-full p-2 text-slate-300 uppercase font-bold rounded-lg hover:bg-green-700 cursor-pointer transition-all ${fechaError || horaError ? 'opacity-50 cursor-not-allowed' : ''}`}
+            disabled={!!fechaError || !!horaError} // Deshabilitar si hay algún error
+          >
+            Reservar Servicio
+          </button>
+        </form>
 
+        {/* Modal de confirmación */}
+        <ConfirmModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          onConfirm={confirmarReserva}
+          service={servicios.find(s => s._id === servicioSeleccionado)}
+          additionalDetails={detallesAdicionales}
+          fechaCita={fechaCita}
+          horaCita={horaCita}
+        />
+      </div>
     </div>
   );
 };
