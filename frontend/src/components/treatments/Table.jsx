@@ -14,7 +14,7 @@ import useFetch from "../../hooks/useFetch";
 
 
 
-const TableTreatments = ({ treatments, listPatient }) => {
+const TableTreatments = ({ treatments = [], listPatient }) => {
     const { deleteTreatments } = storeTreatments()
     const { rol } = storeAuth()
     const { modal, toggleModal } = storeTreatments()
@@ -169,8 +169,8 @@ const TableTreatments = ({ treatments, listPatient }) => {
                             <td>{index + 1}</td>
 
                             {rol === 'estilista' &&(
-                            <td>{treatment.cliente.nombrePropietario}</td>
-                            )} 
+                                <td>{treatment.cliente?.nombrePropietario || '—'}</td>
+                            )}
 
 
                             <td>
