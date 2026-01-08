@@ -311,7 +311,10 @@ const ReservarServicio = () => {
       <p className='mb-8'>Este módulo te permite solicitar un servicio disponible.</p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* --- NUEVA TABLA DE HORARIOS --- */}
-        <div className="mt-8 bg-white p-6 rounded-xl shadow-md">
+
+        <div className="mt-8 bg-white p-6 rounded-lg shadow w-full lg:max-w-2xl">
+
+
           <h2 className="text-xl font-bold mb-4">Horarios de Atención</h2>
           {loadingHorarios ? (
             <div className="text-center py-4">Cargando horarios...</div>
