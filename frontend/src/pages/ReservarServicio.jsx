@@ -286,7 +286,11 @@ switch (diaSemana) {
       </div>
 
         
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto border-2 border-gray-300 p-6 rounded-lg shadow-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-2xl w-full mx-auto border-2 border-gray-300 p-6 rounded-lg shadow-lg"
+      >
+
         <div className="mb-4">
           <label htmlFor="servicio" className="block text-sm font-semibold mb-1">
             Selecciona un Servicio <span className="text-red-600">*</span>
