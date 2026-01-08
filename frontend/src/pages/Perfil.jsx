@@ -72,10 +72,10 @@ const Perfil = () => {
                 <label className="block text-sm font-semibold">Teléfono</label>
                 <p className="mt-1">{user.celularPropietario}</p>
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="block text-sm font-semibold">Mascota</label>
                 <p className="mt-1">{user.nombreMascota}</p>
-              </div>
+              </div> */}
               
 
             </>
