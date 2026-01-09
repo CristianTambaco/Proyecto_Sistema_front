@@ -12,6 +12,9 @@ import { ToastContainer, toast } from "react-toastify";
 import useFetch from "../../hooks/useFetch";
 
 
+import EditModal from "./EditModal"; // <-- 
+
+
 
 
 const TableTreatments = ({ treatments = [], listPatient }) => {
@@ -19,6 +22,11 @@ const TableTreatments = ({ treatments = [], listPatient }) => {
     const { rol } = storeAuth()
     const { modal, toggleModal } = storeTreatments()
     const [selectedTreatment, setSelectedTreatment] = useState(null)
+
+    const [showEditModal, setShowEditModal] = useState(false);
+
+
+
 
     const handleDelete = async (id) => {
         deleteTreatments(id);
@@ -80,6 +88,31 @@ const TableTreatments = ({ treatments = [], listPatient }) => {
     }
   };
 
+
+  
+
+
+
+  // Función para abrir el modal de edición
+const handleEditDetails = (treatmentData) => {
+setSelectedTreatment(treatmentData);
+setShowEditModal(true); // Nuevo estado para el modal de edición
+};
+
+// Función para cerrar el modal de edición
+const closeEditModal = () => {
+setShowEditModal(false);
+setSelectedTreatment(null);
+};
+
+
+
+
+
+
+
+
+
   // Función para cerrar el modal
   const closeModal = () => {
     setShowModal(false);
@@ -88,7 +121,9 @@ const TableTreatments = ({ treatments = [], listPatient }) => {
 
 
 
+  
 
+  
 
 
 
@@ -219,6 +254,17 @@ const TableTreatments = ({ treatments = [], listPatient }) => {
 
                                 )}
 
+                                
+                                {(rol === "cliente") && (
+                                <span
+                                title="Editar"
+                                className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
+                                onClick={() => handleEditDetails(treatment)}
+                                >
+                                ✏️
+                                </span>
+                                )}
+
 
                             
 
@@ -274,7 +320,7 @@ const TableTreatments = ({ treatments = [], listPatient }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
 
           <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">Detalles de la Atención</h2>
+            <h2 className="text-xl font-bold mb-4">Detalles</h2>
             <div className="mb-4 p-4 bg-gray-100 rounded">
               <strong className="block mb-1">{selectedTreatment.nombre}</strong>
               <p className="text-sm text-gray-600 mb-2">{selectedTreatment.descripcion}</p>
@@ -326,6 +372,18 @@ const TableTreatments = ({ treatments = [], listPatient }) => {
             </div>
           </div>
         </div>
+      )}
+
+
+
+
+      {/* Modal de Edición */}
+      {showEditModal && selectedTreatment && (
+      <EditModal
+      treatment={selectedTreatment}
+      onClose={closeEditModal}
+      onRefresh={listPatient} // Llama a listPatient para refrescar la lista
+      />
       )}
 
 
