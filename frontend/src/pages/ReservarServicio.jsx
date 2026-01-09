@@ -346,6 +346,8 @@ cargarHistorial();
         setHoraCita('');
         // Redirigir a la página de historial o dashboard
         navigate(`/dashboard/reservar-servicio`);
+
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error al reservar servicio:", error);
