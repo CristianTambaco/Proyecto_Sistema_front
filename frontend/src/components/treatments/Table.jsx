@@ -25,6 +25,7 @@ const TableTreatments = ({ treatments = [], listPatient, showEditButton = false 
 
     const [showEditModal, setShowEditModal] = useState(false);
 
+    const [horarios, setHorarios] = useState([]); // <-- Estado para los horarios
 
 
 
@@ -473,6 +474,8 @@ setSelectedTreatment(null);
       treatment={selectedTreatment}
       onClose={closeEditModal}
       onRefresh={listPatient} // Llama a listPatient para refrescar la lista
+      horariosActivos={horarios} // <-- 
+
       />
       )}
 
