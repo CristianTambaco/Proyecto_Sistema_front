@@ -139,7 +139,7 @@ const EditModal = ({ treatment, onClose, onRefresh, horariosActivos }) => {
 
       const response = await fetchDataBackend(url, dataToUpdate, "PUT", headers);
       if (response) {
-        toast.success("Reserva actualizada correctamente.");
+        // toast.success("Reserva actualizada correctamente.");
         onClose();
         onRefresh();
       }

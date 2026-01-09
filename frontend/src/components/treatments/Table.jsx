@@ -474,7 +474,8 @@ setSelectedTreatment(null);
       treatment={selectedTreatment}
       onClose={closeEditModal}
       onRefresh={listPatient} // Llama a listPatient para refrescar la lista
-      horariosActivos={horarios} // <-- 
+
+      // horariosActivos={horarios} // <-- 
 
       />
       )}
