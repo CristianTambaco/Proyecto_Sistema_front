@@ -17,7 +17,7 @@ import EditModal from "./EditModal"; // <--
 
 
 
-const TableTreatments = ({ treatments = [], listPatient }) => {
+const TableTreatments = ({ treatments = [], listPatient, showEditButton = false }) => {
     const { deleteTreatments } = storeTreatments()
     const { rol } = storeAuth()
     const { modal, toggleModal } = storeTreatments()
@@ -255,7 +255,7 @@ setSelectedTreatment(null);
                                 )}
 
                                 
-                                {(rol === "cliente") && (
+                                {/* {(rol === "cliente") && (
                                 <span
                                 title="Editar"
                                 className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
@@ -263,6 +263,23 @@ setSelectedTreatment(null);
                                 >
                                 ✏️
                                 </span>
+                                )} */}
+
+
+
+
+                                {/* Botón de Editar - Solo si showEditButton es true */}
+                                {showEditButton && (
+                                  <span
+                                    title="Editar"
+                                    className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
+                                    onClick={() => {
+                                      handleEditDetails(treatment);
+                                      setEditMode(true); // <-- Opcional: si tienes un estado para modo edición
+                                    }}
+                                  >
+                                    ✏️
+                                  </span>
                                 )}
 
 
