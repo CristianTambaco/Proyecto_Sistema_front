@@ -309,6 +309,55 @@ setSelectedTreatment(null);
                                 )}
 
 
+
+
+                                {/* Botón de Cancelar para cliente */}
+
+                                
+                                {/* Botón de Editar - Solo si showEditButton es true */}
+                                {showEditButton &&  (
+                                <span
+                                title="Cancelar Reserva"
+                                className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
+                                onClick={async () => {
+                                    const confirmCancel = window.confirm(
+                                        "¿Estás seguro de que deseas cancelar esta reserva?"
+                                    );
+                                    if (confirmCancel) {
+                                        try {
+                                            const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/${treatment._id}`;
+                                            const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+                                            const headers = {
+                                                "Content-Type": "application/json",
+                                                Authorization: `Bearer ${storedUser.state.token}`,
+                                            };
+                                            const response = await fetch(url, {
+                                                method: "DELETE",
+                                                headers: headers,
+                                            });
+
+                                            if (response.ok) {
+                                                toast.success("Reserva cancelada correctamente.");
+                                                // Refrescar la lista
+                                                listPatient();
+                                            } else {
+                                                const errorData = await response.json();
+                                                toast.error(errorData.msg || "Error al cancelar la reserva.");
+                                            }
+                                        } catch (error) {
+                                            console.error("Error al cancelar la reserva:", error);
+                                            toast.error("Error al cancelar la reserva.");
+                                        }
+                                    }
+                                }}
+                                >
+                                🗑️
+                                </span>
+                                )}
+
+
+
+
                             
 
                                 {/* Botón de Pagar para cliente */}

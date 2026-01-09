@@ -539,7 +539,7 @@ cargarHistorial();
             <div className="mt-8 bg-white p-6 rounded-lg shadow">
               <h2 className="text-xl font-bold mb-4"></h2>
               {atenciones.length === 0 ? (
-                <p className="text-gray-500">No tienes atenciones registradas.</p>
+                <p className="text-gray-500">Registros.</p>
               ) : (
                 <TableTreatments treatments={atenciones} listPatient={cargarHistorial} showEditButton={true} />
               )}
