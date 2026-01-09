@@ -312,9 +312,7 @@ setSelectedTreatment(null);
 
 
                                 {/* Botón de Cancelar para cliente */}
-
                                 
-                                {/* Botón de Editar - Solo si showEditButton es true */}
                                 {showEditButton &&  (
                                 <span
                                 title="Cancelar Reserva"
@@ -351,7 +349,7 @@ setSelectedTreatment(null);
                                     }
                                 }}
                                 >
-                                🗑️
+                                ❌
                                 </span>
                                 )}
 
