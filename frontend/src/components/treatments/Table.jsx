@@ -154,8 +154,12 @@ setSelectedTreatment(null);
 
                         {rol === 'estilista' &&(
                         <th className="p-2">Prioridad</th>
-                        )} 
+                        )}
 
+
+                        {(rol === 'estilista' ) &&(
+                        <th className="p-2">Estado</th>
+                        )} 
 
                         {(rol === 'estilista'  ) &&(
                         <th className="p-2">Acciones</th>
@@ -180,12 +184,22 @@ setSelectedTreatment(null);
 
                         {(rol === 'cliente' || rol === 'administrador' ) &&(
                         <th className="p-2">Prioridad</th>
-                        )} 
+                        )}
+
+                        {(rol === 'cliente' || rol === 'administrador' ) &&(
+                        <th className="p-2">Estado</th>
+                        )}
+
+
+                        
 
 
                         {(rol === 'cliente'  ) &&(
                         <th className="p-2">Acciones</th>
                         )} 
+
+
+                        
 
 
                         
@@ -233,6 +247,18 @@ setSelectedTreatment(null);
                             {/* <td className={treatment.estadoPago === "Pagado" ? "text-green-500 text-sm" : "text-red-500 text-sm"}>
                                 {treatment.estadoPago}
                             </td> */}
+
+
+                            {/* NUEVA CELDA: Estado de la Atención */}
+                            <td>
+                            <span className={`px-2 py-1 rounded text-xs ${
+                            treatment.estadoAtencion === 'Atendido'
+                            ? ' text-green-800'
+                            : ' text-yellow-800'
+                            }`}>
+                            {treatment.estadoAtencion}
+                            </span>
+                            </td>
 
 
                             <td className="py-2 text-center">
