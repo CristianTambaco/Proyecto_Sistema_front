@@ -559,7 +559,7 @@ const Dashboard = () => {
 
 
 
-                        {rol === 'estilista' && isInsideDashboard && (
+                        {/* {rol === 'estilista' && isInsideDashboard && (
                         <>                            
 
                             <li>
@@ -577,7 +577,7 @@ const Dashboard = () => {
 
 
                         </>
-                        )}
+                        )} */}
 
 
 

@@ -58,7 +58,7 @@ const HistorialTrabajos = () => {
   if (trabajos.length === 0) {
     return (
       <div>
-        <h1 className="font-black text-4xl text-gray-500">Historial de Trabajos Realizados</h1>
+        <h1 className="font-black text-4xl text-gray-500">Historial</h1>
         <hr className="my-4 border-t-2 border-gray-300" />
         <p className="mb-8">
           {rol === "estilista"
@@ -75,7 +75,7 @@ const HistorialTrabajos = () => {
   return (
     <div>
       <ToastContainer />
-      <h1 className="font-black text-4xl text-gray-500">Historial de Trabajos Realizados</h1>
+      <h1 className="font-black text-4xl text-gray-500">Historial</h1>
       <hr className="my-4 border-t-2 border-gray-300" />
       <p className="mb-8">
         {rol === "estilista"
