@@ -357,6 +357,89 @@ setSelectedTreatment(null);
 
 
 
+
+                                {/* Botón de Marcar como Atendido */}
+                                {(rol === "estilista" || rol === "administrador") && (
+                                    <span
+                                        title="Marcar como Atendido"
+                                        className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-green-600"
+                                        onClick={async () => {
+                                            const confirmMark = window.confirm(
+                                                "¿Estás seguro de que deseas marcar esta cita como atendida?"
+                                            );
+                                            if (confirmMark) {
+                                                try {
+                                                    const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/estado/${treatment._id}`;
+                                                    const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+                                                    const headers = {
+                                                        "Content-Type": "application/json",
+                                                        Authorization: `Bearer ${storedUser.state.token}`,
+                                                    };
+                                                    const response = await fetch(url, {
+                                                        method: "PUT",
+                                                        headers: headers,
+                                                        body: JSON.stringify({ estadoAtencion: "Atendido" }),
+                                                    });
+                                                    if (response.ok) {
+                                                        // toast.success("Cita marcada como atendida.");
+                                                        listPatient(); // Refrescar la lista
+                                                    } else {
+                                                        const errorData = await response.json();
+                                                        toast.error(errorData.msg || "Error al marcar la cita como atendida.");
+                                                    }
+                                                } catch (error) {
+                                                    console.error("Error al marcar la cita como atendida:", error);
+                                                    toast.error("Error al marcar la cita como atendida.");
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        ✅
+                                    </span>
+                                )}
+                                {/* Botón de Marcar como No Asistió (esto podría cambiar el estado a Pendiente o tener otro estado) */}
+                                {(rol === "estilista" || rol === "administrador") && (
+                                    <span
+                                        title="Marcar como No Asistió"
+                                        className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
+                                        onClick={async () => {
+                                            const confirmMark = window.confirm(
+                                                "¿Estás seguro de que deseas marcar esta cita como 'Pendiente'?"
+                                            );
+                                            if (confirmMark) {
+                                                try {
+                                                    const url = `${import.meta.env.VITE_BACKEND_URL}/atencion/estado/${treatment._id}`;
+                                                    const storedUser = JSON.parse(localStorage.getItem("auth-token"));
+                                                    const headers = {
+                                                        "Content-Type": "application/json",
+                                                        Authorization: `Bearer ${storedUser.state.token}`,
+                                                    };
+                                                    const response = await fetch(url, {
+                                                        method: "PUT",
+                                                        headers: headers,
+                                                        body: JSON.stringify({ estadoAtencion: "Pendiente" }), // O podrías tener un estado 'NoAsistio'
+                                                    });
+                                                    if (response.ok) {
+                                                        // toast.success("Cita marcada como 'No Asistió'.");
+                                                        listPatient(); // Refrescar la lista
+                                                    } else {
+                                                        const errorData = await response.json();
+                                                        toast.error(errorData.msg || "Error al marcar la cita como 'No Asistió'.");
+                                                    }
+                                                } catch (error) {
+                                                    console.error("Error al marcar la cita como 'No Asistió':", error);
+                                                    toast.error("Error al marcar la cita como 'No Asistió'.");
+                                                }
+                                            }
+                                        }}
+                                    >
+                                        ❌
+                                    </span>
+                                )}
+
+
+
+
                             
 
                                 {/* Botón de Pagar para cliente */}
