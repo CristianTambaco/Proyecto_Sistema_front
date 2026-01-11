@@ -296,7 +296,7 @@ setSelectedTreatment(null);
 
 
                                 {/* Botón de Editar - Solo si showEditButton es true */}
-                                {showEditButton && (
+                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && (
                                   <span
                                     title="Editar"
                                     className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
@@ -314,7 +314,7 @@ setSelectedTreatment(null);
 
                                 {/* Botón de Cancelar para cliente */}
                                 
-                                {showEditButton &&  (
+                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && (
                                 <span
                                 title="Cancelar Reserva"
                                 className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
