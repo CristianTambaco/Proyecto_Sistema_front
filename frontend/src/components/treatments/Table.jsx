@@ -252,14 +252,19 @@ setSelectedTreatment(null);
 
                             {/* NUEVA CELDA: Estado de la Atención */}
                             <td>
-                            <span className={`px-2 py-1 rounded text-xs ${
-                            treatment.estadoAtencion === 'Atendido'
-                            ? ' text-green-800'
-                            : ' text-yellow-800'
-                            }`}>
-                            {treatment.estadoAtencion}
+                            <span
+                                className={`px-2 py-1 rounded text-xs ${
+                                treatment.estadoAtencion === 'Atendido'
+                                    ? 'text-green-800'
+                                    : treatment.estadoAtencion === 'No Asistió'
+                                    ? 'text-red-800'
+                                    : 'text-yellow-800'
+                                }`}
+                            >
+                                {treatment.estadoAtencion}
                             </span>
                             </td>
+
 
 
                             <td className="py-2 text-center">
@@ -296,7 +301,7 @@ setSelectedTreatment(null);
 
 
                                 {/* Botón de Editar - Solo si showEditButton es true */}
-                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && (
+                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && treatment.estadoAtencion !== 'No Asistió' &&  (
                                   <span
                                     title="Editar"
                                     className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
@@ -314,7 +319,7 @@ setSelectedTreatment(null);
 
                                 {/* Botón de Cancelar para cliente */}
                                 
-                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && (
+                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && treatment.estadoAtencion !== 'No Asistió' &&  (
                                 <span
                                 title="Cancelar Reserva"
                                 className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
@@ -404,7 +409,7 @@ setSelectedTreatment(null);
                                         className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
                                         onClick={async () => {
                                             const confirmMark = window.confirm(
-                                                "¿Estás seguro de que deseas marcar esta cita como 'Pendiente'?"
+                                                "¿Estás seguro de que deseas marcar esta cita como 'No Asistió'?"
                                             );
                                             if (confirmMark) {
                                                 try {
@@ -417,7 +422,7 @@ setSelectedTreatment(null);
                                                     const response = await fetch(url, {
                                                         method: "PUT",
                                                         headers: headers,
-                                                        body: JSON.stringify({ estadoAtencion: "Pendiente" }), // O podrías tener un estado 'NoAsistio'
+                                                        body: JSON.stringify({ estadoAtencion: "No Asistió" }), // O podrías tener un estado 'NoAsistio'
                                                     });
                                                     if (response.ok) {
                                                         // toast.success("Cita marcada como 'No Asistió'.");
