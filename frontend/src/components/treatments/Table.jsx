@@ -365,9 +365,10 @@ setSelectedTreatment(null);
 
                                 {/* Botón de Marcar como Atendido */}
                                 {showStatusButtons && (
-                                    <span
+                                    <button
+                                        type="button"
                                         title="Marcar como Atendido"
-                                        className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-green-600"
+                                        className="inline-block mr-2 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 hover:scale-105 transition-transform"
                                         onClick={async () => {
                                             const confirmMark = window.confirm(
                                                 "¿Estás seguro de que deseas marcar esta cita como atendida?"
@@ -399,14 +400,15 @@ setSelectedTreatment(null);
                                             }
                                         }}
                                     >
-                                        ✅
-                                    </span>
+                                        Atendida
+                                    </button>
                                 )}
                                 {/* Botón de Marcar como No asiste (esto podría cambiar el estado a Pendiente o tener otro estado) */}
                                 {showStatusButtons && (
-                                    <span
+                                    <button
+                                        type="button"
                                         title="Marcar como No asiste"
-                                        className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
+                                        className="inline-block mr-2 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 hover:scale-105 transition-transform"
                                         onClick={async () => {
                                             const confirmMark = window.confirm(
                                                 "¿Estás seguro de que deseas marcar esta cita como 'No asiste'?"
@@ -438,8 +440,8 @@ setSelectedTreatment(null);
                                             }
                                         }}
                                     >
-                                        🚩
-                                    </span>
+                                        No asiste
+                                    </button>
                                 )}
 
 
