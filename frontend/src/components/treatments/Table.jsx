@@ -433,7 +433,7 @@ setSelectedTreatment(null);
                                             }
                                         }}
                                     >
-                                        ❌
+                                        🚩
                                     </span>
                                 )}
 
