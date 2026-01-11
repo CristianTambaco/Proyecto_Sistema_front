@@ -17,7 +17,7 @@ import EditModal from "./EditModal"; // <--
 
 
 
-const TableTreatments = ({ treatments = [], listPatient, showEditButton = false }) => {
+const TableTreatments = ({ treatments = [], listPatient, showEditButton = false, showStatusButtons = false }) => {
     const { deleteTreatments } = storeTreatments()
     const { rol } = storeAuth()
     const { modal, toggleModal } = storeTreatments()
@@ -359,7 +359,7 @@ setSelectedTreatment(null);
 
 
                                 {/* Botón de Marcar como Atendido */}
-                                {(rol === "estilista" || rol === "administrador") && (
+                                {showStatusButtons && (
                                     <span
                                         title="Marcar como Atendido"
                                         className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-green-600"
@@ -398,7 +398,7 @@ setSelectedTreatment(null);
                                     </span>
                                 )}
                                 {/* Botón de Marcar como No Asistió (esto podría cambiar el estado a Pendiente o tener otro estado) */}
-                                {(rol === "estilista" || rol === "administrador") && (
+                                {showStatusButtons && (
                                     <span
                                         title="Marcar como No Asistió"
                                         className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"

@@ -132,7 +132,7 @@ const AgendaCitas = () => {
           No se encontraron citas.
         </div>
       ) : (
-        <TableTreatments treatments={atencionesFiltradas} listPatient={cargarAtenciones} />
+        <TableTreatments treatments={atencionesFiltradas} listPatient={cargarAtenciones} showStatusButtons={true}/>
       )}
     </div>
   );
