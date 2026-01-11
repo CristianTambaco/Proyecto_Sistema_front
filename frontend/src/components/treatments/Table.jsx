@@ -122,6 +122,20 @@ setSelectedTreatment(null);
 
 
 
+
+
+
+  // Función para validar si la fecha de la cita es válida para cambiar el estado
+    const isFechaValidaParaCambio = (fechaCita) => {
+        if (!fechaCita) return false;
+        const hoy = new Date();
+        hoy.setHours(0, 0, 0, 0);
+        const fechaCitaObj = new Date(fechaCita);
+        return fechaCitaObj <= hoy; // Solo permite cambiar el estado si la fecha de la cita es hoy o anterior
+    };
+
+
+
   
 
   
@@ -368,8 +382,14 @@ setSelectedTreatment(null);
                                     <button
                                         type="button"
                                         title="Marcar como Atendido"
-                                        className="inline-block mr-2 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 hover:scale-105 transition-transform"
+                                        className={`inline-block mr-2 px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 hover:scale-105 transition-transform ${isFechaValidaParaCambio(treatment.fechaCita) ? '' : 'opacity-50'}`}
                                         onClick={async () => {
+
+                                            if (!isFechaValidaParaCambio(treatment.fechaCita)) {
+                                                alert("La cita tiene fecha posterior a la actual");
+                                                return;
+                                            }
+
                                             const confirmMark = window.confirm(
                                                 "¿Estás seguro de que deseas marcar esta cita como atendida?"
                                             );
@@ -408,8 +428,15 @@ setSelectedTreatment(null);
                                     <button
                                         type="button"
                                         title="Marcar como No asiste"
-                                        className="inline-block mr-2 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 hover:scale-105 transition-transform"
+                                        className={`inline-block mr-2 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 hover:scale-105 transition-transform ${isFechaValidaParaCambio(treatment.fechaCita) ? '' : 'opacity-50'}`}
                                         onClick={async () => {
+
+                                            if (!isFechaValidaParaCambio(treatment.fechaCita)) {
+                                                alert("La cita tiene fecha posterior a la actual.");
+                                                return;
+                                            }
+
+
                                             const confirmMark = window.confirm(
                                                 "¿Estás seguro de que deseas marcar esta cita como 'No asiste'?"
                                             );
