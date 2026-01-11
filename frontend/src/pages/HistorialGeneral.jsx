@@ -150,7 +150,7 @@ const handleOrdenChange = (e) => {
 
             {atencionesFiltradas.length === 0 ? (
                 <div className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">
-                    No se encontraron atenciones.
+                    No existen registros.
                 </div>
             ) : (
                 <TableTreatments treatments={atencionesFiltradas} listPatient={cargarAtenciones} />
