@@ -256,7 +256,7 @@ setSelectedTreatment(null);
                                 className={`px-2 py-1 rounded text-xs ${
                                 treatment.estadoAtencion === 'Atendido'
                                     ? 'text-green-800'
-                                    : treatment.estadoAtencion === 'No Asistió'
+                                    : treatment.estadoAtencion === 'No asiste'
                                     ? 'text-red-800'
                                     : 'text-yellow-800'
                                 }`}
@@ -301,7 +301,7 @@ setSelectedTreatment(null);
 
 
                                 {/* Botón de Editar - Solo si showEditButton es true */}
-                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && treatment.estadoAtencion !== 'No Asistió' &&  (
+                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && treatment.estadoAtencion !== 'No asiste' &&  (
                                   <span
                                     title="Editar"
                                     className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
@@ -319,7 +319,7 @@ setSelectedTreatment(null);
 
                                 {/* Botón de Cancelar para cliente */}
                                 
-                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && treatment.estadoAtencion !== 'No Asistió' &&  (
+                                {showEditButton && treatment.estadoAtencion !== 'Atendido' && treatment.estadoAtencion !== 'No asiste' &&  (
                                 <span
                                 title="Cancelar Reserva"
                                 className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
@@ -402,14 +402,14 @@ setSelectedTreatment(null);
                                         ✅
                                     </span>
                                 )}
-                                {/* Botón de Marcar como No Asistió (esto podría cambiar el estado a Pendiente o tener otro estado) */}
+                                {/* Botón de Marcar como No asiste (esto podría cambiar el estado a Pendiente o tener otro estado) */}
                                 {showStatusButtons && (
                                     <span
-                                        title="Marcar como No Asistió"
+                                        title="Marcar como No asiste"
                                         className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-red-600"
                                         onClick={async () => {
                                             const confirmMark = window.confirm(
-                                                "¿Estás seguro de que deseas marcar esta cita como 'No Asistió'?"
+                                                "¿Estás seguro de que deseas marcar esta cita como 'No asiste'?"
                                             );
                                             if (confirmMark) {
                                                 try {
@@ -422,18 +422,18 @@ setSelectedTreatment(null);
                                                     const response = await fetch(url, {
                                                         method: "PUT",
                                                         headers: headers,
-                                                        body: JSON.stringify({ estadoAtencion: "No Asistió" }), // O podrías tener un estado 'NoAsistio'
+                                                        body: JSON.stringify({ estadoAtencion: "No asiste" }), // O podrías tener un estado 'NoAsistio'
                                                     });
                                                     if (response.ok) {
-                                                        // toast.success("Cita marcada como 'No Asistió'.");
+                                                        // toast.success("Cita marcada como 'No asiste'.");
                                                         listPatient(); // Refrescar la lista
                                                     } else {
                                                         const errorData = await response.json();
-                                                        toast.error(errorData.msg || "Error al marcar la cita como 'No Asistió'.");
+                                                        toast.error(errorData.msg || "Error al marcar la cita como 'No asiste'.");
                                                     }
                                                 } catch (error) {
-                                                    console.error("Error al marcar la cita como 'No Asistió':", error);
-                                                    toast.error("Error al marcar la cita como 'No Asistió'.");
+                                                    console.error("Error al marcar la cita como 'No asiste':", error);
+                                                    toast.error("Error al marcar la cita como 'No asiste'.");
                                                 }
                                             }
                                         }}

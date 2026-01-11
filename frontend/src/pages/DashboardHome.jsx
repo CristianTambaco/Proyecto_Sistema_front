@@ -207,7 +207,7 @@ const DashboardHome = () => {
 
         {/* Historial de Trabajos - estilista y administrador */}
 
-        {(userRole === 'estilista' ) && (
+        {/* {(userRole === 'estilista' ) && (
           <Link
             to="/dashboard/historial-trabajos"
             className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center justify-center h-40"
@@ -215,7 +215,7 @@ const DashboardHome = () => {
             <FaBook className="text-4xl text-orange-600 mb-3" />
             <span className="text-center text-sm font-medium text-gray-700">Historial</span>
           </Link>
-        )}
+        )} */}
 
 
 
