@@ -33,10 +33,7 @@ export const Forgot = () => {
     return (
         <div className="flex flex-col sm:flex-row h-screen">
             <ToastContainer />
-            {/* Imagen de fondo */}
-            <div className="w-full sm:w-1/2 h-screen bg-[url('/public/images/imageforgot.jpeg')]
-                bg-no-repeat bg-cover bg-center sm:block hidden">
-            </div>
+            
             {/* Contenedor de formulario */}
             <div className="w-full sm:w-1/2 h-screen bg-white flex justify-center items-center">
                 <div className="md:w-4/5 sm:w-full">
@@ -80,6 +77,11 @@ export const Forgot = () => {
                         <Link to="/login" className="py-2 px-5 bg-gray-600 text-slate-300 border rounded-xl hover:scale-110 duration-300 hover:bg-gray-900 hover:text-white">Iniciar sesión</Link>
                     </div>
                 </div>
+            </div>
+
+            {/* Imagen de fondo */}
+            <div className="w-full sm:w-1/2 h-screen bg-[url('/public/images/imageforgot.jpeg')]
+                bg-no-repeat bg-cover bg-center sm:block hidden">
             </div>
         </div>
     );
