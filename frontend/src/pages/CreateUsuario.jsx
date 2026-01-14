@@ -99,6 +99,81 @@ const CreateUsuario = () => {
           />
           {errors.apellido && <p className="text-red-800">{errors.apellido.message}</p>}
         </div>
+
+        
+        
+
+        {/*  NUEVO: Campo de Cédula solo para Administrador */}
+        {tipoUsuario === 'administrador' && (
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">Cédula <span className="text-red-600">*</span></label>
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength={10}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              placeholder={`Cédula del ${rolTexto}`}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+              {...register("cedula", {
+                required: `La cédula es obligatoria.`,
+                minLength: {
+                  value: 10,
+                  message: "La cédula debe tener 10 dígitos"
+                },
+                maxLength: {
+                  value: 10,
+                  message: "La cédula debe tener 10 dígitos"
+                },
+                validate: {
+                  soloNumeros: (value) =>
+                    /^\d+$/.test(value) || "La cédula solo debe contener números",
+                },
+              })}
+            />
+            {errors.cedula && <p className="text-red-800">{errors.cedula.message}</p>}
+          </div>
+        )}
+
+
+        {/* Campo de Cédula para estilista */}
+        {tipoUsuario === 'estilista' && (
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">
+              Cédula <span className="text-red-600">*</span>
+            </label>
+            <input
+              type="text"
+              inputMode="numeric"
+              maxLength={10}
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              placeholder={`Cédula del ${rolTexto}`}
+              onInput={(e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+              }}
+              {...register("cedula", {
+                required: `La cédula es obligatoria.`,
+                minLength: { value: 10, message: "Debe tener 10 dígitos" },
+                maxLength: { value: 10, message: "Debe tener 10 dígitos" },
+                validate: {
+                  soloNumeros: (value) => /^\d+$/.test(value) || "Solo números"
+                }
+              })}
+            />
+            {errors.cedula && <p className="text-red-800">{errors.cedula.message}</p>}
+          </div>
+        )}
+
+
+
+
+
+
+
+
+
+
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-1">Dirección<span className="text-red-600">*</span></label>
           <input
@@ -174,69 +249,7 @@ const CreateUsuario = () => {
           {errors.email && <p className="text-red-800">{errors.email.message}</p>}
         </div>
 
-        {/* 👇 NUEVO: Campo de Cédula solo para Administrador */}
-        {tipoUsuario === 'administrador' && (
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-1">Cédula <span className="text-red-600">*</span></label>
-            <input
-              type="text"
-              inputMode="numeric"
-              maxLength={10}
-              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-              placeholder={`Cédula del ${rolTexto}`}
-              onInput={(e) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-              }}
-              {...register("cedula", {
-                required: `La cédula es obligatoria.`,
-                minLength: {
-                  value: 10,
-                  message: "La cédula debe tener 10 dígitos"
-                },
-                maxLength: {
-                  value: 10,
-                  message: "La cédula debe tener 10 dígitos"
-                },
-                validate: {
-                  soloNumeros: (value) =>
-                    /^\d+$/.test(value) || "La cédula solo debe contener números",
-                },
-              })}
-            />
-            {errors.cedula && <p className="text-red-800">{errors.cedula.message}</p>}
-          </div>
-        )}
-
-
-        {/* Campo de Cédula para estilista */}
-        {tipoUsuario === 'estilista' && (
-          <div className="mb-4">
-            <label className="block text-sm font-semibold mb-1">
-              Cédula <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              inputMode="numeric"
-              maxLength={10}
-              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
-              placeholder={`Cédula del ${rolTexto}`}
-              onInput={(e) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
-              }}
-              {...register("cedula", {
-                required: `La cédula es obligatoria.`,
-                minLength: { value: 10, message: "Debe tener 10 dígitos" },
-                maxLength: { value: 10, message: "Debe tener 10 dígitos" },
-                validate: {
-                  soloNumeros: (value) => /^\d+$/.test(value) || "Solo números"
-                }
-              })}
-            />
-            {errors.cedula && <p className="text-red-800">{errors.cedula.message}</p>}
-          </div>
-        )}
-
-
+        
 
 
         <div className="mb-4">
