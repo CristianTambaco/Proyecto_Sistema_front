@@ -54,6 +54,20 @@ const UpdateUsuario = () => {
   const actualizarUsuario = async (data) => {
     if (rol !== 'administrador') return; // Solo admin puede actualizar
 
+
+
+    // 🔐 Confirmación solo si se va a cambiar la contraseña
+    if (data.passwordnuevo) {
+      const confirmar = window.confirm(
+        "¿Está seguro de cambiar la contraseña de este usuario?"
+      );
+
+      if (!confirmar) return; // Cancela el envío
+    }
+
+
+
+
     // Convertir status de string a booleano
     data.status = data.status === 'true';
 
@@ -310,6 +324,40 @@ const UpdateUsuario = () => {
           {/* Mostrar el estado actual (opcional, para referencia visual) */}
           <p className="mt-1 text-xs text-gray-500">Estado actual: <span className={statusActual === 'true' ? 'text-green-600' : 'text-red-600'}>{statusActual === 'true' ? 'Activo' : 'Inactivo'}</span></p>
         </div>
+
+
+
+          {rol === 'administrador' && (
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-1">Nueva Contraseña</label>
+            <input
+              type="password"
+              className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+              placeholder={`Ingrese una nueva contraseña para el ${rolTexto}`}
+              {...register("passwordnuevo", {
+                minLength: {
+                  value: 8,
+                  message: "La contraseña debe tener al menos 8 caracteres"
+                },
+                maxLength: {
+                  value: 12,
+                  message: "La contraseña no puede superar los 12 caracteres"
+                },
+                pattern: {
+                  value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                  message:
+                    "Debe tener letras, números y caracteres especiales"
+                }
+              })}
+            />
+            {errors.passwordnuevo && <p className="text-red-800">{errors.passwordnuevo.message}</p>}
+            <p className="mt-1 text-xs text-gray-500">Deje vacío para mantener la contraseña actual.</p>
+          </div>
+        )}
+
+
+
+
 
         {/* No se incluye el campo de contraseña aquí, se manejaría en otra sección o modal */}
         {/* <div className="mb-4">
