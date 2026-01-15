@@ -325,8 +325,7 @@ setSelectedTreatment(null);
                                     title="Editar"
                                     className="text-xl cursor-pointer inline-block mr-2 hover:scale-110 text-blue-600"
                                     onClick={() => {
-                                      handleEditDetails(treatment);
-                                      setEditMode(true); // <-- Opcional: si tienes un estado para modo edición
+                                      handleEditDetails(treatment);                                   
                                     }}
                                   >
                                     ✏️
