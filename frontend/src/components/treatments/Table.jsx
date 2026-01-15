@@ -206,6 +206,11 @@ setSelectedTreatment(null);
                         )}
 
 
+                        {(rol === 'administrador'  ) &&(
+                        <th className="p-2">Acciones</th>
+                        )} 
+
+
                         
 
 
@@ -287,7 +292,7 @@ setSelectedTreatment(null);
 
                                 {/* Botón de Información */}
 
-                                {(rol === "estilista" || rol === "cliente")&& (
+                                {(rol === "estilista" || rol === "cliente" || rol === "administrador")&& (
 
                                 <span
                                 title="Ver detalles"

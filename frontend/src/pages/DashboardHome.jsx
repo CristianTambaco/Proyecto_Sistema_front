@@ -135,6 +135,17 @@ const DashboardHome = () => {
             <FaHistory className="text-4xl text-green-800 mb-3" />
             <span className="text-center text-sm font-medium text-gray-700">Historial General</span>
           </Link>
+        )}
+
+
+        {userRole === 'administrador' && (
+          <Link
+            to="/dashboard/historial-general"
+            className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer flex flex-col items-center justify-center h-40"
+          >
+            <FaHistory className="text-4xl text-green-800 mb-3" />
+            <span className="text-center text-sm font-medium text-gray-700">Historial General</span>
+          </Link>
         )}        
 
         
