@@ -7,6 +7,8 @@ import {generateAvatar,convertBlobToBase64} from "../../helpers/consultarIA"
 import { toast, ToastContainer } from "react-toastify"
 import storeAuth from "../../context/storeAuth"; // <-- Importar storeAuth
 
+
+
 export const Form = ({patient}) => {
 
     const [avatar, setAvatar] = useState({
@@ -246,6 +248,37 @@ export const Form = ({patient}) => {
                         {errors.estadoMascota && <p className="text-red-800">{errors.estadoMascota.message}</p>}
                     </div>
                 )}
+
+
+
+                {rol === 'administrador' && (
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold mb-1">Nueva Contraseña</label>
+                    <input
+                    type="password"
+                    placeholder="Ingrese una nueva contraseña (deje vacío para mantener la actual)"
+                    className="block w-full rounded-md border border-gray-300 py-1 px-2 text-gray-500"
+                    {...register("passwordnuevo", {
+                        minLength: {
+                        value: 8,
+                        message: "La contraseña debe tener al menos 8 caracteres"
+                        },
+                        maxLength: {
+                        value: 12,
+                        message: "La contraseña no puede superar los 12 caracteres"
+                        },
+                        pattern: {
+                        value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,12}$/,
+                        message: "Debe tener letras, números y caracteres especiales"
+                        }
+                    })}
+                    />
+                    {errors.passwordnuevo && <p className="text-red-800">{errors.passwordnuevo.message}</p>}
+                    <p className="text-xs text-gray-500 mt-1">Deje vacío para mantener la contraseña actual.</p>
+                </div>
+                )}
+
+
 
 
             </fieldset>
