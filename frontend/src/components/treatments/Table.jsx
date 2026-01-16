@@ -14,7 +14,7 @@ import useFetch from "../../hooks/useFetch";
 
 import EditModal from "./EditModal"; // <-- 
 
-
+import { useEffect } from 'react'
 
 
 const TableTreatments = ({ treatments = [], listPatient, showEditButton = false, showStatusButtons = false }) => {
@@ -24,8 +24,25 @@ const TableTreatments = ({ treatments = [], listPatient, showEditButton = false,
     const [selectedTreatment, setSelectedTreatment] = useState(null)
 
     const [showEditModal, setShowEditModal] = useState(false);
+    
 
     const [horarios, setHorarios] = useState([]); // <-- Estado para los horarios
+
+
+    // Cargar horarios activos al montar
+    useEffect(() => {
+    const fetchHorariosActivos = async () => {
+        try {
+        const url = `${import.meta.env.VITE_BACKEND_URL}/horarios-activos2`;
+        const response = await fetchDataBackend(url, null, "GET", null);
+        setHorarios(response || []);
+        } catch (error) {
+        console.error("Error al cargar horarios activos:", error);
+        toast.error("No se pudieron cargar los horarios.");
+        }
+    };
+    fetchHorariosActivos();
+    }, []);
 
 
 
@@ -596,7 +613,7 @@ setSelectedTreatment(null);
       onClose={closeEditModal}
       onRefresh={listPatient} // Llama a listPatient para refrescar la lista
 
-      // horariosActivos={horarios} // <-- 
+      horariosActivos={horarios} // <-- 
 
       />
       )}
