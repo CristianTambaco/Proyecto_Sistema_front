@@ -36,9 +36,9 @@ const CambiarContraseña = () => {
     }
 
     // Validación adicional solo para administrador: al menos una mayúscula
-    if (rol === 'administrador' && !/[A-Z]/.test(value)) {
-      return "La contraseña del administrador debe incluir al menos una letra mayúscula.";
-    }
+    // if (rol === 'administrador' && !/[A-Z]/.test(value)) {
+    //   return "La contraseña del administrador debe incluir al menos una letra mayúscula.";
+    // }
 
     return true;
   };
