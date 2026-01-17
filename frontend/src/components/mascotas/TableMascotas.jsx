@@ -91,7 +91,7 @@ title="Editar"
 <button
 onClick={() => eliminarMascotaFisica(mascota._id)}
 className="h-10 w-10 text-red-900 cursor-pointer flex items-center justify-center text-xl hover:text-red-600"
-title="Eliminar físicamente"
+title="Eliminar"
 >
 🗑️
 </button>
